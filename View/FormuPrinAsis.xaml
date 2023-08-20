@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Asis_Batia.ViewModel.FormuPrinAsis"
+             Title="FormuPrinAsis">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Offset="0.1" Color="#FFFFFF"/>
+            <GradientStop Offset="1.0" Color="#3775B5"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="50,50"
+            Margin="20,0,0,0"
+            HorizontalOptions="Center"
+            VerticalOptions="Start">
+
+            <Label Text="Seleciona el Cliente: *"
+                   FontSize="Medium"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontFamily="Regular"
+                   TextColor="#D4BC88"/>
+            <Picker
+                
+                 Title="-Seleccionar-"
+                 TitleColor="Black"
+                 CharacterSpacing="2"
+                 FontAttributes="Bold"
+                 FontAutoScalingEnabled="True"
+                 FontFamily="Regular"
+                 FontSize="20"
+                 VerticalTextAlignment="Center"
+                 HorizontalTextAlignment="Center"
+                 ItemsSource="{Binding Clients}"
+                 ItemDisplayBinding="{Binding nombre}"
+                 SelectedItem="{Binding IdSelected}"
+                 />
+            <Picker
+                
+                 Title="-Seleccionar-"
+                 TitleColor="Black"
+                 CharacterSpacing="5"
+                 FontAttributes="Bold"
+                 FontAutoScalingEnabled="True"
+                 FontFamily="Regular"
+                 FontSize="20"
+                 VerticalTextAlignment="Center"
+                 HorizontalTextAlignment="Center"
+                ItemsSource="{Binding Inmueble}"
+                ItemDisplayBinding="{Binding nombre}"
+                SelectedItem = "{Binding IdInmubleSelected}"
+                />
+
+            <Picker
+                x:Name="Pk_Empleado"
+                 Title="-Seleccionar-"
+                 TitleColor="Black"
+                 CharacterSpacing="5"
+                 FontAttributes="Bold"
+                 FontAutoScalingEnabled="True"
+                 FontFamily="Regular"
+                 FontSize="20"
+                 VerticalTextAlignment="Center"
+                 HorizontalTextAlignment="Center"
+                ItemsSource="{Binding Empleado}"
+                ItemDisplayBinding="{Binding empleado}"
+                />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
