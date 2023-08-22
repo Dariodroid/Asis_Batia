@@ -33,7 +33,7 @@
                 TextColor="White"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
-                CornerRadius="10"
+                CornerRadius="11"
                 TranslationY="20"
                 WidthRequest="200"
                 HeightRequest="50"
