@@ -1,60 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Asis_Batia.MainPage">
+             x:Class="Asis_Batia.MainPage"
+             Title="Bienvenido"
+             >
 
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Offset="0.1" Color="#FFFFFF"/>
+            <GradientStop Offset="0.1" Color="#ffffff"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    <ScrollView>
-        <Grid>
-            <Image
-            Source="logo6apng.png"
-            VerticalOptions="Start"
-            HorizontalOptions="Center"
-            TranslationX="0"
-            TranslationY="50"
-            WidthRequest="300"
-            HeightRequest="300"/>
+ 
+       
+        <VerticalStackLayout Margin="20">
+            <Image Source="logo6apng.png"
+               Aspect="AspectFill"
+               HeightRequest="300"
+               WidthRequest="300"
+               TranslationY="15"/>
             <Label 
             Text="Asis Batia"
+            TextColor="#2E3192"
             FontFamily="Regular"
-            FontSize="60"
+            FontSize="50"
             HorizontalOptions="Center"
-            TranslationY="300"/>
-            <!--<Button
-            Clicked="Button_Clicked"
-            Text="Asistencia"
-            FontSize="Large"
-            BackgroundColor="#2E3192"
-            TextColor="White"
-            HorizontalOptions="Center"
-            FontAttributes="Bold"
-            CornerRadius="10"
-            TranslationY="50"
-            WidthRequest="200"
-            HeightRequest="50"
-            BorderColor="#D4BC88"
-            BorderWidth="3">
-            </Button>-->
+            TranslationY="-35"/>
             <Button 
                 x:Name="bntNext"
                 Text="Asistencia"
                 Clicked="bntNext_Clicked"
                 FontSize="Large"
-                BackgroundColor="#2E3192"
+                BackgroundColor="#D4BC88"
                 TextColor="White"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
                 CornerRadius="10"
-                TranslationY="50"
+                TranslationY="20"
                 WidthRequest="200"
                 HeightRequest="50"
-                BorderColor="#D4BC88"
-                BorderWidth="3">
+                >
             </Button>
 
             <Image
@@ -62,10 +47,10 @@
             VerticalOptions="End"
             HorizontalOptions="Center"
             TranslationX="0"
-            TranslationY="-50"
-            WidthRequest="250"
-            HeightRequest="250"/>
-        </Grid>
-    </ScrollView>
+            TranslationY="60"
+            WidthRequest="200"
+            HeightRequest="200"/>
+
+        </VerticalStackLayout>
 
 </ContentPage>

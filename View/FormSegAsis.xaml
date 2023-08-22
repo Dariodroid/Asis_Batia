@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Asis_Batia.View.FormSegAsis"
+             Title="Asistencia">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Offset="0.1" Color="#FFFFFF"/>
+            <GradientStop Offset="1.0" Color="#3775B5"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <VerticalStackLayout            
+            Spacing="1"
+            Padding="20,50"
+            Margin="5,0,0,0"
+            HorizontalOptions="Center"
+            VerticalOptions="Start">
+        <Label Text="Seleccione solo una opcion de envio:"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontFamily="Regular"
+                   TextColor="#2E3192"/>
+        <RadioButton Content="A Asistencia"/>
+        <RadioButton Content="D Doblete"/>
+        <RadioButton Content="F Falta"/>
+        <RadioButton Content="V Vacaciones"/>
+        <RadioButton Content="IEG Incapacidad General"/>
+        <RadioButton Content="IRT Incapacidad Riesgo de Trabajo"/>
+        <RadioButton Content="N Descanso"/>
+        <Label Text="Adjunta: incapacidad, formato de vaciones, justificante, Etc..."
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontFamily="Regular"
+                   TextColor="#2E3192"/>
+        <Image
+            Source="carpeta.png"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            TranslationX="0"
+            TranslationY="1"
+            WidthRequest="100"
+            HeightRequest="100"/>
+        <Entry
+            Placeholder="captura informacion adicional"/>
+        <Button 
+                x:Name="bntNext3"
+                Text="Siguiente"
+                Clicked="bntNext3_Clicked"
+                FontSize="Large"
+                BackgroundColor="#D4BC88"
+                TextColor="White"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                TranslationY="50"
+                WidthRequest="200"
+                HeightRequest="50"
+                />
+
+    </VerticalStackLayout>
+
+</ContentPage>
