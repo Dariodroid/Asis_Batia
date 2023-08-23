@@ -58,8 +58,7 @@
                 CornerRadius="10"
                 TranslationY="50"
                 WidthRequest="200"
-                HeightRequest="50"
-                />
+                HeightRequest="50"/>
 
     </VerticalStackLayout>
 
