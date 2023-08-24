@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Asis_Batia.View;
+using Asis_Batia.ViewModel;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Media;
 
 namespace Asis_Batia;
 
@@ -18,7 +21,8 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-
+		builder.Services.AddSingleton<IMediaPicker>(MediaPicker.Default);
+		builder.Services.AddTransient<FormuPrinAsisViewModel>();
 		return builder.Build();
 	}
 }

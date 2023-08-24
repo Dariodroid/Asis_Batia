@@ -9,6 +9,6 @@ public partial class RegExitoso : ContentPage
 
     private async void bntNext4_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushAsync(new MainPage());
+		//await Navigation.PushAsync(new MainPage());
     }
 }

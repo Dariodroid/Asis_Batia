@@ -66,6 +66,7 @@ namespace Asis_Batia.ViewModel
 
         // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
         private InmuebleByIdClienteModel.InmuebleModel _idInmubleSelected;
+        private readonly IMediaPicker mediaPicker;
 
         // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
         public InmuebleByIdClienteModel.InmuebleModel IdInmubleSelected
@@ -91,13 +92,14 @@ namespace Asis_Batia.ViewModel
 
 
         // Constructor de la clase FormuPrinAsisViewModel.
-        public FormuPrinAsisViewModel()
+        public FormuPrinAsisViewModel(IMediaPicker mediaPicker)
         {
             // Crear una nueva instancia de HttpClient llamada 'client'.
             client = new HttpClient();
 
             // Llamar al método 'GetClients' para obtener la información de los clientes.
             GetClients();
+            this.mediaPicker = mediaPicker;
         }
 
         // Método asincrónico para obtener la información de los clientes.

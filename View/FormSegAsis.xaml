@@ -36,14 +36,25 @@
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"/>
-        <Image
+        <!--<Image
             Source="carpeta.png"
             VerticalOptions="Center"
             HorizontalOptions="Center"
             TranslationX="0"
             TranslationY="1"
             WidthRequest="100"
-            HeightRequest="100"/>
+            HeightRequest="100"/>-->
+
+        <Button
+            x:Name="btn_camara"
+            Text="Foto"
+            Clicked="btn_camara_Clicked"
+            >
+            
+        </Button>
+        <!--<ImageButton
+            x:Name="btn_Foto"
+            Source="https://ibb.co/M9Fc6Ph"></ImageButton>-->
         <Entry
             Placeholder="captura informacion adicional"/>
         <Button 
