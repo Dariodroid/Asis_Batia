@@ -1,32 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Asis_Batia.MainPage"
-             Title="Bienvenido"
-             >
-
+             x:Class="Asis_Batia.View.MainPage"
+             Title="MainPage">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#ffffff"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
- 
-       
-        <VerticalStackLayout Margin="20">
-            <Image Source="logo6apng.png"
+    <VerticalStackLayout Margin="20">
+        <Image Source="logo6apng.png"
                Aspect="AspectFill"
                HeightRequest="300"
                WidthRequest="300"
                TranslationY="15"/>
-            <Label 
+        <Label 
             Text="Asis Batia"
             TextColor="#2E3192"
             FontFamily="Regular"
             FontSize="50"
             HorizontalOptions="Center"
             TranslationY="-35"/>
-            <Button 
+        <Button 
                 x:Name="bntNext"
                 Text="Asistencia"
                 Clicked="bntNext_Clicked"
@@ -40,9 +36,9 @@
                 WidthRequest="200"
                 HeightRequest="50"
                 >
-            </Button>
+        </Button>
 
-            <Image
+        <Image
             Source="icono_portada.png"
             VerticalOptions="End"
             HorizontalOptions="Center"
@@ -51,6 +47,6 @@
             WidthRequest="200"
             HeightRequest="200"/>
 
-        </VerticalStackLayout>
+    </VerticalStackLayout>
 
 </ContentPage>

@@ -1,19 +1,16 @@
-﻿namespace Asis_Batia;
 using Asis_Batia.ViewModel;
+
+namespace Asis_Batia.View;
 
 public partial class MainPage : ContentPage
 {
-    private readonly IMediaPicker mediaPicker;
-
-    public MainPage(IMediaPicker mediaPicker)
+	public MainPage()
 	{
 		InitializeComponent();
-        this.mediaPicker = mediaPicker;
-    }
+	}
 
     private async void bntNext_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new FormuPrinAsis(mediaPicker));
+        await Shell.Current.GoToAsync("FormPrin",true);
     }
 }
-

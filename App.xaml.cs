@@ -7,8 +7,8 @@ public partial class App : Application
     public App(IMediaPicker mediaPicker)
 	{
 		InitializeComponent();
-
-		MainPage = new NavigationPage(new MainPage(mediaPicker));
-        this.mediaPicker = mediaPicker;
+        MainPage = new AppShell();
+        //MainPage = new NavigationPage(new MainPage(mediaPicker));
+        //      this.mediaPicker = mediaPicker;
     }
 }

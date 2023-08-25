@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Asis_Batia.ViewModel.FormuPrinAsis"
-             Title="Asistencia">
-    <ContentPage.Background>
-        <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Offset="0.1" Color="#FFFFFF"/>
-            <GradientStop Offset="1.0" Color="#3775B5"/>
-        </LinearGradientBrush>
-    </ContentPage.Background>
+             x:Class="Asis_Batia.View.FormuPrinAsis"
+             xmlns:vm="clr-namespace:Asis_Batia.ViewModel"
+             x:DataType="vm:FormuPrinAsisViewModel"
+             Title="FormuPrinAsis">
+        <ContentPage.Background>
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Offset="0.1" Color="#FFFFFF"/>
+                <GradientStop Offset="1.0" Color="#3775B5"/>
+            </LinearGradientBrush>
+        </ContentPage.Background>
+    <VerticalStackLayout>
 
-    <ScrollView>
-        <VerticalStackLayout
+        <ScrollView>
+            <VerticalStackLayout
             Spacing="40"
             Padding="20,50"
             Margin="5,0,0,0"
@@ -19,14 +22,14 @@
             VerticalOptions="Start"
             >
 
-            <Label Text="Selecciona el cliente: *"
+                <Label Text="Selecciona el cliente: *"
                    FontSize="20"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"/>
-            <Picker
+                <Picker
                 
                  Title="-Seleccionar-"
                  TitleColor="Black"
@@ -40,14 +43,14 @@
                  ItemDisplayBinding="{Binding nombre}"
                  SelectedItem="{Binding IdSelected}"
                  />
-            <Label Text="Selecciona tu punto de atencion: *"
+                <Label Text="Selecciona tu punto de atencion: *"
                    FontSize="20"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"/>
-            <Picker
+                <Picker
                 
                  Title="-Seleccionar-"
                  TitleColor="Black"
@@ -61,14 +64,14 @@
                 ItemDisplayBinding="{Binding nombre}"
                 SelectedItem = "{Binding IdInmubleSelected}"
                 />
-            <Label Text="Selecciona tu nombre: *"
+                <Label Text="Selecciona tu nombre: *"
                    FontSize="20"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"/>
-            <Picker
+                <Picker
                 x:Name="Pk_Empleado"
                  Title="-Seleccionar-"
                  TitleColor="Black"
@@ -82,10 +85,10 @@
                 ItemsSource="{Binding Empleado}"
                 ItemDisplayBinding="{Binding empleado}"
                 />
-            <Button 
+                <Button 
                 x:Name="bntNext2"
                 Text="Siguiente"
-                Clicked="bntNext2_Clicked"
+                Command="{Binding NextPageCommand}"
                 FontSize="Large"
                 BackgroundColor="#D4BC88"
                 TextColor="White"
@@ -96,7 +99,8 @@
                 WidthRequest="200"
                 HeightRequest="50"
                 >
-            </Button>
-        </VerticalStackLayout>
-    </ScrollView>
+                </Button>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>

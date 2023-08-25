@@ -3,12 +3,27 @@
     x:Class="Asis_Batia.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Asis_Batia"
+    xmlns:local="clr-namespace:Asis_Batia.View"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Formulario pricipal"
+        ContentTemplate="{DataTemplate local:FormuPrinAsis}"
+        Route="FormPrin" />
+
+    <ShellContent
+        Title="Segundo formulario"
+        ContentTemplate="{DataTemplate local:FormuSegAsis}"
+        Route="FormSeg" />
+
+    <ShellContent
+        Title="Registro exitoso"
+        ContentTemplate="{DataTemplate local:RegExitoso}"
+        Route="FormReg" />
 
 </Shell>

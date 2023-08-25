@@ -1,4 +1,5 @@
 ﻿using Asis_Batia.Model;
+using Asis_Batia.View;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,7 @@ namespace Asis_Batia.ViewModel
 
         // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
         private InmuebleByIdClienteModel.InmuebleModel _idInmubleSelected;
+
         private readonly IMediaPicker mediaPicker;
 
         // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
@@ -89,7 +91,9 @@ namespace Asis_Batia.ViewModel
             }
         }
 
+        public INavigation Navigation { get; }
 
+        public ICommand NextPageCommand { get; set; }
 
         // Constructor de la clase FormuPrinAsisViewModel.
         public FormuPrinAsisViewModel(IMediaPicker mediaPicker)
@@ -100,6 +104,7 @@ namespace Asis_Batia.ViewModel
             // Llamar al método 'GetClients' para obtener la información de los clientes.
             GetClients();
             this.mediaPicker = mediaPicker;
+            NextPageCommand = new Command(async () => await NextPage());
         }
 
         // Método asincrónico para obtener la información de los clientes.
@@ -211,5 +216,10 @@ namespace Asis_Batia.ViewModel
             }
         }
 
+        
+        private async Task NextPage()
+        {
+            await Shell.Current.GoToAsync("FormSeg", true);
+        }
     }
 }
