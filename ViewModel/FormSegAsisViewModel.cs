@@ -35,12 +35,14 @@ namespace Asis_Batia.ViewModel
 
         public ICommand BackPageCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
+        public ICommand LoadFileCommand { get; set; }
 
 
         public FormSegAsisViewModel()
         {
             BackPageCommand = new Command(async () => await BackPage());
             RegisterCommand = new Command(async () => await Register());
+            LoadFileCommand = new Command(async () => await LoadFile());
 
         }
 
@@ -84,6 +86,34 @@ namespace Asis_Batia.ViewModel
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
+            }
+            else
+            {
+                await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
+            }
+        }
+
+        private async Task LoadFile()
+        {
+            try
+            {
+                PickOptions options = new PickOptions();
+                var result = await FilePicker.Default.PickAsync(options);
+                if (result != null)
+                {
+                    if (result.FileName.EndsWith("pdf", StringComparison.OrdinalIgnoreCase) ||
+                        result.FileName.EndsWith("doc", StringComparison.OrdinalIgnoreCase))
+                    {
+                        using var stream = await result.OpenReadAsync();
+                        var file = ImageSource.FromStream(() => stream);
+                    }
+                }
+
+                //return result;
+            }
+            catch (Exception ex)
+            {
+                // The user canceled or something went wrong
             }
         }
     }
