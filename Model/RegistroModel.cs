@@ -14,7 +14,7 @@ namespace Asis_Batia.Model
         public int Idinmueble { get; set; }
         public int Idempleado { get; set; }
         public string Confirma { get; set; }
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public string Movimiento { get; set; }
         public int Cubierto { get; set; }
         public int Adjuntos { get; set; }

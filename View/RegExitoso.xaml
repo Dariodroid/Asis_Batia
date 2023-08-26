@@ -15,7 +15,6 @@
            Margin="5,0,0,0"
            HorizontalOptions="Center"
            VerticalOptions="Center">
-       
         <Image
            Source="entrada.png"
            VerticalOptions="Center"

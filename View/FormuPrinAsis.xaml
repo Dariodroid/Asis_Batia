@@ -41,7 +41,7 @@
                  HorizontalTextAlignment="Center"
                  ItemsSource="{Binding Clients}"
                  ItemDisplayBinding="{Binding nombre}"
-                 SelectedItem="{Binding IdSelected}"
+                 SelectedItem="{Binding IdClientSelected}"
                  />
                 <Label Text="Selecciona tu punto de atencion: *"
                    FontSize="20"
@@ -82,8 +82,9 @@
                 
                  VerticalTextAlignment="Center"
                  HorizontalTextAlignment="Center"
-                ItemsSource="{Binding Empleado}"
-                ItemDisplayBinding="{Binding empleado}"
+                 ItemsSource="{Binding Empleado}"
+                 ItemDisplayBinding="{Binding empleado}"
+                 SelectedItem="{Binding IdEmpleadoSelected}"
                 />
                 <Button 
                 x:Name="bntNext2"

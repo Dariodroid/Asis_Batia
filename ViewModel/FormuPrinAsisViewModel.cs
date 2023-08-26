@@ -33,30 +33,6 @@ namespace Asis_Batia.ViewModel
             set { _inmueble = value; OnPropertyChanged(); }
         }
 
-        // Declaración de una propiedad privada llamada '_idSelected' del tipo 'ClientModel.Client'.
-        private ClientModel.Client _idSelected;
-
-        // Declaración de una propiedad pública llamada 'IdSelected' que encapsula la propiedad privada '_idSelected'.
-        public ClientModel.Client IdSelected
-        {
-            get { return _idSelected; } // Obtener el valor de '_idSelected'.
-            set
-            {
-                // Comprobar si el valor nuevo es diferente del valor actual.
-                if (_idSelected != value)
-                {
-                    // Asignar el valor nuevo a '_idSelected'.
-                    _idSelected = value;
-
-                    // Notificar que la propiedad 'IdSelected' ha cambiado.
-                    OnPropertyChanged();
-
-                    // Llamar al método 'GetInmuebleByIdClient' y pasar el ID del cliente seleccionado.
-                    GetInmuebleByIdClient(_idSelected.idCliente);
-                }
-            }
-        }
-
         // Declaración similar para la colección observable '_empleado' y la propiedad 'Empleado'.
         private ObservableCollection<EmpleadosModel.Empleado> _empleado;
         public ObservableCollection<EmpleadosModel.Empleado> Empleado
@@ -65,10 +41,33 @@ namespace Asis_Batia.ViewModel
             set { _empleado = value; OnPropertyChanged(); }
         }
 
+        // Declaración de una propiedad privada llamada '_idSelected' del tipo 'ClientModel.Client'.
+        private ClientModel.Client _idClientSelected;
+
+        // Declaración de una propiedad pública llamada 'IdSelected' que encapsula la propiedad privada '_idSelected'.
+        public ClientModel.Client IdClientSelected
+        {
+            get { return _idClientSelected; } // Obtener el valor de '_idSelected'.
+            set
+            {
+                // Comprobar si el valor nuevo es diferente del valor actual.
+                if (_idClientSelected != value)
+                {
+                    // Asignar el valor nuevo a '_idSelected'.
+                    _idClientSelected = value;
+
+                    // Notificar que la propiedad 'IdSelected' ha cambiado.
+                    OnPropertyChanged();
+
+                    // Llamar al método 'GetInmuebleByIdClient' y pasar el ID del cliente seleccionado.
+                    GetInmuebleByIdClient(_idClientSelected.idCliente);
+                }
+            }
+        }
+
+
         // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
         private InmuebleByIdClienteModel.InmuebleModel _idInmubleSelected;
-
-        private readonly IMediaPicker mediaPicker;
 
         // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
         public InmuebleByIdClienteModel.InmuebleModel IdInmubleSelected
@@ -91,19 +90,31 @@ namespace Asis_Batia.ViewModel
             }
         }
 
-        public INavigation Navigation { get; }
+        // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
+        private EmpleadosModel.Empleado _idEmpleadoSelected;
+
+        // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
+        public EmpleadosModel.Empleado IdEmpleadoSelected
+        {
+            get { return _idEmpleadoSelected; } // Obtener el valor de '_idInmubleSelected'.
+            set
+            {
+                _idEmpleadoSelected = value;
+                // Notificar que la propiedad 'IdInmubleSelected' ha cambiado.
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand NextPageCommand { get; set; }
 
         // Constructor de la clase FormuPrinAsisViewModel.
-        public FormuPrinAsisViewModel(IMediaPicker mediaPicker)
+        public FormuPrinAsisViewModel()
         {
             // Crear una nueva instancia de HttpClient llamada 'client'.
             client = new HttpClient();
 
             // Llamar al método 'GetClients' para obtener la información de los clientes.
             GetClients();
-            this.mediaPicker = mediaPicker;
             NextPageCommand = new Command(async () => await NextPage());
         }
 
@@ -216,10 +227,15 @@ namespace Asis_Batia.ViewModel
             }
         }
 
-        
         private async Task NextPage()
         {
-            await Shell.Current.GoToAsync("FormSeg", true);
+            var data = new Dictionary<string, object>
+            {
+                {"IdCliente", _idClientSelected.idCliente },
+                {"IdInmueble", _idInmubleSelected.id_inmueble },
+                {"IdEmpleado", _idEmpleadoSelected.id_empleado }
+            };
+            await Shell.Current.GoToAsync("FormSeg", true, data);
         }
     }
 }

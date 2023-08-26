@@ -8,6 +8,6 @@ public partial class FormuPrinAsis : ContentPage
 	public FormuPrinAsis()
 	{
 		InitializeComponent();
-		BindingContext = new FormuPrinAsisViewModel(mediaPicker);
+		BindingContext = new FormuPrinAsisViewModel();
 	}
 }
