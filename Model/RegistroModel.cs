@@ -17,7 +17,7 @@ namespace Asis_Batia.Model
         public DateTime Fecha { get; set; }
         public string Movimiento { get; set; }
         public int Cubierto { get; set; }
-        public int Adjuntos { get; set; }
+        public byte Adjuntos { get; set; }
         public string RespuestaTexto { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }

@@ -15,14 +15,19 @@
            Margin="5,0,0,0"
            HorizontalOptions="Center"
            VerticalOptions="Center">
-        <Image
+        <!--<Image
            Source="entrada.png"
            VerticalOptions="Center"
            HorizontalOptions="Center"
            TranslationX="0"
            TranslationY="0"
            WidthRequest="400"
-           HeightRequest="400"/>
+           HeightRequest="400"/>-->
+        <Label Text="DATOS DEL EMPLEADO" TextColor="Black" FontSize="Title"/>
+        <Label Text="{Binding NombreCliente}" TextColor="Black" FontSize="Title" Scale="0.8"/>
+        <Label Text="DATOS DE ENTRADA" TextColor="Black" FontSize="Title"/>
+        <Label Text="{Binding Fecha}" TextColor="Black" FontSize="Title" Scale="0.8"/>
+
         <Button 
                 x:Name="bntNext4"
                 Text="SALIR"

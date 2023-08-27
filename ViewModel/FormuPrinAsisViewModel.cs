@@ -233,7 +233,8 @@ namespace Asis_Batia.ViewModel
             {
                 {"IdCliente", _idClientSelected.idCliente },
                 {"IdInmueble", _idInmubleSelected.id_inmueble },
-                {"IdEmpleado", _idEmpleadoSelected.id_empleado }
+                {"IdEmpleado", _idEmpleadoSelected.id_empleado },
+                {"NombreEmpleado", _idEmpleadoSelected.empleado }
             };
             await Shell.Current.GoToAsync("FormSeg", true, data);
         }

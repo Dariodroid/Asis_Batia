@@ -7,20 +7,34 @@ using System.Threading.Tasks;
 
 namespace Asis_Batia.ViewModel
 {
-    //[QueryProperty(nameof(RegistroModel), "IdCliente")]
-
-    public class RegExitosoViewModel:BaseViewModel
+    public class RegExitosoViewModel : BaseViewModel, IQueryAttributable
     {
-        //private RegistroModel _reg;
+        private string _nombreCliente;
 
-        //public RegistroModel Reg
-        //{
-        //    get { return _reg; }
-        //    set { _reg = value; OnPropertyChanged(); }
-        //}
+        public string NombreCliente
+        {
+            get { return _nombreCliente; }
+            set { _nombreCliente = value; OnPropertyChanged(); }
+        }
+
+        private DateTime _fecha;
+
+        public DateTime Fecha
+        {
+            get { return _fecha; }
+            set { _fecha = value; OnPropertyChanged(); }
+        }
+
+
         public RegExitosoViewModel()
         {
             
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            NombreCliente = (string)query["NombreEmpleado"];
+            Fecha = DateTime.Now;
         }
     }
 }
