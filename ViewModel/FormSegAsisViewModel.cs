@@ -19,6 +19,7 @@ namespace Asis_Batia.ViewModel
         public int IdEmpleado { get; set; }
         public int IdInmueble { get; set; }
         public int IdPeriodo { get; set; }
+        public string Tipo { get; set; }
 
 
         public string _selectionRadio;
@@ -51,6 +52,7 @@ namespace Asis_Batia.ViewModel
         public ICommand BackPageCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
         public ICommand LoadFileCommand { get; set; }
+        public ICommand PhotoCommand { get; set; }
 
 
         public FormSegAsisViewModel()
@@ -58,6 +60,7 @@ namespace Asis_Batia.ViewModel
             BackPageCommand = new Command(async () => await BackPage());
             RegisterCommand = new Command(async () => await Register());
             LoadFileCommand = new Command(async () => await LoadFile());
+            PhotoCommand = new Command(async () => await Photo());
         }
 
         private async Task BackPage()
@@ -75,7 +78,7 @@ namespace Asis_Batia.ViewModel
 
         private async Task Register()
         {
-           Location _location = await LocationService.GetCurrentLocation();
+            Location _location = await LocationService.GetCurrentLocation();
             if (_location == null)
             {
                 var message = LocationService.Message;
@@ -99,7 +102,7 @@ namespace Asis_Batia.ViewModel
                 Longitud = _location.Longitude.ToString(),
                 Movimiento = _selectionRadio,
                 RespuestaTexto = _respuestaTxt,
-                Tipo = "",
+                Tipo = Tipo,
             };
 
             Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
@@ -161,9 +164,9 @@ namespace Asis_Batia.ViewModel
                 // Asignar la colección de clientes a la propiedad 'Clients'.
                 Periodo = data;
                 IdPeriodo = Periodo[0].id_periodo;
+                Tipo = Periodo[0].descripcion;
             }
         }
-
 
         private async Task LoadFile()
         {
@@ -180,7 +183,7 @@ namespace Asis_Batia.ViewModel
                     {
                         using var stream = await result.OpenReadAsync();
                         var file = ImageSource.FromStream(() => stream);
-                        FileBase64 = ConvertImgToBase64(result.FullPath);
+                        FileBase64 = ConvertToBase64(result.FullPath);
                     }
                 }
 
@@ -192,11 +195,11 @@ namespace Asis_Batia.ViewModel
             }
         }
 
-        private byte ConvertImgToBase64(string path)
+        private byte ConvertToBase64(string path)
         {
             byte[] ImageData = File.ReadAllBytes(path);
             byte single;
-            using(FileStream fs = new FileStream(path, FileMode.Open))
+            using (FileStream fs = new FileStream(path, FileMode.Open))
             {
                 single = (byte)fs.ReadByte();
             }
@@ -204,6 +207,35 @@ namespace Asis_Batia.ViewModel
             //byte v = ImageData;
             ////string base64String = Convert.ToBase64String(ImageData);
             //return ImageData;
+        }
+
+        private async Task Photo()
+        {
+            bool res = true;
+            if (FileBase64 > 0)
+            {
+                res = await DisplayAlert("Confirmación", "Ya se ha elegido un archivo, Desea reemplazar por una foto ?", "Si", "No");
+            }
+            if (res)
+            {
+                if (MediaPicker.Default.IsCaptureSupported)
+                {
+                    FileResult photo = await MediaPicker.CapturePhotoAsync();
+                    if (photo != null)
+                    {
+                        string LocalFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                        using (Stream source = await photo.OpenReadAsync())
+                        {
+                            using FileStream localFile = File.OpenWrite(LocalFilePath);
+                            await source.CopyToAsync(localFile);
+
+                        }
+                        var f = LocalFilePath;
+                        FileBase64 = ConvertToBase64(f);
+                    }
+                }
+
+            }
         }
     }
 }

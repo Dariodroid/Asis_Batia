@@ -85,7 +85,7 @@ namespace Asis_Batia.Helpers
             catch (PermissionException ex)
             {
                 // Handle permission exception               
-                Message = "No se concedió permiso a la aplicación para usar su ubicación, para poder reportar un incidente debe permitir el acceso a su ubicación en las configuraiónes del dispositivo";
+                Message = "No se concedió permiso a la aplicación para usar su ubicación, permita el acceso a su ubicación en las configuraiónes del dispositivo";
                 return null;
             }
             catch (Exception ex)

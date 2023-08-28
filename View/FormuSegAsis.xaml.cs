@@ -14,26 +14,6 @@ public partial class FormuSegAsis : ContentPage
         BindingContext = formSegAsisViewModel;
     }
 
-    private async void btn_camara_Clicked(object sender, EventArgs e)
-    {
-        if (MediaPicker.Default.IsCaptureSupported)
-        {
-            FileResult photo = await MediaPicker.CapturePhotoAsync();
-            if (photo != null)
-            {
-                string LocalFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-                using Stream source = await photo.OpenReadAsync();
-                using FileStream localFile = File.OpenWrite(LocalFilePath);
-                await source.CopyToAsync(localFile);
-            }
-        }
-    }
-
-    private async void bntNext3_Clicked(object sender, EventArgs e)
-    {
-        //await Navigation.PushAsync(new RegExitoso());
-    }
-
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         RadioButton radio = sender as RadioButton;

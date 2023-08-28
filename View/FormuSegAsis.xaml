@@ -51,10 +51,8 @@
                 <Button 
                     x:Name="btn_camara"
                     Text="Foto"
-                    Clicked="btn_camara_Clicked">
-
+                   Command="{Binding PhotoCommand}">
                 </Button>
-
                 <Entry
                     Grid.Row="11"
                     Grid.ColumnSpan="2"
@@ -62,7 +60,6 @@
                 <Button 
                 x:Name="bntNext3"
                 Text="Siguiente"
-                Clicked="bntNext3_Clicked"
                 FontSize="Large"
                 BackgroundColor="#D4BC88"
                 TextColor="White"
