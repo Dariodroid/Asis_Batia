@@ -21,7 +21,7 @@ namespace Asis_Batia.ViewModel
         public int IdPeriodo { get; set; }
 
 
-        private string _selectionRadio;
+        public string _selectionRadio;
 
         public string SelectionRadio
         {
@@ -89,15 +89,15 @@ namespace Asis_Batia.ViewModel
             {
                 Adjuntos = FileBase64,
                 Anio = (int)DateTime.Today.Year,
-                Confirma = "",
-                Cubierto = 1,
-                Fecha = DateTime.Today,
+                Confirma = "App",
+                Cubierto = 0,
+                Fecha = DateTime.Now,
                 Idempleado = IdEmpleado,
                 Idinmueble = IdInmueble,
                 Idperiodo = IdPeriodo,
                 Latitud = _location.Latitude.ToString(),
                 Longitud = _location.Longitude.ToString(),
-                Movimiento = "",
+                Movimiento = _selectionRadio,
                 RespuestaTexto = _respuestaTxt,
                 Tipo = "",
             };

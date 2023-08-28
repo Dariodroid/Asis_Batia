@@ -28,13 +28,13 @@
                    FontFamily="Regular"
                    TextColor="#2E3192"/>
                 <StackLayout RadioButtonGroup.SelectedValue="{Binding SelectionRadio}">
-                    <RadioButton Content="A Asistencia" CheckedChanged="RadioButton_CheckedChanged" Value="A Asistencia"/>
-                    <RadioButton Content="D Doblete" CheckedChanged="RadioButton_CheckedChanged" Value="D Doblete"/>
-                    <RadioButton Content="F Falta" CheckedChanged="RadioButton_CheckedChanged" Value="F Falta"/>
-                    <RadioButton Content="V Vacaciones" CheckedChanged="RadioButton_CheckedChanged" Value="V Vacaciones"/>
-                    <RadioButton Content="IEG Incapacidad General" CheckedChanged="RadioButton_CheckedChanged" Value="IEG Incapacidad General"/>
-                    <RadioButton Content="IRT Incapacidad Riesgo de Trabajo" CheckedChanged="RadioButton_CheckedChanged" Value="IRT Incapacidad Riesgo de Trabajo"/>
-                    <RadioButton Content="N Descanso" CheckedChanged="RadioButton_CheckedChanged" Value="N Descanso"/>
+                    <RadioButton Content="A Asistencia" CheckedChanged="RadioButton_CheckedChanged" Value="A"/>
+                    <RadioButton Content="D Doblete" CheckedChanged="RadioButton_CheckedChanged" Value="D"/>
+                    <RadioButton Content="F Falta" CheckedChanged="RadioButton_CheckedChanged" Value="F"/>
+                    <RadioButton Content="V Vacaciones" CheckedChanged="RadioButton_CheckedChanged" Value="V"/>
+                    <RadioButton Content="IEG Incapacidad General" CheckedChanged="RadioButton_CheckedChanged" Value="IEG"/>
+                    <RadioButton Content="IRT Incapacidad Riesgo de Trabajo" CheckedChanged="RadioButton_CheckedChanged" Value="IRT"/>
+                    <RadioButton Content="N Descanso" CheckedChanged="RadioButton_CheckedChanged" Value="N"/>
                 </StackLayout>
                 <Label Text="Adjunta: incapacidad, formato de vaciones, justificante, Etc..."
                    FontSize="20"

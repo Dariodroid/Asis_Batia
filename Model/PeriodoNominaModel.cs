@@ -16,6 +16,7 @@ namespace Asis_Batia.Model
             public int id_periodo { get; set; }
             public string descripcion { get; set; }
             public int anio { get; set; }
+            public string Idperiodo { get; set; }
         }
 
     }
