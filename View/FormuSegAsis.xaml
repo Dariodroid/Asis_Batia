@@ -13,8 +13,9 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-        
-            <VerticalStackLayout            
+        <VerticalStackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Red" VerticalOptions="Fill" Scale="1"/>
+            <VerticalStackLayout  
             Spacing="1"
             Padding="20,50"
             Margin="5,0,0,0"
@@ -71,6 +72,7 @@
                 HeightRequest="50"
                 Command="{Binding RegisterCommand}"/>
             </VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>

@@ -78,6 +78,7 @@ namespace Asis_Batia.ViewModel
 
         private async Task Register()
         {
+            IsBusy = true;
             Location _location = await LocationService.GetCurrentLocation();
             if (_location == null)
             {
@@ -113,11 +114,13 @@ namespace Asis_Batia.ViewModel
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
+                IsBusy = false;
                 await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
                 NexTPage();
             }
             else
             {
+                IsBusy = false;
                 await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
             }
         }
@@ -134,6 +137,8 @@ namespace Asis_Batia.ViewModel
 
         private async Task GetPeriodo(int idCliente)
         {
+            IsBusy = true;
+
             // Crear una solicitud HTTP.
             var request = new HttpRequestMessage();
 
@@ -165,6 +170,8 @@ namespace Asis_Batia.ViewModel
                 Periodo = data;
                 IdPeriodo = Periodo[0].id_periodo;
                 Tipo = Periodo[0].descripcion;
+                IsBusy = false;
+
             }
         }
 

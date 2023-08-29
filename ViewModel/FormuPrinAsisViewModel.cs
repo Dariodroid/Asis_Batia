@@ -121,6 +121,7 @@ namespace Asis_Batia.ViewModel
         // Método asincrónico para obtener la información de los clientes.
         private async Task GetClients()
         {
+            IsBusy = true;
             // Crear una solicitud HTTP.
             var request = new HttpRequestMessage();
 
@@ -150,12 +151,15 @@ namespace Asis_Batia.ViewModel
 
                 // Asignar la colección de clientes a la propiedad 'Clients'.
                 Clients = data;
+                IsBusy = false;
             }
         }
 
         // Método asincrónico para obtener información de inmuebles por ID de cliente.
         private async Task GetInmuebleByIdClient(int idCliente)
         {
+            IsBusy = true;
+
             // Verificar si la colección 'Inmueble' no es nula y, si no lo es, limpiarla.
             if (Inmueble != null)
                 Inmueble.Clear();
@@ -189,12 +193,16 @@ namespace Asis_Batia.ViewModel
 
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 Inmueble = data;
+                IsBusy = false;
+
             }
         }
 
         // Método asincrónico para obtener información de empleados por ID de inmueble.
         private async Task GetEmpleadoByIdInmueble(int idInmueble)
         {
+            IsBusy = true;
+
             // Crear una solicitud HTTP.
             var request = new HttpRequestMessage();
 
@@ -224,6 +232,8 @@ namespace Asis_Batia.ViewModel
 
                 // Asignar la colección de empleados a la propiedad 'Empleado'.
                 Empleado = data;
+                IsBusy = false;
+
             }
         }
 

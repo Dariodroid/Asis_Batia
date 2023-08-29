@@ -5,15 +5,16 @@
              xmlns:vm="clr-namespace:Asis_Batia.ViewModel"
              x:DataType="vm:FormuPrinAsisViewModel"
              Title="FormuPrinAsis">
-        <ContentPage.Background>
-            <LinearGradientBrush EndPoint="0,1">
-                <GradientStop Offset="0.1" Color="#FFFFFF"/>
-                <GradientStop Offset="1.0" Color="#3775B5"/>
-            </LinearGradientBrush>
-        </ContentPage.Background>
-    <VerticalStackLayout>
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Offset="0.1" Color="#FFFFFF"/>
+            <GradientStop Offset="1.0" Color="#3775B5"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+        <VerticalStackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Red" VerticalOptions="Fill" Scale="1"/>
 
-        <ScrollView>
             <VerticalStackLayout
             Spacing="40"
             Padding="20,50"
@@ -102,6 +103,6 @@
                 >
                 </Button>
             </VerticalStackLayout>
-        </ScrollView>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
