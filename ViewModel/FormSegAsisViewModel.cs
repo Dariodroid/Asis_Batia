@@ -50,6 +50,14 @@ namespace Asis_Batia.ViewModel
         public byte FileBase64 { get; set; }
         public byte Foto { get; set; }
 
+        private bool _isEnabled;
+
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { _isEnabled = value; OnPropertyChanged(); }
+        }
+
 
         public ICommand BackPageCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
@@ -81,11 +89,19 @@ namespace Asis_Batia.ViewModel
         private async Task Register()
         {
             IsBusy = true;
+            IsEnabled = false;
             Location _location = await LocationService.GetCurrentLocation();
             if (_location == null)
             {
                 var message = LocationService.Message;
                 await DisplayAlert("Mensaje", message, "Cerrar");
+                return;
+            }
+            if (_selectionRadio == null)
+            {
+                await DisplayAlert("Mensaje", "Seleccione una opción de envío", "Cerrar");
+                IsEnabled = true;
+                IsBusy = false;
                 return;
             }
 
@@ -118,12 +134,14 @@ namespace Asis_Batia.ViewModel
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 IsBusy = false;
+                IsEnabled = false;
                 await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
                 NexTPage();
             }
             else
             {
                 IsBusy = false;
+                IsEnabled = true;
                 await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
             }
         }

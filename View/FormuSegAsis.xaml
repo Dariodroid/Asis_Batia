@@ -61,6 +61,7 @@
                 <Button 
                 x:Name="bntNext3"
                 Text="Siguiente"
+                IsEnabled="{Binding IsEnabled}"
                 FontSize="Large"
                 BackgroundColor="#D4BC88"
                 TextColor="White"
