@@ -48,6 +48,8 @@ namespace Asis_Batia.ViewModel
 
 
         public byte FileBase64 { get; set; }
+        public byte Foto { get; set; }
+
 
         public ICommand BackPageCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
@@ -104,6 +106,7 @@ namespace Asis_Batia.ViewModel
                 Movimiento = _selectionRadio,
                 RespuestaTexto = _respuestaTxt == null ? "": _respuestaTxt,
                 Tipo = Tipo,
+                //Foto = Foto,
             };
 
             Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
@@ -218,13 +221,13 @@ namespace Asis_Batia.ViewModel
 
         private async Task Photo()
         {
-            bool res = true;
-            if (FileBase64 > 0)
-            {
-                res = await DisplayAlert("Confirmación", "Ya se ha elegido un archivo, Desea reemplazar por una foto ?", "Si", "No");
-            }
-            if (res)
-            {
+            //bool res = true;
+            //if (FileBase64 > 0)
+            //{
+            //    res = await DisplayAlert("Confirmación", "Ya se ha elegido un archivo, Desea reemplazar por una foto ?", "Si", "No");
+            //}
+            //if (res)
+            //{
                 if (MediaPicker.Default.IsCaptureSupported)
                 {
                     FileResult photo = await MediaPicker.CapturePhotoAsync();
@@ -238,11 +241,11 @@ namespace Asis_Batia.ViewModel
 
                         }
                         var f = LocalFilePath;
-                        FileBase64 = ConvertToBase64(f);
+                        Foto = ConvertToBase64(f);
                     }
                 }
 
-            }
+            //}
         }
     }
 }
