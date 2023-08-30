@@ -31,7 +31,7 @@
         <Button 
                 x:Name="bntNext4"
                 Text="SALIR"
-                Clicked="bntNext4_Clicked"
+                Command="{Binding ExitCommand}"
                 FontSize="Large"
                 BackgroundColor="#D4BC88"
                 TextColor="White"

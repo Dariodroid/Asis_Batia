@@ -9,9 +9,4 @@ public partial class RegExitoso : ContentPage
 		InitializeComponent();
 		BindingContext = new RegExitosoViewModel();
 	}
-
-    private async void bntNext4_Clicked(object sender, EventArgs e)
-    {
-		//await Navigation.PushAsync(new MainPage());
-    }
 }

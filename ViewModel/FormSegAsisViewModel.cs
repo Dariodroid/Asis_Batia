@@ -102,7 +102,7 @@ namespace Asis_Batia.ViewModel
                 Latitud = _location.Latitude.ToString(),
                 Longitud = _location.Longitude.ToString(),
                 Movimiento = _selectionRadio,
-                RespuestaTexto = _respuestaTxt,
+                RespuestaTexto = _respuestaTxt == null ? "": _respuestaTxt,
                 Tipo = Tipo,
             };
 
