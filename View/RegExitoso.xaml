@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.RegExitoso"
-             Title="Registro Exitoso">
+             Title="REGISTRO EXITOSO">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#FFFFFF"/>
@@ -23,24 +23,42 @@
            TranslationY="0"
            WidthRequest="400"
            HeightRequest="400"/>-->
-        <Label Text="DATOS DEL EMPLEADO" TextColor="Black" FontSize="Title"/>
-        <Label Text="{Binding NombreCliente}" TextColor="Black" FontSize="Title" Scale="0.8"/>
-        <Label Text="DATOS DE ENTRADA" TextColor="Black" FontSize="Title"/>
-        <Label Text="{Binding Fecha}" TextColor="Black" FontSize="Title" Scale="0.8"/>
+        <Label Text="DATOS DEL EMPLEADO" 
+               TextColor="#2E3192" 
+               FontSize="50"
+               FontFamily="Regular"
+               FontAttributes="Bold"
+               />
+        <Label Text="{Binding NombreCliente}" 
+               TextColor="#2E3192" 
+               FontSize="Title" 
+               Scale="1"
+               FontFamily="Regular"/>
+        <Label Text="DATOS DE ENTRADA" 
+               TextColor="#2E3192" 
+               FontSize="50"
+               FontFamily="Regular"
+               FontAttributes="Bold"/>
+        <Label Text="{Binding Fecha}" 
+               TextColor="#2E3192" 
+               FontSize="Title" 
+               Scale="1"
+               FontFamily="Regular"/>
 
         <Button 
                 x:Name="bntNext4"
                 Text="SALIR"
                 Command="{Binding ExitCommand}"
-                FontSize="Large"
-                BackgroundColor="#D4BC88"
-                TextColor="White"
+                FontSize="35"
+                BackgroundColor="#3775B5"
+                TextColor="#D4BC88"
+                FontFamily="Regular"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
                 CornerRadius="11"
-                TranslationY="20"
-                WidthRequest="200"
-                HeightRequest="50"
+                TranslationY="60"
+                WidthRequest="250"
+                HeightRequest="60"
             >
         </Button>
 

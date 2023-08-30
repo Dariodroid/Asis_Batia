@@ -122,7 +122,7 @@ namespace Asis_Batia.ViewModel
                 Movimiento = _selectionRadio,
                 RespuestaTexto = _respuestaTxt == null ? "": _respuestaTxt,
                 Tipo = Tipo,
-                //Foto = Foto,
+                Foto = Foto,
             };
 
             Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");

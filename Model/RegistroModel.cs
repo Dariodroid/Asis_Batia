@@ -21,7 +21,7 @@ namespace Asis_Batia.Model
         public string RespuestaTexto { get; set; }
         public string Latitud { get; set; }
         public string Longitud { get; set; }
-        //public byte Foto { get; set; }
+        public byte Foto { get; set; }
 
     }
 }

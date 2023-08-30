@@ -22,4 +22,9 @@ public partial class FormuSegAsis : ContentPage
             formSegAsisViewModel.SelectionRadio = radio.Value.ToString();
         }
     }
+
+    private async void bntNext5_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("FormReg", true);
+    }
 }

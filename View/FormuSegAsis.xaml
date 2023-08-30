@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.FormuSegAsis"
-             Title="FormuSegAsis">
+             Title="BIOMETA">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding BackPageCommand}"/>
     </Shell.BackButtonBehavior>
@@ -14,21 +14,23 @@
     </ContentPage.Background>
     <ScrollView>
         <VerticalStackLayout>
-            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Red" VerticalOptions="Fill" Scale="1"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
             <VerticalStackLayout  
             Spacing="1"
-            Padding="20,50"
+            Padding="20,1"
             Margin="5,0,0,0"
             HorizontalOptions="Center"
             VerticalOptions="Start">
                 <Label Text="Seleccione solo una opcion de envio:"
-                   FontSize="20"
+                   FontSize="30"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
-                   TextColor="#2E3192"/>
-                <StackLayout RadioButtonGroup.SelectedValue="{Binding SelectionRadio}">
+                   TextColor="#2E3192"
+                   TranslationY="-20"/>
+                <StackLayout RadioButtonGroup.SelectedValue="{Binding SelectionRadio}"
+                              TranslationY="-10">
                     <RadioButton Content="A Asistencia" CheckedChanged="RadioButton_CheckedChanged" Value="A"/>
                     <RadioButton Content="D Doblete" CheckedChanged="RadioButton_CheckedChanged" Value="D"/>
                     <RadioButton Content="F Falta" CheckedChanged="RadioButton_CheckedChanged" Value="F"/>
@@ -38,40 +40,62 @@
                     <RadioButton Content="N Descanso" CheckedChanged="RadioButton_CheckedChanged" Value="N"/>
                 </StackLayout>
                 <Label Text="Adjunta: incapacidad, formato de vaciones, justificante, Etc..."
-                   FontSize="20"
+                   FontSize="25"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
-                   TextColor="#2E3192"/>
+                   TextColor="#2E3192"
+                        TranslationY="-5"/>
                 <Button 
+                    
                     x:Name="btn_archivo"
                     Text="Archivo"
+                     TranslationY="5"
                     Command="{Binding LoadFileCommand}">
                 </Button>
                 <Button 
                     x:Name="btn_camara"
                     Text="Foto"
+                    TranslationY="10"
                    Command="{Binding PhotoCommand}">
                 </Button>
                 <Entry
                     Grid.Row="11"
                     Grid.ColumnSpan="2"
+                     TranslationY="15"
+                    
             Placeholder="captura informacion adicional" Text="{Binding RespuestaTxt}"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
                 <Button 
                 x:Name="bntNext3"
-                Text="Siguiente"
+                Text="REGISTRAR"
                 IsEnabled="{Binding IsEnabled}"
                 FontSize="Large"
-                BackgroundColor="#D4BC88"
-                TextColor="White"
+                BackgroundColor="#3775B5"
+                TextColor="#D4BC88"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
                 CornerRadius="10"
-                TranslationY="50"
+                TranslationY="30"
                 WidthRequest="200"
                 HeightRequest="50"
                 Command="{Binding RegisterCommand}"/>
+                <Button 
+x:Name="bntNext5"
+Text="SIGUIENTE"
+  Clicked="bntNext5_Clicked"                  
+IsEnabled="{Binding IsEnabled}"
+FontSize="Large"
+BackgroundColor="Transparent"
+TextColor="Transparent"
+HorizontalOptions="Center"
+FontAttributes="Bold"
+CornerRadius="10"
+TranslationY="30"
+WidthRequest="200"
+HeightRequest="50"
+/>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

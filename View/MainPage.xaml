@@ -2,39 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.MainPage"
-             Title="MainPage">
+             Title="BIENVENIDOS GRUPO BATIA">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#ffffff"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    <VerticalStackLayout Margin="20">
+    <VerticalStackLayout Margin="5">
         <Image Source="logo6apng.png"
                Aspect="AspectFill"
                HeightRequest="300"
-               WidthRequest="300"
-               TranslationY="15"/>
+               WidthRequest="400"
+               TranslationY="0"/>
         <Label 
-            Text="Asis Batia"
+            Text="ASIS BATIA"
             TextColor="#2E3192"
+            FontAttributes="Bold"
             FontFamily="Regular"
-            FontSize="50"
+            FontSize="90"
             HorizontalOptions="Center"
-            TranslationY="-35"/>
+            TranslationY="-40"/>
         <Button 
                 x:Name="bntNext"
                 Text="Asistencia"
                 Clicked="bntNext_Clicked"
-                FontSize="Large"
-                BackgroundColor="#D4BC88"
-                TextColor="White"
+                FontSize="30"
+                TextTransform="Uppercase"
+                BackgroundColor="#3775B5"
+                TextColor="#D4BC88"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
+                FontFamily="Regular"
                 CornerRadius="10"
-                TranslationY="20"
-                WidthRequest="200"
-                HeightRequest="50"
+                TranslationY="-5"
+                WidthRequest="250"
+                HeightRequest="55"
                 >
         </Button>
 
@@ -43,9 +46,9 @@
             VerticalOptions="End"
             HorizontalOptions="Center"
             TranslationX="0"
-            TranslationY="60"
-            WidthRequest="200"
-            HeightRequest="200"/>
+            TranslationY="-130"
+            WidthRequest="500"
+            HeightRequest="500"/>
 
     </VerticalStackLayout>
 
