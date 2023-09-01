@@ -4,7 +4,7 @@
              x:Class="Asis_Batia.View.FormuPrinAsis"
              xmlns:vm="clr-namespace:Asis_Batia.ViewModel"
              x:DataType="vm:FormuPrinAsisViewModel"
-             NavigationPage.HasNavigationBar="False"
+             
              Title="BIOMETA">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">

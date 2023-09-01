@@ -34,7 +34,7 @@ namespace Asis_Batia.ViewModel
 
         public MainPageViewModel()
         {
-            int UID = Convert.ToInt32(Preferences.Get("UserId",0));
+            int UID = Convert.ToInt32(Preferences.Get("UserId", 0));
             if (UID > 0)
             {
                 IdEmpleado = UID.ToString();
@@ -111,8 +111,7 @@ namespace Asis_Batia.ViewModel
 
 
             };
-            await Shell.Current.GoToAsync("FormPrin", true, data);
+            await Shell.Current.GoToAsync("//FormPrin", true, data);
         }
-
     }
 }
