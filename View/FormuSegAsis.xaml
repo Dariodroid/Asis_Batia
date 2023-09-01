@@ -66,8 +66,8 @@
                      TranslationY="15"
                     
             Placeholder="captura informacion adicional" Text="{Binding RespuestaTxt}"/>
-            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
-                <Button 
+                <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
+                <!--<Button 
                 x:Name="bntNext3"
                 Text="REGISTRAR"
                 IsEnabled="{Binding IsEnabled}"
@@ -95,7 +95,7 @@ CornerRadius="10"
 TranslationY="30"
 WidthRequest="200"
 HeightRequest="50"
-/>
+/>-->
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
