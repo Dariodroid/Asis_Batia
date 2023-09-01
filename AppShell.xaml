@@ -6,6 +6,17 @@
     xmlns:local="clr-namespace:Asis_Batia.View"
     Shell.FlyoutBehavior="Disabled">
 
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Domestic"
+             Icon="paw.png">
+            <!--<ShellContent Title="Cats"
+                          Icon="cat.png"/>
+            <ShellContent Title="Dogs"
+                          Icon="dog.png"/>-->
+
+        </Tab>
+
+    </FlyoutItem>
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"

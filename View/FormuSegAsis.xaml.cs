@@ -7,10 +7,12 @@ namespace Asis_Batia.View;
 public partial class FormuSegAsis : ContentPage
 {
     FormSegAsisViewModel formSegAsisViewModel;
-    public FormuSegAsis()
+    private readonly IMediaPicker mediaPicker;
+    public FormuSegAsis(IMediaPicker mediaPicker)
     {
         InitializeComponent();
-        formSegAsisViewModel = new FormSegAsisViewModel();
+        this.mediaPicker = mediaPicker;
+        formSegAsisViewModel = new FormSegAsisViewModel(mediaPicker);
         BindingContext = formSegAsisViewModel;
     }
 

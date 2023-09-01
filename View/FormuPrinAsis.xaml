@@ -4,6 +4,7 @@
              x:Class="Asis_Batia.View.FormuPrinAsis"
              xmlns:vm="clr-namespace:Asis_Batia.ViewModel"
              x:DataType="vm:FormuPrinAsisViewModel"
+             NavigationPage.HasNavigationBar="False"
              Title="BIOMETA">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
@@ -15,6 +16,18 @@
         <VerticalStackLayout>
             <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
 
+            <Label Text="Bienvenido" FontSize="Title"
+                   FontAttributes="Bold"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontFamily="Regular"
+                   TextColor="#2E3192"/>
+            <Label x:Name="lbl_Cliente" Text="{Binding _Cliente}" TextColor="Black" VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+            <Label x:Name="lbl_NombreEmpleado" Text="{Binding _NombreEmpleado}" TextColor="Black" VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+
+
             <VerticalStackLayout
             Spacing="30"
             Padding="50,5"
@@ -23,7 +36,7 @@
             VerticalOptions="Start"
             >
 
-                <Label Text="Selecciona el cliente: *"
+                <!--<Label Text="Selecciona el cliente: *"
                    FontSize="35"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
@@ -44,7 +57,7 @@
                  ItemsSource="{Binding Clients}"
                  ItemDisplayBinding="{Binding nombre}"
                  SelectedItem="{Binding IdClientSelected}"
-                 />
+                 />-->
                 <Label Text="Selecciona tu punto de atencion: *"
                    FontSize="35"
                    FontAttributes="Bold"
@@ -67,7 +80,7 @@
                 ItemDisplayBinding="{Binding nombre}"
                 SelectedItem = "{Binding IdInmubleSelected}"
                 />
-                <Label Text="Selecciona tu nombre: *"
+                <Label Text="Selecciona tu Estado: *"
                    FontSize="35"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
@@ -75,7 +88,7 @@
                    FontFamily="Regular"
                    TextColor="#2E3192"/>
                 <Picker
-                x:Name="Pk_Empleado"
+                x:Name="Pk_Estado"
                  Title="-Seleccionar-"
                  FontAttributes="Bold"
                  TitleColor="Black"
@@ -86,9 +99,9 @@
                 
                  VerticalTextAlignment="Center"
                  HorizontalTextAlignment="Center"
-                 ItemsSource="{Binding Empleado}"
-                 ItemDisplayBinding="{Binding empleado}"
-                 SelectedItem="{Binding IdEmpleadoSelected}"
+                 ItemsSource="{Binding EstadoList}"
+                 ItemDisplayBinding="{Binding descripcion}"
+                 SelectedItem="{Binding IdEstadoSelected}"
                 />
                 <Button 
                 x:Name="bntNext2"

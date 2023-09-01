@@ -23,7 +23,7 @@
             FontSize="90"
             HorizontalOptions="Center"
             TranslationY="-40"/>
-        <Button 
+        <!--<Button 
                 x:Name="bntNext"
                 Text="Asistencia"
                 Clicked="bntNext_Clicked"
@@ -39,16 +39,28 @@
                 WidthRequest="250"
                 HeightRequest="55"
                 >
-        </Button>
+        </Button>-->
+        <Entry
+            Placeholder="Ingrese el código del empleado"
+            ClearButtonVisibility="WhileEditing"
+            Text="{Binding IdEmpleado}"
+            TextColor="Black"
+            ReturnCommand="{Binding GetInfoEmpleadoCommand}"
+            ReturnType="Send" Keyboard="Numeric" />
+        <!--ReturnCommandParameter="{Binding IdEmpleado}"-->
+        <!--<Button x:Name="Btn_GetInfo" 
+                Text="Get Info" 
+                Command="{Binding GetInfoEmpleadoCommand}"
+                />-->
 
         <Image
             Source="icono_portada.png"
             VerticalOptions="End"
             HorizontalOptions="Center"
             TranslationX="0"
-            TranslationY="-130"
+            TranslationY="0"
             WidthRequest="500"
-            HeightRequest="500"/>
+            HeightRequest="200"/>
 
     </VerticalStackLayout>
 

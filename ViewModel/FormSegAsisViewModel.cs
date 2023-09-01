@@ -51,6 +51,7 @@ namespace Asis_Batia.ViewModel
         public byte Foto { get; set; }
 
         private bool _isEnabled;
+        private readonly IMediaPicker mediaPicker;
 
         public bool IsEnabled
         {
@@ -65,12 +66,13 @@ namespace Asis_Batia.ViewModel
         public ICommand PhotoCommand { get; set; }
 
 
-        public FormSegAsisViewModel()
+        public FormSegAsisViewModel(IMediaPicker mediaPicker)
         {
             BackPageCommand = new Command(async () => await BackPage());
             RegisterCommand = new Command(async () => await Register());
             LoadFileCommand = new Command(async () => await LoadFile());
             PhotoCommand = new Command(async () => await Photo());
+            this.mediaPicker = mediaPicker;
         }
 
         private async Task BackPage()
@@ -239,14 +241,9 @@ namespace Asis_Batia.ViewModel
 
         private async Task Photo()
         {
-            //bool res = true;
-            //if (FileBase64 > 0)
-            //{
-            //    res = await DisplayAlert("Confirmación", "Ya se ha elegido un archivo, Desea reemplazar por una foto ?", "Si", "No");
-            //}
-            //if (res)
-            //{
-                if (MediaPicker.Default.IsCaptureSupported)
+            try
+            {
+                if (this.mediaPicker.IsCaptureSupported)
                 {
                     FileResult photo = await MediaPicker.CapturePhotoAsync();
                     if (photo != null)
@@ -262,8 +259,11 @@ namespace Asis_Batia.ViewModel
                         Foto = ConvertToBase64(f);
                     }
                 }
-
-            //}
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Cerrar");
+            }
         }
     }
 }

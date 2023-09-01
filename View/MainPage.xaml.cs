@@ -7,6 +7,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+        BindingContext = new MainPageViewModel();
 	}
 
     private async void bntNext_Clicked(object sender, EventArgs e)

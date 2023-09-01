@@ -23,7 +23,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 		builder.Services.AddSingleton<IMediaPicker>(MediaPicker.Default);
-		builder.Services.AddTransient<FormuPrinAsisViewModel>();
+		builder.Services.AddTransient<FormuSegAsis>();
 
 		Routing.RegisterRoute("MainPage", typeof(MainPage));
         Routing.RegisterRoute("FormPrin", typeof(FormuPrinAsis));

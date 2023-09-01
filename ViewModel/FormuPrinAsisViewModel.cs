@@ -12,61 +12,18 @@ using System.Windows.Input;
 
 namespace Asis_Batia.ViewModel
 {
-    public class FormuPrinAsisViewModel : BaseViewModel
+    public class FormuPrinAsisViewModel : BaseViewModel, IQueryAttributable
     {
         HttpClient client;
-        // Declaración de una colección observable privada llamada '_clients' del tipo 'ClientModel.Client'.
-        private ObservableCollection<ClientModel.Client> _clients;
-
-        // Declaración de una propiedad pública llamada 'Clients' que encapsula la colección observable privada '_clients'.
-        public ObservableCollection<ClientModel.Client> Clients
-        {
-            get { return _clients; } // Obtener la colección '_clients'.
-            set { _clients = value; OnPropertyChanged(); } // Asignar valor a '_clients' y notificar que la propiedad 'Clients' ha cambiado.
-        }
-
-        // Declaración similar para la colección observable '_inmueble' y la propiedad 'Inmueble'.
+        #region Propiedades
         private ObservableCollection<InmuebleByIdClienteModel.InmuebleModel> _inmueble;
+
         public ObservableCollection<InmuebleByIdClienteModel.InmuebleModel> Inmueble
         {
             get { return _inmueble; }
             set { _inmueble = value; OnPropertyChanged(); }
         }
 
-        // Declaración similar para la colección observable '_empleado' y la propiedad 'Empleado'.
-        private ObservableCollection<EmpleadosModel.Empleado> _empleado;
-        public ObservableCollection<EmpleadosModel.Empleado> Empleado
-        {
-            get { return _empleado; }
-            set { _empleado = value; OnPropertyChanged(); }
-        }
-
-        // Declaración de una propiedad privada llamada '_idSelected' del tipo 'ClientModel.Client'.
-        private ClientModel.Client _idClientSelected;
-
-        // Declaración de una propiedad pública llamada 'IdSelected' que encapsula la propiedad privada '_idSelected'.
-        public ClientModel.Client IdClientSelected
-        {
-            get { return _idClientSelected; } // Obtener el valor de '_idSelected'.
-            set
-            {
-                // Comprobar si el valor nuevo es diferente del valor actual.
-                if (_idClientSelected != value)
-                {
-                    // Asignar el valor nuevo a '_idSelected'.
-                    _idClientSelected = value;
-
-                    // Notificar que la propiedad 'IdSelected' ha cambiado.
-                    OnPropertyChanged();
-
-                    // Llamar al método 'GetInmuebleByIdClient' y pasar el ID del cliente seleccionado.
-                    GetInmuebleByIdClient(_idClientSelected.idCliente);
-                }
-            }
-        }
-
-
-        // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
         private InmuebleByIdClienteModel.InmuebleModel _idInmubleSelected;
 
         // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
@@ -85,25 +42,106 @@ namespace Asis_Batia.ViewModel
                     OnPropertyChanged();
 
                     // Llamar al método 'GetEmpleadoByIdInmueble' y pasar el ID del inmueble seleccionado.
-                    GetEmpleadoByIdInmueble(_idInmubleSelected.id_inmueble);
+                    //GetEmpleadoByIdInmueble(_idInmubleSelected.id_inmueble);
                 }
             }
         }
 
         // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
-        private EmpleadosModel.Empleado _idEmpleadoSelected;
+        private EstadoModel _idEstadoSelected;
 
         // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
-        public EmpleadosModel.Empleado IdEmpleadoSelected
+        public EstadoModel IdEstadoSelected
         {
-            get { return _idEmpleadoSelected; } // Obtener el valor de '_idInmubleSelected'.
+            get { return _idEstadoSelected; } // Obtener el valor de '_idInmubleSelected'.
             set
             {
-                _idEmpleadoSelected = value;
+                _idEstadoSelected = value;
                 // Notificar que la propiedad 'IdInmubleSelected' ha cambiado.
                 OnPropertyChanged();
             }
         }
+
+        // Declaración similar para la colección observable '_empleado' y la propiedad 'Empleado'.
+        private ObservableCollection<EmpleadosModel.Empleado> _empleado;
+        public ObservableCollection<EmpleadosModel.Empleado> Empleado
+        {
+            get { return _empleado; }
+            set { _empleado = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<EstadoModel> _estadoList;
+
+        public ObservableCollection<EstadoModel> EstadoList
+        {
+            get { return _estadoList; }
+            set { _estadoList = value; OnPropertyChanged(); }
+        }
+
+        #endregion
+
+        private string _nombreEmpleado;
+
+        public string _NombreEmpleado
+        {
+            get { return _nombreEmpleado; }
+            set { _nombreEmpleado = value; OnPropertyChanged(); }
+        }
+
+        private string _cliente;
+
+        public string _Cliente
+        {
+            get { return _cliente; }
+            set { _cliente = value; OnPropertyChanged(); }
+        }
+        private string _puntoAtencion;
+
+        public string _PuntoAtencion
+        {
+            get { return _puntoAtencion; }
+            set { _puntoAtencion = value; OnPropertyChanged(); }
+        }
+        private string _estado;
+
+        public string _Estado
+        {
+            get { return _estado; }
+            set { _estado = value; OnPropertyChanged(); }
+        }
+
+        private int _idCliente;
+
+        public int IdCliente
+        {
+            get { return _idCliente; }
+            set { _idCliente = value; OnPropertyChanged(); }
+        }
+
+        private int _idEmpleado;
+
+        public int IdEmpleado
+        {
+            get { return _idEmpleado; }
+            set { _idEmpleado = value; }
+        }
+        private int _idInmueble;
+
+        public int IdInmueble
+        {
+            get { return _idInmueble; }
+            set { _idInmueble = value; }
+        }
+
+        private int _idEstado;
+
+        public int IdEstado
+        {
+            get { return _idEstado; }
+            set { _idEstado = value; }
+        }
+
+
 
         public ICommand NextPageCommand { get; set; }
 
@@ -114,46 +152,47 @@ namespace Asis_Batia.ViewModel
             client = new HttpClient();
 
             // Llamar al método 'GetClients' para obtener la información de los clientes.
-            GetClients();
+            //GetClients();
             NextPageCommand = new Command(async () => await NextPage());
+            _= GetEstado();
         }
 
         // Método asincrónico para obtener la información de los clientes.
-        private async Task GetClients()
-        {
-            IsBusy = true;
-            // Crear una solicitud HTTP.
-            var request = new HttpRequestMessage();
+        //private async Task GetClients()
+        //{
+        //    IsBusy = true;
+        //    // Crear una solicitud HTTP.
+        //    var request = new HttpRequestMessage();
 
-            // Establecer la URL de la solicitud.
-            request.RequestUri = new Uri("http://singa.com.mx:5500/api/cliente");
+        //    // Establecer la URL de la solicitud.
+        //    request.RequestUri = new Uri("http://singa.com.mx:5500/api/cliente");
 
-            // Establecer el método de la solicitud como GET.
-            request.Method = HttpMethod.Get;
+        //    // Establecer el método de la solicitud como GET.
+        //    request.Method = HttpMethod.Get;
 
-            // Agregar un encabezado "Accept" para indicar que se acepta JSON como respuesta.
-            request.Headers.Add("Accept", "application/json");
+        //    // Agregar un encabezado "Accept" para indicar que se acepta JSON como respuesta.
+        //    request.Headers.Add("Accept", "application/json");
 
-            // Crear una nueva instancia de HttpClient.
-            var client = new HttpClient();
+        //    // Crear una nueva instancia de HttpClient.
+        //    var client = new HttpClient();
 
-            // Enviar la solicitud HTTP y esperar la respuesta.
-            HttpResponseMessage response = await client.SendAsync(request);
+        //    // Enviar la solicitud HTTP y esperar la respuesta.
+        //    HttpResponseMessage response = await client.SendAsync(request);
 
-            // Verificar si la respuesta tiene un estado OK (código 200).
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                // Leer el contenido de la respuesta como una cadena.
-                string content = await response.Content.ReadAsStringAsync();
+        //    // Verificar si la respuesta tiene un estado OK (código 200).
+        //    if (response.StatusCode == HttpStatusCode.OK)
+        //    {
+        //        // Leer el contenido de la respuesta como una cadena.
+        //        string content = await response.Content.ReadAsStringAsync();
 
-                // Deserializar el contenido JSON en una colección observable de clientes.
-                var data = JsonConvert.DeserializeObject<ObservableCollection<ClientModel.Client>>(content);
+        //        // Deserializar el contenido JSON en una colección observable de clientes.
+        //        var data = JsonConvert.DeserializeObject<ObservableCollection<ClientModel.Client>>(content);
 
-                // Asignar la colección de clientes a la propiedad 'Clients'.
-                Clients = data;
-                IsBusy = false;
-            }
-        }
+        //        // Asignar la colección de clientes a la propiedad 'Clients'.
+        //        Clients = data;
+        //        IsBusy = false;
+        //    }
+        //}
 
         // Método asincrónico para obtener información de inmuebles por ID de cliente.
         private async Task GetInmuebleByIdClient(int idCliente)
@@ -198,16 +237,19 @@ namespace Asis_Batia.ViewModel
             }
         }
 
-        // Método asincrónico para obtener información de empleados por ID de inmueble.
-        private async Task GetEmpleadoByIdInmueble(int idInmueble)
+        private async Task GetEstado()
         {
             IsBusy = true;
+
+            // Verificar si la colección 'Inmueble' no es nula y, si no lo es, limpiarla.
+            if (Inmueble != null)
+                Inmueble.Clear();
 
             // Crear una solicitud HTTP.
             var request = new HttpRequestMessage();
 
-            // Establecer la URL de la solicitud con el ID de inmueble proporcionado.
-            request.RequestUri = new Uri($"http://singa.com.mx:5500/api/Empleados?Idinmueble={idInmueble}");
+            // Establecer la URL de la solicitud con el ID de cliente proporcionado.
+            request.RequestUri = new Uri($"http://singa.com.mx:5500/api/Estado");
 
             // Establecer el método de la solicitud como GET.
             request.Method = HttpMethod.Get;
@@ -227,11 +269,11 @@ namespace Asis_Batia.ViewModel
                 // Leer el contenido de la respuesta como una cadena.
                 string content = await response.Content.ReadAsStringAsync();
 
-                // Deserializar el contenido JSON en una colección observable de empleados.
-                var data = JsonConvert.DeserializeObject<ObservableCollection<EmpleadosModel.Empleado>>(content);
+                // Deserializar el contenido JSON en una colección observable de inmuebles.
+                var data = JsonConvert.DeserializeObject<ObservableCollection<EstadoModel>>(content);
 
-                // Asignar la colección de empleados a la propiedad 'Empleado'.
-                Empleado = data;
+                // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
+                EstadoList = data;
                 IsBusy = false;
 
             }
@@ -239,14 +281,32 @@ namespace Asis_Batia.ViewModel
 
         private async Task NextPage()
         {
+            if(_idInmubleSelected == null || IdEstadoSelected == null)
+            {
+                await DisplayAlert("Error", "Seleccione todas las opciónes", "Cerrar");
+                return;
+            }
             var data = new Dictionary<string, object>
             {
-                {"IdCliente", _idClientSelected.idCliente },
+                {"IdCliente", IdCliente },
                 {"IdInmueble", _idInmubleSelected.id_inmueble },
-                {"IdEmpleado", _idEmpleadoSelected.id_empleado },
-                {"NombreEmpleado", _idEmpleadoSelected.empleado }
+                {"IdEmpleado", IdEmpleado },
+                {"NombreEmpleado", _NombreEmpleado }
             };
             await Shell.Current.GoToAsync("FormSeg", true, data);
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            _NombreEmpleado = (string)query["Empleado"];
+            _Cliente = (string)query["Cliente"];
+            _PuntoAtencion = (string)query["PuntoAtencion"];
+            _Estado = (string)query["Estado"];
+            IdCliente = (int)query["IdCliente"];
+            IdEmpleado = (int)query["idEmpleado"];
+            IdInmueble = (int)query["idInmueble"];
+            IdEstado = (int)query["idEstado"];
+            _= IdCliente > 0 ? GetInmuebleByIdClient(IdCliente) : null;
         }
     }
 }

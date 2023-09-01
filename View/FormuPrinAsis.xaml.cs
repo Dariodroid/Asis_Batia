@@ -4,7 +4,6 @@ namespace Asis_Batia.View;
 
 public partial class FormuPrinAsis : ContentPage
 {
-	IMediaPicker mediaPicker;
 	public FormuPrinAsis()
 	{
 		InitializeComponent();
