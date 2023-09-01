@@ -10,13 +10,13 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <VerticalStackLayout Margin="5">
-        <Image Source="logo6apng.png"
+        <Image Source="logo_batia"
                Aspect="AspectFill"
                HeightRequest="300"
                WidthRequest="400"
                TranslationY="0"/>
         <Label 
-            Text="ASIS BATIA"
+            Text="BIOMETA"
             TextColor="#2E3192"
             FontAttributes="Bold"
             FontFamily="Regular"
@@ -45,6 +45,7 @@
             ClearButtonVisibility="WhileEditing"
             Text="{Binding IdEmpleado}"
             TextColor="Black"
+            HorizontalOptions="Center"
             ReturnCommand="{Binding GetInfoEmpleadoCommand}"
             ReturnType="Send" Keyboard="Numeric" />
         <!--ReturnCommandParameter="{Binding IdEmpleado}"-->
@@ -54,13 +55,13 @@
                 />-->
 
         <Image
-            Source="icono_portada.png"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            TranslationX="0"
-            TranslationY="0"
-            WidthRequest="500"
-            HeightRequest="200"/>
+    Source="biometa_icoq"
+    VerticalOptions="End"
+    HorizontalOptions="Center"
+    TranslationX="0"
+    TranslationY="-130"
+    WidthRequest="500"
+    HeightRequest="500"/>
 
     </VerticalStackLayout>
 

@@ -67,7 +67,7 @@
                     
             Placeholder="captura informacion adicional" Text="{Binding RespuestaTxt}"/>
                 <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
-                <!--<Button 
+                <Button 
                 x:Name="bntNext3"
                 Text="REGISTRAR"
                 IsEnabled="{Binding IsEnabled}"
@@ -77,7 +77,7 @@
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
                 CornerRadius="10"
-                TranslationY="30"
+                TranslationY="-5"
                 WidthRequest="200"
                 HeightRequest="50"
                 Command="{Binding RegisterCommand}"/>
@@ -95,7 +95,7 @@ CornerRadius="10"
 TranslationY="30"
 WidthRequest="200"
 HeightRequest="50"
-/>-->
+/>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

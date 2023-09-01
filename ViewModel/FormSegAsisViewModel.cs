@@ -81,10 +81,10 @@ namespace Asis_Batia.ViewModel
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
-            IdCliente = (int)query["IdCliente"];
-            IdEmpleado = (int)query["IdEmpleado"];
-            IdInmueble = (int)query["IdInmueble"];
+        {// aqui estamos recibiendo el diccionario que enviamos desde el form anterior
+            IdCliente = (int)query["IdCliente"];// te fijas que una ves establecido el valor del cliente
+            IdEmpleado = (int)query["IdEmpleado"];//lo estamos usando para hacer la peticion en el api
+            IdInmueble = (int)query["IdInmueble"];// fijate que ya nos llegaron los datos
             NombreCliente = (string)query["NombreEmpleado"];
         }
 
@@ -125,7 +125,7 @@ namespace Asis_Batia.ViewModel
                 RespuestaTexto = _respuestaTxt == null ? "": _respuestaTxt,
                 Tipo = Tipo,
                 Foto = Foto,
-            };
+            };// si te fijas ahora ya tenemos toda la info para enviar
 
             Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
             var client = new HttpClient();
@@ -149,7 +149,7 @@ namespace Asis_Batia.ViewModel
         }
 
         private async void NexTPage()
-        {
+        {// intentemos otra vez vale11111
             var data = new Dictionary<string, object>
             {
                 {"NombreEmpleado", NombreCliente }
@@ -160,7 +160,7 @@ namespace Asis_Batia.ViewModel
 
         private async Task GetPeriodo(int idCliente)
         {
-            IsBusy = true;
+            IsBusy = true;// aqui vamos a ver toda la info que estamos perdon obteniendo seria ya qu es get
 
             // Crear una solicitud HTTP.
             var request = new HttpRequestMessage();

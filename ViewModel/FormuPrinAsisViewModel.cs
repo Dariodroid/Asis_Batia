@@ -281,20 +281,20 @@ namespace Asis_Batia.ViewModel
 
         private async Task NextPage()
         {
-            if(_idInmubleSelected == null || IdEstadoSelected == null)
-            {
-                await DisplayAlert("Error", "Seleccione todas las opciónes", "Cerrar");
-                return;
-            }
+            //if(_idInmubleSelected == null || IdEstadoSelected == null)
+            //{
+            //    await DisplayAlert("Error", "Seleccione todas las opciónes", "Cerrar");
+            //    return;
+            //}
             var data = new Dictionary<string, object>
             {
-                {"IdCliente", IdCliente },
-                {"IdInmueble", _idInmubleSelected.id_inmueble },
-                {"IdEmpleado", IdEmpleado },
+                {"IdCliente", IdCliente },// ahora ya deberia funcionar
+                {"IdInmueble", IdInmueble },// el error se produce aqui xq no hay nada en el idinmueble
+                {"IdEmpleado", IdEmpleado },// ahora veamos si es que la api del main no da ese dato
                 {"NombreEmpleado", _NombreEmpleado }
             };
-            await Shell.Current.GoToAsync("FormSeg", true, data);
-        }
+            await Shell.Current.GoToAsync("FormSeg", true, data);//te fijas que no se necesita legable de inmueble
+        }//ya tenemos toda la informacion de ese usuario y ahora se la pasamos al siguiente form
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {

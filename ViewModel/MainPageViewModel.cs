@@ -59,7 +59,7 @@ namespace Asis_Batia.ViewModel
             // Crear una solicitud HTTP.
             var request = new HttpRequestMessage();
 
-            // Establecer la URL de la solicitud.
+            // Establecer la URL de la solicitud.// aqui hacemos la consulta al api con el id que ingresa el usuario
             request.RequestUri = new Uri($"http://singa.com.mx:5500/api/EmpleadoApp?idempleado={IdEmpleado}");
 
             // Establecer el método de la solicitud como GET.
@@ -82,12 +82,12 @@ namespace Asis_Batia.ViewModel
 
                 // Deserializar el contenido JSON en una colección observable de clientes.
                 var data = JsonConvert.DeserializeObject<ObservableCollection<InfoEmpleadoModel>>(content);
-                InfoEmpleado = data;
+                InfoEmpleado = data;// aqui estamos ya asignando los datos a nuetro Observable
                 IsBusy = false;
-                if (InfoEmpleado.Count > 0)
+                if (InfoEmpleado.Count > 0)//verificamos que hayan registros
                 {
-                    Preferences.Set("UserId", InfoEmpleado[0].idEmpleado);
-                    await NextPage();
+                    Preferences.Set("UserId", InfoEmpleado[0].idEmpleado);//escribimos en el storage el id del usuario
+                    await NextPage();//invocamos al metodo para pasar a la siguiente vista
                 }
                 else
                 {
@@ -97,9 +97,9 @@ namespace Asis_Batia.ViewModel
         }
 
         private async Task NextPage()
-        {
+        {// si te fijas desde el Main estamos haciendo ya una consulta al api con el id del usuario
             var data = new Dictionary<string, object>
-            {
+            {//en este diccionario estamos estableciendo los valores que nos trajo la consulta y le asignamos una llave a cada valor
                 {"Empleado", InfoEmpleado[0].empleado },
                 {"Cliente", InfoEmpleado[0].cliente },
                 {"PuntoAtencion", InfoEmpleado[0].puntoAtencion },
@@ -109,9 +109,9 @@ namespace Asis_Batia.ViewModel
                 {"idInmueble", InfoEmpleado[0].idInmueble },
                 {"idEstado", InfoEmpleado[0].idEstado }
 
-
+                // si tefijas tenemos ya todos los datos del usuario y los pasamos como parametro al siguiente form
             };
-            await Shell.Current.GoToAsync("//FormPrin", true, data);
+            await Shell.Current.GoToAsync("//FormPrin", true, data);// aqui enviamos el diccionario al siguiente formulario
         }
     }
 }
