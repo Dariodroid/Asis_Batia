@@ -13,24 +13,57 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-      <VerticalStackLayout>
+      <VerticalStackLayout >
         <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
 
-        <Label Text="Bienvenido" FontSize="63"
+            <Label Text="Bienvenido" FontSize="63"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"
                    TranslationY="-10"/>
-        <Label x:Name="lbl_Cliente" Text="{Binding _Cliente}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
+            <Label Text="EMPREZA" FontSize="20"
+           FontAttributes="Bold"
+           VerticalTextAlignment="Center"
+           HorizontalTextAlignment="Start"
+           FontFamily="Regular"
+           TextColor="#2E3192"
+           TranslationY="-5"
+                   TranslationX="10"/>
+            <Label x:Name="lbl_Cliente" Text="{Binding _Cliente}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"/>
-        <Label x:Name="lbl_NombreEmpleado" Text="{Binding _NombreEmpleado}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
+            <Label Text="EMPLEADO" FontSize="20"
+           FontAttributes="Bold"
+           VerticalTextAlignment="Center"
+           HorizontalTextAlignment="Start"
+           FontFamily="Regular"
+           TextColor="#2E3192"
+           TranslationY="1"
+                   TranslationX="10"/>
+            <Label x:Name="lbl_NombreEmpleado" Text="{Binding _NombreEmpleado}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"/>
+            <Label Text="ESTADO" FontSize="20"
+           FontAttributes="Bold"
+           VerticalTextAlignment="Center"
+           HorizontalTextAlignment="Start"
+           FontFamily="Regular"
+           TextColor="#2E3192"
+           TranslationY="5"
+                   TranslationX="10"/>
             <Label x:Name="lbl_Estado" Text="{Binding _Estado}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"/>
+            <Label Text="PUNTO DE ATENCION O AREA DE TRABAJO" FontSize="20"
+           FontAttributes="Bold"
+           VerticalTextAlignment="Center"
+           HorizontalTextAlignment="Start"
+           FontFamily="Regular"
+           TextColor="#2E3192"
+           TranslationY="10"
+                   TranslationX="10"/>
+          
             <Label x:Name="lbl_PuntoAtencion" Text="{Binding _PuntoAtencion}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center" TranslationY="15"/>
 
             <VerticalStackLayout
             Spacing="30"
