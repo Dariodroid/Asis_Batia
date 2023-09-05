@@ -41,10 +41,18 @@
                 >
         </Button>-->
         <Entry
-            Placeholder="Ingrese el código del empleado"
-            ClearButtonVisibility="WhileEditing"
+            Placeholder="ID Emplado"
+            
             Text="{Binding IdEmpleado}"
             TextColor="Black"
+            FontFamily="Regular"
+            CharacterSpacing="1"
+            FontSize="25"
+            
+            PlaceholderColor="White"
+            IsSpellCheckEnabled="True"
+            IsTextPredictionEnabled="True"
+
             HorizontalOptions="Center"
             ReturnCommand="{Binding GetInfoEmpleadoCommand}"
             ReturnType="Send" Keyboard="Numeric" />

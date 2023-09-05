@@ -10,9 +10,8 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <VerticalStackLayout            
-           Spacing="1"
-           Padding="20,50"
-           Margin="5,0,0,0"
+           Spacing="5"
+           Margin="5,0,5,0"
            HorizontalOptions="Center"
            VerticalOptions="Center">
         <!--<Image
@@ -23,45 +22,66 @@
            TranslationY="0"
            WidthRequest="400"
            HeightRequest="400"/>-->
+        <Frame CornerRadius="25"
+               HeightRequest="320"
+               WidthRequest="320"
+               BackgroundColor="Transparent"
+               BorderColor="#D4BC88"
+               TranslationY="-10">
+     <VerticalStackLayout Spacing="10">
         <Label Text="DATOS DEL EMPLEADO" 
                TextColor="#2E3192" 
-               FontSize="50"
+               FontSize="40"
                FontFamily="Regular"
                FontAttributes="Bold"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
                />
         <Label Text="{Binding NombreCliente}" 
-               TextColor="#2E3192" 
+               TextColor="Black" 
                FontSize="Title" 
                Scale="1"
-               FontFamily="Regular"/>
+               FontAttributes="Bold"
+               FontFamily="Regular"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"/>
         <Label Text="DATOS DE ENTRADA" 
                TextColor="#2E3192" 
-               FontSize="50"
+               FontSize="40"
                FontFamily="Regular"
-               FontAttributes="Bold"/>
+               FontAttributes="Bold"
+                              VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"/>
         <Label Text="{Binding Fecha}" 
-               TextColor="#2E3192" 
+               TextColor="Black" 
                FontSize="Title" 
                Scale="1"
-               FontFamily="Regular"/>
-
+               FontFamily="Regular"
+               FontAttributes="Bold"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"/>
+        <Image Source="paloma" 
+               Aspect="AspectFill" 
+               HeightRequest="250" 
+               WidthRequest="230"
+               />
+         
+            </VerticalStackLayout>
+        </Frame>
         <Button 
                 x:Name="bntNext4"
                 Text="SALIR"
                 Command="{Binding ExitCommand}"
-                FontSize="35"
+                FontSize="Large"
                 BackgroundColor="#3775B5"
-                TextColor="#D4BC88"
-                FontFamily="Regular"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
                 CornerRadius="11"
-                TranslationY="60"
-                WidthRequest="250"
-                HeightRequest="60"
-            >
+                TranslationY="30"
+                WidthRequest="260"
+                HeightRequest="60">
         </Button>
 
     </VerticalStackLayout>
-
+  
 </ContentPage>

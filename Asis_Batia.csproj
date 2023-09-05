@@ -42,6 +42,7 @@
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 		<MauiImage Update="Resources\Images\biometa_icoq.svg" BaseSize="560,643" />
 		<MauiImage Update="Resources\Images\logo_batia.svg" BaseSize="652,586" />
+		<MauiImage Update="Resources\Images\logo_batia.svg" paloma="32,29" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />

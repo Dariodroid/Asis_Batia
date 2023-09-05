@@ -25,8 +25,8 @@ public partial class FormuSegAsis : ContentPage
         }
     }
 
-    private async void bntNext5_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("FormReg", true);
-    }
+    //private async void bntNext5_Clicked(object sender, EventArgs e)
+    //{
+    //    await Shell.Current.GoToAsync("FormReg", true);
+    //}
 }

@@ -13,65 +13,104 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-      <VerticalStackLayout >
-        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
+        <VerticalStackLayout VerticalOptions="Center"
+                             Spacing="25"
+                             
+                             >
+          <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                             Color="#D4BC88" 
+                             VerticalOptions="Fill" 
+                             Scale="1"/>
 
-            <Label Text="Bienvenido" FontSize="63"
+            <Label Text="BIENVENIDO" FontSize="63"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"
-                   TranslationY="-10"/>
-            <Label Text="EMPREZA" FontSize="20"
-           FontAttributes="Bold"
-           VerticalTextAlignment="Center"
-           HorizontalTextAlignment="Start"
-           FontFamily="Regular"
-           TextColor="#2E3192"
-           TranslationY="-5"
-                   TranslationX="10"/>
-            <Label x:Name="lbl_Cliente" Text="{Binding _Cliente}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="EMPLEADO" FontSize="20"
-           FontAttributes="Bold"
-           VerticalTextAlignment="Center"
-           HorizontalTextAlignment="Start"
-           FontFamily="Regular"
-           TextColor="#2E3192"
-           TranslationY="1"
-                   TranslationX="10"/>
-            <Label x:Name="lbl_NombreEmpleado" Text="{Binding _NombreEmpleado}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="ESTADO" FontSize="20"
-           FontAttributes="Bold"
-           VerticalTextAlignment="Center"
-           HorizontalTextAlignment="Start"
-           FontFamily="Regular"
-           TextColor="#2E3192"
-           TranslationY="5"
-                   TranslationX="10"/>
-            <Label x:Name="lbl_Estado" Text="{Binding _Estado}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="PUNTO DE ATENCION O AREA DE TRABAJO" FontSize="20"
-           FontAttributes="Bold"
-           VerticalTextAlignment="Center"
-           HorizontalTextAlignment="Start"
-           FontFamily="Regular"
-           TextColor="#2E3192"
-           TranslationY="10"
-                   TranslationX="10"/>
+                   TranslationY="-20"/>
+            <Frame  CornerRadius="25" 
+                    Margin="20" 
+                    HeightRequest="380" 
+                    BackgroundColor="Transparent" 
+                    BorderColor="#D4BC88"
+                    IsClippedToBounds="True"
+                    Padding="20"
+                     TranslationY="-20">
+                <VerticalStackLayout Spacing="5"
+                                     VerticalOptions="Center"
+                                     >
+                    <Label Text="EMPREZA" 
+                     FontSize="30"
+                     FontAttributes="Bold"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     FontFamily="Regular"
+                     TextColor="#2E3192"
+                     TranslationY="0"
+                     TranslationX="0"/>
+            <Label x:Name="lbl_Cliente" 
+                   Text="{Binding _Cliente}" 
+                   TextTransform="Uppercase" 
+                   TextColor="Black" 
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="20"/>
+            <Label Text="EMPLEADO" 
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontFamily="Regular"
+                   TextColor="#2E3192"
+                   TranslationY="0"
+                   TranslationX="0"/>
+            <Label x:Name="lbl_NombreEmpleado" 
+                   Text="{Binding _NombreEmpleado}" 
+                   TextTransform="Uppercase" 
+                   TextColor="Black" 
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="20"/>
+            <Label Text="ESTADO" 
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontFamily="Regular"
+                   TextColor="#2E3192"
+                   TranslationY="0"
+                   TranslationX="0"/>
+            <Label x:Name="lbl_Estado" 
+                   Text="{Binding _Estado}" 
+                   TextTransform="Uppercase" 
+                   TextColor="Black" 
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontSize="20"/>
+            <Label Text="PUNTO DE ATENCION O AREA DE TRABAJO" 
+                   FontSize="30"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontFamily="Regular"
+                   TextColor="#2E3192"
+                   TranslationY="0"
+                   TranslationX="0"/>
           
-            <Label x:Name="lbl_PuntoAtencion" Text="{Binding _PuntoAtencion}" TextTransform="Uppercase" TextColor="Black" VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center" TranslationY="15"/>
-
-            <VerticalStackLayout
-            Spacing="30"
-            Padding="50,5"
-            Margin="1,15,0,0"
-            HorizontalOptions="Center"
-            VerticalOptions="Start"
-            >
+            <Label x:Name="lbl_PuntoAtencion" 
+                   Text="{Binding _PuntoAtencion}" 
+                   TextTransform="Uppercase" 
+                   TextColor="Black" 
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center" 
+                   TranslationY="0"
+                   FontSize="20"/>
+                </VerticalStackLayout>
+            </Frame>
+            <VerticalStackLayout>
 
             <!--<Label Text="Selecciona el cliente: *"
                    FontSize="35"
@@ -96,24 +135,25 @@
                  SelectedItem="{Binding IdClientSelected}"
                  />-->
 
-            
-            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="#D4BC88" VerticalOptions="Fill" Scale="1"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               Color="#D4BC88" 
+                               VerticalOptions="Fill" 
+                               Scale="1"/>
             <Button 
                 x:Name="bntNext2"
                 Text="Siguiente"
                 Command="{Binding NextPageCommand}"
-                FontSize="30"
-                
-                FontFamily="Regular"
+                FontSize="Large"
                 BackgroundColor="#3775B5"
                 TextColor="#D4BC88"
                 HorizontalOptions="Center"
                 FontAttributes="Bold"
                 CornerRadius="10"
-                TranslationY="-30"
+                TranslationY="-50"
                 WidthRequest="250"
                 HeightRequest="55"
-                >
+                BorderWidth="2"
+                BorderColor="#D4BC88">
             </Button>
         </VerticalStackLayout>
         </VerticalStackLayout>

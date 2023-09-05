@@ -9,4 +9,11 @@ public partial class RegExitoso : ContentPage
 		InitializeComponent();
 		BindingContext = new RegExitosoViewModel();
 	}
+
+    //private void bntNext4_Clicked(object sender, EventArgs e)
+    //{
+        
+    //        Application.Current.Quit();
+        
+    //}
 }
