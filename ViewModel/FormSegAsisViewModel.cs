@@ -1,11 +1,13 @@
 ﻿using Asis_Batia.Helpers;
 using Asis_Batia.Model;
 using Newtonsoft.Json;
+using Org.Apache.Http.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,6 +22,10 @@ namespace Asis_Batia.ViewModel
         public int IdInmueble { get; set; }
         public int IdPeriodo { get; set; }
         public string Tipo { get; set; }
+
+        public string PathPhoto { get; set; }
+        public string PathFile { get; set; }
+
 
 
         public string _selectionRadio;
@@ -64,6 +70,7 @@ namespace Asis_Batia.ViewModel
         public ICommand RegisterCommand { get; set; }
         public ICommand LoadFileCommand { get; set; }
         public ICommand PhotoCommand { get; set; }
+        public ICommand SendFilesCommand { get; set; }
 
 
         public FormSegAsisViewModel(IMediaPicker mediaPicker)
@@ -72,6 +79,7 @@ namespace Asis_Batia.ViewModel
             RegisterCommand = new Command(async () => await Register());
             LoadFileCommand = new Command(async () => await LoadFile());
             PhotoCommand = new Command(async () => await Photo());
+            SendFilesCommand = new Command(async () => await SendFiles());
             this.mediaPicker = mediaPicker;
         }
 
@@ -122,7 +130,7 @@ namespace Asis_Batia.ViewModel
                 Latitud = _location.Latitude.ToString(),
                 Longitud = _location.Longitude.ToString(),
                 Movimiento = _selectionRadio,
-                RespuestaTexto = _respuestaTxt == null ? "": _respuestaTxt,
+                RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
                 Tipo = Tipo,
                 Foto = Foto,
             };// si te fijas ahora ya tenemos toda la info para enviar
@@ -215,6 +223,7 @@ namespace Asis_Batia.ViewModel
                         var file = ImageSource.FromStream(() => stream);
                         FileBase64 = ConvertToBase64(result.FullPath);
                     }
+                    PathFile = result.FullPath;
                 }
 
                 //return result;
@@ -256,6 +265,7 @@ namespace Asis_Batia.ViewModel
 
                         }
                         var f = LocalFilePath;
+                        PathPhoto = LocalFilePath;
                         Foto = ConvertToBase64(f);
                     }
                 }
@@ -263,6 +273,58 @@ namespace Asis_Batia.ViewModel
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Cerrar");
+            }
+        }
+
+        private async Task<string> SendFiles()
+        {
+            try
+            {
+                List<string> listaDeArchivos = new List<string>();
+                string folder = "test_files";
+                if(PathPhoto != null)
+                    listaDeArchivos.Add(PathPhoto);
+                if(PathFile != null)
+                    listaDeArchivos.Add(PathFile);
+
+                // URL del controlador ASP.NET Core
+                Uri RequestUri = new Uri("http://singa.com.mx:5500/api/CargaArchivo");
+
+                // Crear un objeto HttpClient
+                var client = new HttpClient();
+
+                // Crear contenido multipart/form-data para enviar archivos
+                var content = new MultipartFormDataContent();
+
+                // Agregar cada archivo a enviar
+                foreach (var filePath in listaDeArchivos)
+                {
+                    var fileContent = new StreamContent(File.OpenRead(filePath));
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
+                    content.Add(fileContent, name:"files", fileName: Path.GetFileName(filePath));
+                }
+
+                // Agregar el encabezado 'folder' como parte de los encabezados de la solicitud
+                content.Headers.Add("folder", folder); // Utiliza la variable 'folder' que deseas enviar
+
+                // Realizar la solicitud HTTP POST
+                var response = await client.PostAsync(RequestUri, content);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    // La solicitud se realizó con éxito
+                    // Puedes manejar la respuesta aquí si es necesario
+                }
+                else
+                {
+                    // Manejar otros códigos de estado si es necesario
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones si ocurren
+                return ex.Message;
             }
         }
     }
