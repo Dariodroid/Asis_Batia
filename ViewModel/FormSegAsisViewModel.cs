@@ -285,7 +285,7 @@ namespace Asis_Batia.ViewModel
                 archivos.Add(PathPhoto);
             if (PathFile != null)
                 archivos.Add(PathFile);
-            await UploadFiles(archivos, "FilesUsers");
+            await UploadFiles(archivos, "Doctos");
            
         }
 
