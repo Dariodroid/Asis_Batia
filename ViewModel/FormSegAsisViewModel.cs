@@ -324,7 +324,7 @@ namespace Asis_Batia.ViewModel
             else
             {
                 // Se lanza una excepción si la respuesta fue fallida
-                throw new Exception("La solicitud al API falló con el código " + response.StatusCode);
+                await DisplayAlert("Subido", $"La solicitud al API falló con el código {response.StatusCode}", "Cerrar");
             }
         }
     }
