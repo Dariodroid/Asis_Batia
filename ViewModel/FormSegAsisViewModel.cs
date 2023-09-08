@@ -293,7 +293,7 @@ namespace Asis_Batia.ViewModel
         private static readonly HttpClient client = new HttpClient();
 
         // Este método envía una lista de archivos y un nombre de carpeta al API
-        public async Task<string> UploadFiles(List<string> files, string folderName)
+        public async Task UploadFiles(List<string> files, string folderName)
         {
             // Se crea un objeto MultipartFormDataContent para contener los datos del formulario
             var formData = new MultipartFormDataContent();
@@ -312,7 +312,7 @@ namespace Asis_Batia.ViewModel
             }
 
             // Se envía una solicitud POST al API con el formulario como contenido
-            var response = await client.PostAsync(" https://d45b-2803-4e60-3-109d-f4b3-fe7e-7543-9a74.ngrok-free.app/UploadFiles", formData);
+            var response = await client.PostAsync("https://89ef-2803-4e60-3-109d-fc55-86f6-e3b0-729e.ngrok-free.app/UploadFiles", formData);
 
             // Se verifica si la respuesta fue exitosa
             if (response.IsSuccessStatusCode)
@@ -320,9 +320,6 @@ namespace Asis_Batia.ViewModel
                 // Se lee el contenido de la respuesta como una cadena
                 var responseString = await response.Content.ReadAsStringAsync();
                 await DisplayAlert("Subido", $"Archivos subidos: {responseString}", "Cerrar");
-
-                // Se devuelve la cadena de respuesta
-                return responseString;
             }
             else
             {
