@@ -312,7 +312,7 @@ namespace Asis_Batia.ViewModel
             }
 
             // Se envía una solicitud POST al API con el formulario como contenido
-            var response = await client.PostAsync("https://9562-2803-4e60-3-109d-f4b3-fe7e-7543-9a74.ngrok-free.app/UploadFiles", formData);
+            var response = await client.PostAsync(" https://d45b-2803-4e60-3-109d-f4b3-fe7e-7543-9a74.ngrok-free.app/UploadFiles", formData);
 
             // Se verifica si la respuesta fue exitosa
             if (response.IsSuccessStatusCode)
