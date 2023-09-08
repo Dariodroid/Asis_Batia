@@ -312,7 +312,7 @@ namespace Asis_Batia.ViewModel
             }
 
             // Se envía una solicitud POST al API con el formulario como contenido
-            var response = await client.PostAsync("https://89ef-2803-4e60-3-109d-fc55-86f6-e3b0-729e.ngrok-free.app/UploadFiles", formData);
+            var response = await client.PostAsync("http://singa.com.mx:5500/api/FilesAsis/CargaMul", formData);
 
             // Se verifica si la respuesta fue exitosa
             if (response.IsSuccessStatusCode)
@@ -324,7 +324,7 @@ namespace Asis_Batia.ViewModel
             else
             {
                 // Se lanza una excepción si la respuesta fue fallida
-                await DisplayAlert("Subido", $"La solicitud al API falló con el código {response.StatusCode}", "Cerrar");
+                await DisplayAlert("Error", $"La solicitud al API falló con el código {response.StatusCode}", "Cerrar");
             }
         }
     }
