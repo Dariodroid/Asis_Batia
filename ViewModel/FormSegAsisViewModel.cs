@@ -398,17 +398,11 @@ namespace Asis_Batia.ViewModel
 
         public async Task SendFiles()
         {
-            string folder = "test_files";
             List<string> archivos = new List<string>();
             if (PathPhoto != null)
                 archivos.Add(PathPhoto);
             if (PathFile != null)
                 archivos.Add(PathFile);
-            FilesModel filesModel = new FilesModel()
-            {
-                files = archivos,
-                folder = folder
-            };
             using (var httpClient = new HttpClient())
             {
                 // URL de la API a la que deseas enviar la solicitud
@@ -418,14 +412,14 @@ namespace Asis_Batia.ViewModel
                 var content = new MultipartFormDataContent();
 
                 // Agrega el string como un campo de formulario
-                content.Add(new StringContent(folder), "folder");
+                content.Headers.ContentType.MediaType = "multipart/form-data";
+                content.Headers.Add("folder", "supervision");
 
                 // Agrega cada archivo a la solicitud como contenido binario
                 foreach (var archivo in archivos)
                 {
-                    var archivoContent = new ByteArrayContent(File.ReadAllBytes(archivo));
-                    archivoContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                    content.Add(archivoContent, "files", Path.GetFileName(archivo));
+                    Stream fileContent = new MemoryStream(File.ReadAllBytes(archivo));
+                    content.Add(new StreamContent(fileContent), "\"files\"", $"\"F_{Path.GetFileName(archivo)}\"");
                 }
 
                 // Realiza la solicitud POST
