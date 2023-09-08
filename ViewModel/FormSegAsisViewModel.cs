@@ -278,124 +278,6 @@ namespace Asis_Batia.ViewModel
             }
         }
 
-        //private async Task<string> SendFiles()
-        //{
-        //    try
-        //    {
-        //        List<string> listaDeArchivos = new List<string>();
-        //        string folder = "test_files";
-        //        if(PathPhoto != null)
-        //            listaDeArchivos.Add(PathPhoto);
-        //        if(PathFile != null)
-        //            listaDeArchivos.Add(PathFile);
-
-        //        // URL del controlador ASP.NET Core
-        //        Uri RequestUri = new Uri("http://singa.com.mx:5500/api/CargaArchivo");
-
-        //        // Crear un objeto HttpClient
-        //        var client = new HttpClient();
-
-        //        // Crear contenido multipart/form-data para enviar archivos
-        //        var content = new MultipartFormDataContent();
-
-        //        // Agregar cada archivo a enviar
-        //        foreach (var filePath in listaDeArchivos)
-        //        {
-        //            var fileContent = new StreamContent(File.OpenRead(filePath));
-        //            fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-        //            content.Add(fileContent, name:"files", fileName: Path.GetFileName(filePath));
-        //        }
-        //        // Agregar el encabezado 'folder' como parte de los encabezados de la solicitud
-        //        content.Headers.Add(name:"folder", folder); // Utiliza la variable 'folder' que deseas enviar
-
-        //        // Realizar la solicitud HTTP POST
-        //        var response = await client.PostAsync(RequestUri, content);
-
-        //        if (response.StatusCode == HttpStatusCode.OK)
-        //        {
-        //            // La solicitud se realizó con éxito
-        //            // Puedes manejar la respuesta aquí si es necesario
-        //        }
-        //        else
-        //        {
-        //            // Manejar otros códigos de estado si es necesario
-        //        }
-        //        return "";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Manejar excepciones si ocurren
-        //        return ex.Message;
-        //    }
-        //}
-        //=============================================================================================
-        //private async Task SendFiles()
-        //{
-        //    List<string> listaDeArchivos = new List<string>();
-        //    if (PathPhoto != null)
-        //        listaDeArchivos.Add(PathPhoto);
-        //    if (PathFile != null)
-        //        listaDeArchivos.Add(PathFile);
-        //    FilesModel filesModel = new FilesModel()
-        //    {
-        //        files = listaDeArchivos,
-        //        folder = "folder_test"
-        //    };
-        //    Uri RequestUri = new Uri("http://singa.com.mx:5500/api/CargaArchivo");
-        //    var client = new HttpClient();
-        //    var json = JsonConvert.SerializeObject(filesModel);
-        //    var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
-        //    var response = await client.PostAsync(RequestUri, contentJson);
-
-        //}
-
-        //private async Task SendFiles()
-        //{
-        //    string folder = "test_files";
-        //    Uri RequestUri = new Uri("http://singa.com.mx:5500/api/CargaArchivo");
-
-        //    List<string> listaDeArchivos = new List<string>();
-        //    if (PathPhoto != null)
-        //        listaDeArchivos.Add(PathPhoto);
-        //    if (PathFile != null)
-        //        listaDeArchivos.Add(PathFile);
-        //    FilesModel filesModel = new FilesModel()
-        //    {
-        //        files = listaDeArchivos,
-        //        folder = "folder_test"
-        //    };
-        //    // Crear una instancia de HttpClient
-        //    HttpClient client = new HttpClient();
-
-        //    // Crear una instancia de MultipartFormDataContent para contener los datos del formulario
-        //    MultipartFormDataContent form = new MultipartFormDataContent();
-
-        //    // Agregar la lista de IFormFile al formulario con el nombre "files"
-        //    foreach (var file in listaDeArchivos)
-        //    {
-        //        // Crear un StreamContent a partir del archivo
-        //        StreamContent streamContent = new StreamContent(File.OpenRead(file));
-        //        // Agregar el nombre y el tipo de contenido del archivo al StreamContent
-        //        streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-        //        {
-        //            Name = "files",
-        //            FileName = Path.GetFileName(file)
-        //        };
-        //        //streamContent.Headers.ContentType = new MediaTypeHeaderValue(File.ContentType);
-        //        // Agregar el StreamContent al formulario
-        //        form.Add(streamContent);
-        //    }
-
-        //    // Agregar el string al formulario con el nombre "text"
-        //    client.DefaultRequestHeaders.Add("folder", folder);
-        //    // Enviar el formulario a la API usando PostAsync
-        //    var response = await client.PostAsync(RequestUri, form);
-
-        //    // Leer la respuesta de la API
-        //    var result = await response.Content.ReadAsStringAsync();
-
-        //}
-
         public async Task SendFiles()
         {
             List<string> archivos = new List<string>();
@@ -403,38 +285,81 @@ namespace Asis_Batia.ViewModel
                 archivos.Add(PathPhoto);
             if (PathFile != null)
                 archivos.Add(PathFile);
-            using (var httpClient = new HttpClient())
+            await UploadFiles(archivos, "testFiles");
+            //using (var httpClient = new HttpClient())
+            //{
+            //    // URL de la API a la que deseas enviar la solicitud
+            //    string apiUrl = "http://singa.com.mx:5500/api/CargaArchivo";
+
+            //    // Crea un objeto de tipo MultipartFormDataContent para enviar los datos
+            //    var content = new MultipartFormDataContent();
+
+            //    // Agrega el string como un campo de formulario
+            //    //content.Headers.ContentType.MediaType = "multipart/form-data";
+            //    //content.Headers.Add("folder", "supervision");
+
+            //    // Agrega cada archivo a la solicitud como contenido binario
+            //    foreach (var archivo in archivos)
+            //    {
+            //        //Stream fileContent = File.OpenRead(archivo);
+            //        content.Add(new StreamContent(File.OpenRead(archivo)), "files", $"{Path.GetFileName(archivo)}");
+            //    }
+
+            //    // Realiza la solicitud POST
+            //    HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
+
+            //    // Verifica la respuesta y maneja los resultados según sea necesario
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        string respuesta = await response.Content.ReadAsStringAsync();
+            //        // Procesa la respuesta de la API
+            //    }
+            //    else
+            //    {
+            //        // Maneja el error si la solicitud no tiene éxito
+            //    }
+            //}
+        }
+
+        // Se crea una instancia de HttpClient que se puede reutilizar
+        private static readonly HttpClient client = new HttpClient();
+
+        // Este método envía una lista de archivos y un nombre de carpeta al API
+        public async Task<string> UploadFiles(List<string> files, string folderName)
+        {
+            // Se crea un objeto MultipartFormDataContent para contener los datos del formulario
+            var formData = new MultipartFormDataContent();
+
+            // Se agrega el nombre de la carpeta como un parámetro de cadena
+            formData.Add(new StringContent(folderName), "folderName");
+
+            // Se recorre la lista de archivos y se agregan como parámetros de archivo
+            foreach (var file in files)
             {
-                // URL de la API a la que deseas enviar la solicitud
-                string apiUrl = "http://singa.com.mx:5500/api/CargaArchivo";
+                // Se crea un objeto StreamContent a partir del contenido del archivo
+                var fileContent = new StreamContent(File.OpenRead(file));
 
-                // Crea un objeto de tipo MultipartFormDataContent para enviar los datos
-                var content = new MultipartFormDataContent();
+                // Se agrega el contenido del archivo al formulario con el nombre del archivo
+                formData.Add(fileContent, "files", Path.GetFileName(file));
+            }
 
-                // Agrega el string como un campo de formulario
-                content.Headers.ContentType.MediaType = "multipart/form-data";
-                content.Headers.Add("folder", "supervision");
+            // Se envía una solicitud POST al API con el formulario como contenido
+            var response = await client.PostAsync("https://e9b1-45-179-140-186.ngrok-free.app/UploadFiles", formData);
 
-                // Agrega cada archivo a la solicitud como contenido binario
-                foreach (var archivo in archivos)
-                {
-                    Stream fileContent = new MemoryStream(File.ReadAllBytes(archivo));
-                    content.Add(new StreamContent(fileContent), "\"files\"", $"\"F_{Path.GetFileName(archivo)}\"");
-                }
+            // Se verifica si la respuesta fue exitosa
+            if (response.IsSuccessStatusCode)
+            {
+                // Se lee el contenido de la respuesta como una cadena
+                var responseString = await response.Content.ReadAsStringAsync();
+                await DisplayAlert("Subido", "Archivos subidos", "Cerrar");
 
-                // Realiza la solicitud POST
-                HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
-
-                // Verifica la respuesta y maneja los resultados según sea necesario
-                if (response.IsSuccessStatusCode)
-                {
-                    string respuesta = await response.Content.ReadAsStringAsync();
-                    // Procesa la respuesta de la API
-                }
-                else
-                {
-                    // Maneja el error si la solicitud no tiene éxito
-                }
+                // Se devuelve la cadena de respuesta
+                return responseString;
+            }
+            else
+            {
+                // Se lanza una excepción si la respuesta fue fallida
+                throw new Exception("La solicitud al API falló con el código " + response.StatusCode);
             }
         }
     }
