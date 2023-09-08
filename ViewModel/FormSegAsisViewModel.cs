@@ -285,40 +285,8 @@ namespace Asis_Batia.ViewModel
                 archivos.Add(PathPhoto);
             if (PathFile != null)
                 archivos.Add(PathFile);
-            await UploadFiles(archivos, "testFiles");
-            //using (var httpClient = new HttpClient())
-            //{
-            //    // URL de la API a la que deseas enviar la solicitud
-            //    string apiUrl = "http://singa.com.mx:5500/api/CargaArchivo";
-
-            //    // Crea un objeto de tipo MultipartFormDataContent para enviar los datos
-            //    var content = new MultipartFormDataContent();
-
-            //    // Agrega el string como un campo de formulario
-            //    //content.Headers.ContentType.MediaType = "multipart/form-data";
-            //    //content.Headers.Add("folder", "supervision");
-
-            //    // Agrega cada archivo a la solicitud como contenido binario
-            //    foreach (var archivo in archivos)
-            //    {
-            //        //Stream fileContent = File.OpenRead(archivo);
-            //        content.Add(new StreamContent(File.OpenRead(archivo)), "files", $"{Path.GetFileName(archivo)}");
-            //    }
-
-            //    // Realiza la solicitud POST
-            //    HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
-
-            //    // Verifica la respuesta y maneja los resultados según sea necesario
-            //    if (response.IsSuccessStatusCode)
-            //    {
-            //        string respuesta = await response.Content.ReadAsStringAsync();
-            //        // Procesa la respuesta de la API
-            //    }
-            //    else
-            //    {
-            //        // Maneja el error si la solicitud no tiene éxito
-            //    }
-            //}
+            await UploadFiles(archivos, "FilesUsers");
+           
         }
 
         // Se crea una instancia de HttpClient que se puede reutilizar
@@ -344,14 +312,14 @@ namespace Asis_Batia.ViewModel
             }
 
             // Se envía una solicitud POST al API con el formulario como contenido
-            var response = await client.PostAsync("https://e9b1-45-179-140-186.ngrok-free.app/UploadFiles", formData);
+            var response = await client.PostAsync("https://9562-2803-4e60-3-109d-f4b3-fe7e-7543-9a74.ngrok-free.app/UploadFiles", formData);
 
             // Se verifica si la respuesta fue exitosa
             if (response.IsSuccessStatusCode)
             {
                 // Se lee el contenido de la respuesta como una cadena
                 var responseString = await response.Content.ReadAsStringAsync();
-                await DisplayAlert("Subido", "Archivos subidos", "Cerrar");
+                await DisplayAlert("Subido", $"Archivos subidos: {responseString}", "Cerrar");
 
                 // Se devuelve la cadena de respuesta
                 return responseString;
