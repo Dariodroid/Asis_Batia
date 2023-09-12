@@ -77,16 +77,6 @@
                    BorderWidth="2"
                    BorderColor="#D4BC88">
                 </Button>
-                <Button 
-                   x:Name="btn_send"
-                   Text="Send Files"
-                   FontSize="25"
-                   TranslationY="10"
-                   WidthRequest="200"
-                   Command="{Binding SendFilesCommand}"
-                   BorderWidth="2"
-                   BorderColor="#D4BC88">
-                </Button>
                 <Entry
                     
                     TranslationY="20"

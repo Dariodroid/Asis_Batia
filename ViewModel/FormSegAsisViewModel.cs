@@ -1,7 +1,6 @@
 ﻿using Asis_Batia.Helpers;
 using Asis_Batia.Model;
 using Newtonsoft.Json;
-using Org.Apache.Http.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -66,13 +65,13 @@ namespace Asis_Batia.ViewModel
             get { return _isEnabled; }
             set { _isEnabled = value; OnPropertyChanged(); }
         }
+        public string UrlFiles { get; set; }
 
 
         public ICommand BackPageCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
         public ICommand LoadFileCommand { get; set; }
         public ICommand PhotoCommand { get; set; }
-        public ICommand SendFilesCommand { get; set; }
 
 
         public FormSegAsisViewModel(IMediaPicker mediaPicker)
@@ -81,7 +80,6 @@ namespace Asis_Batia.ViewModel
             RegisterCommand = new Command(async () => await Register());
             LoadFileCommand = new Command(async () => await LoadFile());
             PhotoCommand = new Command(async () => await Photo());
-            SendFilesCommand = new Command(async () => await SendFiles());
             this.mediaPicker = mediaPicker;
         }
 
@@ -101,6 +99,13 @@ namespace Asis_Batia.ViewModel
         private async Task Register()
         {
             IsBusy = true;
+            if(!await SendFiles())
+            {
+                await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
+                IsEnabled = true;
+                IsBusy = false;
+                return;
+            }
             IsEnabled = false;
             Location _location = await LocationService.GetCurrentLocation();
             if (_location == null)
@@ -121,7 +126,7 @@ namespace Asis_Batia.ViewModel
 
             RegistroModel registroModel = new RegistroModel
             {
-                Adjuntos = FileBase64,
+                Adjuntos = PathFile,
                 Anio = (int)DateTime.Today.Year,
                 Confirma = "App",
                 Cubierto = 0,
@@ -134,8 +139,8 @@ namespace Asis_Batia.ViewModel
                 Movimiento = _selectionRadio,
                 RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
                 Tipo = Tipo,
-                Foto = Foto,
-            };// si te fijas ahora ya tenemos toda la info para enviar
+                Foto = PathPhoto,
+            };
 
             Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
             var client = new HttpClient();
@@ -278,22 +283,31 @@ namespace Asis_Batia.ViewModel
             }
         }
 
-        public async Task SendFiles()
+        public async Task<bool> SendFiles()
         {
             List<string> archivos = new List<string>();
             if (PathPhoto != null)
                 archivos.Add(PathPhoto);
             if (PathFile != null)
                 archivos.Add(PathFile);
-            await UploadFiles(archivos, "Doctos");
-           
+            if(archivos.Count == 0)
+            {
+                await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
+                return false;
+
+            }
+            UrlFiles = await UploadFiles(archivos, "Doctos");
+            string[] splits = UrlFiles.Split(" ");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
+            PathPhoto = splits[0];
+            PathFile = splits[1];
+            return true;
         }
 
         // Se crea una instancia de HttpClient que se puede reutilizar
         private static readonly HttpClient client = new HttpClient();
 
         // Este método envía una lista de archivos y un nombre de carpeta al API
-        public async Task UploadFiles(List<string> files, string folderName)
+        public async Task<string> UploadFiles(List<string> files, string folderName)
         {
             // Se crea un objeto MultipartFormDataContent para contener los datos del formulario
             var formData = new MultipartFormDataContent();
@@ -318,13 +332,13 @@ namespace Asis_Batia.ViewModel
             if (response.IsSuccessStatusCode)
             {
                 // Se lee el contenido de la respuesta como una cadena
-                var responseString = await response.Content.ReadAsStringAsync();
-                await DisplayAlert("Subido", $"Archivos subidos: {responseString}", "Cerrar");
+               return await response.Content.ReadAsStringAsync();
             }
             else
             {
                 // Se lanza una excepción si la respuesta fue fallida
                 await DisplayAlert("Error", $"La solicitud al API falló con el código {response.StatusCode}", "Cerrar");
+                return null;
             }
         }
     }
