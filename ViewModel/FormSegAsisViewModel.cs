@@ -130,7 +130,7 @@ namespace Asis_Batia.ViewModel
                 Anio = (int)DateTime.Today.Year,
                 Confirma = "App",
                 Cubierto = 0,
-                Fecha = DateTime.Now,
+                Fecha = DateTime.Today,
                 Idempleado = IdEmpleado,
                 Idinmueble = IdInmueble,
                 Idperiodo = IdPeriodo,
@@ -297,7 +297,7 @@ namespace Asis_Batia.ViewModel
 
             }
             UrlFiles = await UploadFiles(archivos, "Doctos");
-            string[] splits = UrlFiles.Split(" ");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
+            string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
             PathPhoto = splits[0];
             PathFile = splits[1];
             return true;
