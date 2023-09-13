@@ -40,7 +40,7 @@
                 <VerticalStackLayout Spacing="5"
                                      VerticalOptions="Center"
                                      >
-                    <Label Text="EMPREZA" 
+                    <Label Text="EMPRESA" 
                      FontSize="30"
                      FontAttributes="Bold"
                      HorizontalOptions="Center"

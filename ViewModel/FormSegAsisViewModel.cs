@@ -98,69 +98,77 @@ namespace Asis_Batia.ViewModel
 
         private async Task Register()
         {
-            IsBusy = true;
-            if(!await SendFiles())
+            try 
             {
-                await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
-                IsEnabled = true;
-                IsBusy = false;
-                return;
-            }
-            IsEnabled = false;
-            Location _location = await LocationService.GetCurrentLocation();
-            if (_location == null)
-            {
-                var message = LocationService.Message;
-                await DisplayAlert("Mensaje", message, "Cerrar");
-                return;
-            }
-            if (_selectionRadio == null)
-            {
-                await DisplayAlert("Mensaje", "Seleccione una opción de envío", "Cerrar");
-                IsEnabled = true;
-                IsBusy = false;
-                return;
-            }
-
-            await GetPeriodo(IdCliente);
-
-            RegistroModel registroModel = new RegistroModel
-            {
-                Adjuntos = PathFile,
-                Anio = (int)DateTime.Today.Year,
-                Confirma = "App",
-                Cubierto = 0,
-                Fecha = DateTime.Today,
-                Idempleado = IdEmpleado,
-                Idinmueble = IdInmueble,
-                Idperiodo = IdPeriodo,
-                Latitud = _location.Latitude.ToString(),
-                Longitud = _location.Longitude.ToString(),
-                Movimiento = _selectionRadio,
-                RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
-                Tipo = Tipo,
-                Foto = PathPhoto,
-            };
-
-            Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
-            var client = new HttpClient();
-            var json = JsonConvert.SerializeObject(registroModel);
-            var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(RequestUri, contentJson);
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                IsBusy = false;
+                IsBusy = true;
+                if (!await SendFiles())
+                {
+                    await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
+                    IsEnabled = true;
+                    IsBusy = false;
+                    return;
+                }
                 IsEnabled = false;
-                await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
-                NexTPage();
+                Location _location = await LocationService.GetCurrentLocation();
+                if (_location == null)
+                {
+                    var message = LocationService.Message;
+                    await DisplayAlert("Mensaje", message, "Cerrar");
+                    return;
+                }
+                if (_selectionRadio == null)
+                {
+                    await DisplayAlert("Mensaje", "Seleccione una opción de envío", "Cerrar");
+                    IsEnabled = true;
+                    IsBusy = false;
+                    return;
+                }
+
+                await GetPeriodo(IdCliente);
+
+                RegistroModel registroModel = new RegistroModel
+                {
+                    Adjuntos = PathFile,
+                    Anio = (int)DateTime.Today.Year,
+                    Confirma = "App",
+                    Cubierto = 0,
+                    Fecha = DateTime.Today,
+                    Idempleado = IdEmpleado,
+                    Idinmueble = IdInmueble,
+                    Idperiodo = IdPeriodo,
+                    Latitud = _location.Latitude.ToString(),
+                    Longitud = _location.Longitude.ToString(),
+                    Movimiento = _selectionRadio,
+                    RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
+                    Tipo = Tipo,
+                    Foto = PathPhoto,
+                };
+
+                Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
+                var client = new HttpClient();
+                var json = JsonConvert.SerializeObject(registroModel);
+                var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(RequestUri, contentJson);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    IsBusy = false;
+                    IsEnabled = false;
+                    await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
+                    NexTPage();
+                }
+                else
+                {
+                    IsBusy = false;
+                    IsEnabled = true;
+                    await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                IsBusy = false;
-                IsEnabled = true;
-                await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
+                await DisplayAlert("Error", ex.Message, "Cerrar");
             }
+
         }
 
         private async void NexTPage()
@@ -285,22 +293,23 @@ namespace Asis_Batia.ViewModel
 
         public async Task<bool> SendFiles()
         {
-            List<string> archivos = new List<string>();
-            if (PathPhoto != null)
-                archivos.Add(PathPhoto);
-            if (PathFile != null)
-                archivos.Add(PathFile);
-            if(archivos.Count == 0)
-            {
-                await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
-                return false;
+            
+                List<string> archivos = new List<string>();
+                if (PathPhoto != null)
+                    archivos.Add(PathPhoto);
+                if (PathFile != null)
+                    archivos.Add(PathFile);
+                if (archivos.Count == 0)
+                {
+                    await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
+                    return false;
 
-            }
-            UrlFiles = await UploadFiles(archivos, "Doctos");
-            string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
-            PathPhoto = splits[0];
-            PathFile = splits[1];
-            return true;
+                }
+                UrlFiles = await UploadFiles(archivos, "Doctos");
+                string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
+                PathPhoto = splits[0];
+                PathFile = splits[1];
+                return true;
         }
 
         // Se crea una instancia de HttpClient que se puede reutilizar
