@@ -297,9 +297,14 @@ namespace Asis_Batia.ViewModel
                 List<string> archivos = new List<string>();
                 if (PathPhoto != null)
                     archivos.Add(PathPhoto);
-                if (PathFile != null)
-                    archivos.Add(PathFile);
-                if (archivos.Count == 0)
+                else
+                archivos.Add("");
+
+            if (PathFile != null)
+            archivos.Add(PathFile);
+            else
+                archivos.Add("");
+            if (archivos.Count == 0)
                 {
                     await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
                     return false;
