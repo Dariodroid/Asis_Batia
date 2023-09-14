@@ -315,7 +315,6 @@ namespace Asis_Batia.ViewModel
                 {
                     // Si la extensión es PDF, asigna a pathFile y rompe el bucle
                     PathFile = split;
-                    break;
                 }
                 else if (split.Contains(".jpg") || split.Contains(".jpeg") || split.Contains(".png"))
                 {
