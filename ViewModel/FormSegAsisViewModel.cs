@@ -98,7 +98,7 @@ namespace Asis_Batia.ViewModel
 
         private async Task Register()
         {
-            try 
+            try
             {
                 IsBusy = true;
                 if (!await SendFiles())
@@ -128,7 +128,7 @@ namespace Asis_Batia.ViewModel
 
                 RegistroModel registroModel = new RegistroModel
                 {
-                    Adjuntos = PathFile,
+                    Adjuntos = PathFile != null ? PathFile : "",
                     Anio = (int)DateTime.Today.Year,
                     Confirma = "App",
                     Cubierto = 0,
@@ -141,7 +141,7 @@ namespace Asis_Batia.ViewModel
                     Movimiento = _selectionRadio,
                     RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
                     Tipo = Tipo,
-                    Foto = PathPhoto,
+                    Foto = PathPhoto != null ? PathPhoto : "",
                 };
 
                 Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
@@ -293,28 +293,38 @@ namespace Asis_Batia.ViewModel
 
         public async Task<bool> SendFiles()
         {
-            
-                List<string> archivos = new List<string>();
-                if (PathPhoto != null)
-                    archivos.Add(PathPhoto);
-                else
-                archivos.Add("");
+
+            List<string> archivos = new List<string>();
+            if (PathPhoto != null)
+                archivos.Add(PathPhoto);
 
             if (PathFile != null)
-            archivos.Add(PathFile);
-            else
-                archivos.Add("");
+                archivos.Add(PathFile);
             if (archivos.Count == 0)
-                {
-                    await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
-                    return false;
+            {
+                await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
+                return false;
 
+            }
+            UrlFiles = await UploadFiles(archivos, "Doctos");
+            string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
+
+            foreach (string split in splits)
+            {
+                if (split.Contains(".pdf"))
+                {
+                    // Si la extensión es PDF, asigna a pathFile y rompe el bucle
+                    PathFile = split;
+                    break;
                 }
-                UrlFiles = await UploadFiles(archivos, "Doctos");
-                string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
-                PathPhoto = splits[0];
-                PathFile = splits[1];
-                return true;
+                else if (split.Contains(".jpg") || split.Contains(".jpeg") || split.Contains(".png"))
+                {
+                    // Si es una imagen (JPG, JPEG o PNG), asigna a pathPhoto y continúa el bucle
+                    PathPhoto = split;
+                }
+            }
+
+            return true;
         }
 
         // Se crea una instancia de HttpClient que se puede reutilizar
@@ -346,7 +356,7 @@ namespace Asis_Batia.ViewModel
             if (response.IsSuccessStatusCode)
             {
                 // Se lee el contenido de la respuesta como una cadena
-               return await response.Content.ReadAsStringAsync();
+                return await response.Content.ReadAsStringAsync();
             }
             else
             {
