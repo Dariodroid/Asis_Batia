@@ -9,79 +9,71 @@
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    <VerticalStackLayout            
-           Spacing="5"
-           Margin="5,0,5,0"
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
-        <!--<Image
-           Source="entrada.png"
-           VerticalOptions="Center"
-           HorizontalOptions="Center"
-           TranslationX="0"
-           TranslationY="0"
-           WidthRequest="400"
-           HeightRequest="400"/>-->
-        <Frame CornerRadius="25"
-               HeightRequest="320"
-               WidthRequest="320"
-               BackgroundColor="Transparent"
-               BorderColor="#D4BC88"
-               TranslationY="-10">
-     <VerticalStackLayout Spacing="10">
-        <Label Text="DATOS DEL EMPLEADO" 
-               TextColor="#2E3192" 
-               FontSize="40"
-               FontFamily="Regular"
-               FontAttributes="Bold"
-               VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Center"
-               />
-        <Label Text="{Binding NombreCliente}" 
-               TextColor="Black" 
-               FontSize="Title" 
-               Scale="1"
-               FontAttributes="Bold"
-               FontFamily="Regular"
-               VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Center"/>
-        <Label Text="DATOS DE ENTRADA" 
-               TextColor="#2E3192" 
-               FontSize="40"
-               FontFamily="Regular"
-               FontAttributes="Bold"
-                              VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Center"/>
-        <Label Text="{Binding Fecha}" 
-               TextColor="Black" 
-               FontSize="Title" 
-               Scale="1"
-               FontFamily="Regular"
-               FontAttributes="Bold"
-               VerticalTextAlignment="Center"
-               HorizontalTextAlignment="Center"/>
-        <Image Source="paloma" 
-               Aspect="AspectFill" 
-               HeightRequest="250" 
-               WidthRequest="230"
-               />
-         
-            </VerticalStackLayout>
-        </Frame>
-        <Button 
-                x:Name="bntNext4"
-                Text="SALIR"
-                Command="{Binding ExitCommand}"
-                FontSize="Large"
-                BackgroundColor="#3775B5"
-                HorizontalOptions="Center"
-                FontAttributes="Bold"
-                CornerRadius="11"
-                TranslationY="30"
-                WidthRequest="260"
-                HeightRequest="60">
-        </Button>
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" 
+                             Spacing="50">
+            <Frame CornerRadius="25"
+                   HeightRequest="350"
+                   BackgroundColor="Transparent"
+                   BorderColor="#D4BC88"
+                   Margin="20,0,20,0"
+                   IsClippedToBounds="True"
+                   Padding="20">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="DATOS DEL EMPLEADO" 
+                           TextColor="#2E3192" 
+                           FontSize="40"
+                           FontFamily="Regular"
+                           FontAttributes="Bold"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding NombreCliente}" 
+                           TextColor="Black" 
+                           FontSize="Title" 
+                           Scale="1"
+                           FontAttributes="Bold"
+                           FontFamily="Regular"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="DATOS DE ENTRADA" 
+                           TextColor="#2E3192" 
+                           FontSize="40"
+                           FontFamily="Regular"
+                           FontAttributes="Bold"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Fecha}" 
+                           TextColor="Black" 
+                           FontSize="Title" 
+                           Scale="1"
+                           FontFamily="Regular"
+                           FontAttributes="Bold"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
+                    <Image
+                        Source="paloma"
+                        Aspect="AspectFill" 
+                        TranslationY="20"
+                        TranslationX="-20"
+                        HeightRequest="350" 
+                        WidthRequest="330"/>
 
-    </VerticalStackLayout>
-  
+                </VerticalStackLayout>
+            </Frame>
+            <Button x:Name="bntNext4"
+                    Text="SALIR"
+                    Command="{Binding ExitCommand}"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    BackgroundColor="#3775B5"
+                    TextColor="#D4BC88"
+                    WidthRequest="250"
+                    HeightRequest="55"
+                    CornerRadius="10"
+                    BorderWidth="2"
+                    BorderColor="#D4BC88">
+
+            </Button>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

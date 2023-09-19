@@ -9,12 +9,13 @@
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    <VerticalStackLayout Margin="5">
+    <ScrollView>
+       <VerticalStackLayout Margin="5">
         <Image Source="logo_batia"
                Aspect="AspectFill"
                HeightRequest="300"
                WidthRequest="400"
-               TranslationY="0"/>
+               TranslationY="30"/>
         <Label 
             Text="BIOMETA"
             TextColor="#2E3192"
@@ -22,55 +23,33 @@
             FontFamily="Regular"
             FontSize="90"
             HorizontalOptions="Center"
-            TranslationY="-40"/>
-        <!--<Button 
-                x:Name="bntNext"
-                Text="Asistencia"
-                Clicked="bntNext_Clicked"
-                FontSize="30"
-                TextTransform="Uppercase"
-                BackgroundColor="#3775B5"
-                TextColor="#D4BC88"
-                HorizontalOptions="Center"
-                FontAttributes="Bold"
-                FontFamily="Regular"
-                CornerRadius="10"
-                TranslationY="-5"
-                WidthRequest="250"
-                HeightRequest="55"
-                >
-        </Button>-->
+            TranslationY="-15"/>
+
         <Entry
-            Placeholder="ID Emplado"
-            
+            Placeholder="  ID Empleado  "
             Text="{Binding IdEmpleado}"
             TextColor="Black"
             FontFamily="Regular"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
             CharacterSpacing="1"
             FontSize="25"
-            
             PlaceholderColor="White"
             IsSpellCheckEnabled="True"
             IsTextPredictionEnabled="True"
-
             HorizontalOptions="Center"
             ReturnCommand="{Binding GetInfoEmpleadoCommand}"
-            ReturnType="Send" Keyboard="Numeric" />
-        <!--ReturnCommandParameter="{Binding IdEmpleado}"-->
-        <!--<Button x:Name="Btn_GetInfo" 
-                Text="Get Info" 
-                Command="{Binding GetInfoEmpleadoCommand}"
-                />-->
+            ReturnType="Send" 
+            Keyboard="Numeric" />
 
         <Image
-    Source="biometa_icoq"
-    VerticalOptions="End"
-    HorizontalOptions="Center"
-    TranslationX="0"
-    TranslationY="-130"
-    WidthRequest="500"
-    HeightRequest="500"/>
+           Source="biometa_icoq"
+           VerticalOptions="End"
+           HorizontalOptions="Center"
+           TranslationY="-100"
+           WidthRequest="500"
+           HeightRequest="500"/>
 
     </VerticalStackLayout>
-
+  </ScrollView>
 </ContentPage>

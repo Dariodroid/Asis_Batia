@@ -17,6 +17,7 @@ namespace Asis_Batia.ViewModel
         HttpClient client;
         #region Propiedades
         private ObservableCollection<InmuebleByIdClienteModel.InmuebleModel> _inmueble;
+        //ObservableCollection Representa una recopilación de datos dinámica que proporciona notificaciones cuando se agregan o eliminan elementos, o cuando se actualiza la lista completa.
 
         public ObservableCollection<InmuebleByIdClienteModel.InmuebleModel> Inmueble
         {

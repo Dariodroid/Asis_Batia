@@ -13,7 +13,7 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout VerticalOptions="Center">
             <ActivityIndicator IsRunning="{Binding IsBusy}" 
                                Color="#D4BC88" 
                                VerticalOptions="Fill" 
@@ -21,11 +21,12 @@
             <VerticalStackLayout  
             Spacing="10"
             Padding="20,10"
-            Margin="5,0,5,0"
+            Margin="3,0,5,0"
             HorizontalOptions="Center"
-            VerticalOptions="Start">
-                <Label Text="Seleccione solo una opcion de envio"
-                   FontSize="31"
+            VerticalOptions="Center">
+                
+                <Label Text="Seleccione una opción"
+                   FontSize="35"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
@@ -49,7 +50,8 @@
                         <RadioButton Content="N Descanso" CheckedChanged="RadioButton_CheckedChanged" Value="N" FontSize="20" FontFamily="Regular"/>
                     </VerticalStackLayout>
                 </Frame>
-                <Label Text="Adjunta: incapacidad, formato de vaciones, justificante, Etc..."
+                <Label 
+                   Text="Adjunta: incapacidad, listas de asistencia, justificante, Etc..."
                    FontSize="25"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
@@ -62,7 +64,7 @@
                     Text="Archivo"
                     FontSize="25"
                     WidthRequest="200"
-                    TranslationY="5"
+                    TranslationY="10"
                     Command="{Binding LoadFileCommand}"
                     BorderWidth="2"
                     BorderColor="#D4BC88">
@@ -71,27 +73,28 @@
                    x:Name="btn_camara"
                    Text="Foto"
                    FontSize="25"
-                   TranslationY="10"
+                   TranslationY="15"
                    WidthRequest="200"
                    Command="{Binding PhotoCommand}"
                    BorderWidth="2"
                    BorderColor="#D4BC88">
                 </Button>
-                <Entry
-                    
+                
+                <Entry 
                     TranslationY="20"
+                    HorizontalOptions="Center"
                     FontFamily="Regular"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
                     CharacterSpacing="1"
                     FontSize="Large"
-                    BackgroundColor="#3775B5"
-                    PlaceholderColor="Black"
-                    TextColor="#D4BC88"
-                    Placeholder="Captura informacion adicional"
+                    PlaceholderColor="White"
+                    TextColor="Black"
+                    Placeholder="  Captura informacion adicional  "
                     IsSpellCheckEnabled="True"
                     IsTextPredictionEnabled="True"
-                    ClearButtonVisibility="WhileEditing"
-                    Text="{Binding RespuestaTxt}"
-                    />
+                    Text="{Binding RespuestaTxt}"/>
+
                 <ActivityIndicator IsRunning="{Binding IsBusy}" 
                                    Color="#D4BC88" 
                                    VerticalOptions="Fill"
@@ -114,21 +117,7 @@
                 WidthRequest="250"
                 HeightRequest="55"
                 Command="{Binding RegisterCommand}"/>
-                <!--<Button 
-                   x:Name="bntNext5"
-                   Text="SIGUIENTE"
-                   Clicked="bntNext5_Clicked"                  
-                   IsEnabled="{Binding IsEnabled}"
-                   FontSize="Large"
-                   BackgroundColor="Transparent"
-                   TextColor="Transparent"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   CornerRadius="0"
-                   TranslationY="60"
-                   WidthRequest="200"
-                   HeightRequest="50"
-                   />-->
+
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

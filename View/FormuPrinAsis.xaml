@@ -4,7 +4,6 @@
              x:Class="Asis_Batia.View.FormuPrinAsis"
              xmlns:vm="clr-namespace:Asis_Batia.ViewModel"
              x:DataType="vm:FormuPrinAsisViewModel"
-             
              Title="BIOMETA">
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
@@ -14,41 +13,42 @@
     </ContentPage.Background>
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Center"
-                             Spacing="25"
-                             
-                             >
+                             Spacing="25">
+            
           <ActivityIndicator IsRunning="{Binding IsBusy}" 
                              Color="#D4BC88" 
                              VerticalOptions="Fill" 
                              Scale="1"/>
 
-            <Label Text="BIENVENIDO" FontSize="63"
+            <Label Text="BIENVENIDO" 
+                   FontSize="63"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="Regular"
                    TextColor="#2E3192"
-                   TranslationY="-20"/>
-            <Frame  CornerRadius="25" 
-                    Margin="20" 
-                    HeightRequest="380" 
-                    BackgroundColor="Transparent" 
-                    BorderColor="#D4BC88"
-                    IsClippedToBounds="True"
-                    Padding="20"
-                     TranslationY="-20">
+                   TranslationY="-30"/>
+            
+            <Frame CornerRadius="25" 
+                   Margin="20,0,20,0" 
+                   HeightRequest="450" 
+                   BackgroundColor="Transparent" 
+                   BorderColor="#D4BC88"
+                   IsClippedToBounds="True"
+                   Padding="20"
+                   TranslationY="-20">
                 <VerticalStackLayout Spacing="5"
-                                     VerticalOptions="Center"
-                                     >
+                                     VerticalOptions="Center">
                     <Label Text="EMPRESA" 
-                     FontSize="30"
-                     FontAttributes="Bold"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     FontFamily="Regular"
-                     TextColor="#2E3192"
-                     TranslationY="0"
-                     TranslationX="0"/>
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontFamily="Regular"
+                           TextColor="#2E3192"
+                           TranslationY="0"
+                           TranslationX="0"/>
+                    
             <Label x:Name="lbl_Cliente" 
                    Text="{Binding _Cliente}" 
                    TextTransform="Uppercase" 
@@ -56,6 +56,7 @@
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontSize="20"/>
+                    
             <Label Text="EMPLEADO" 
                    FontSize="30"
                    FontAttributes="Bold"
@@ -65,6 +66,7 @@
                    TextColor="#2E3192"
                    TranslationY="0"
                    TranslationX="0"/>
+                    
             <Label x:Name="lbl_NombreEmpleado" 
                    Text="{Binding _NombreEmpleado}" 
                    TextTransform="Uppercase" 
@@ -72,6 +74,7 @@
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontSize="20"/>
+                    
             <Label Text="ESTADO" 
                    FontSize="30"
                    FontAttributes="Bold"
@@ -81,6 +84,7 @@
                    TextColor="#2E3192"
                    TranslationY="0"
                    TranslationX="0"/>
+                    
             <Label x:Name="lbl_Estado" 
                    Text="{Binding _Estado}" 
                    TextTransform="Uppercase" 
@@ -88,6 +92,7 @@
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontSize="20"/>
+                    
             <Label Text="PUNTO DE ATENCION O AREA DE TRABAJO" 
                    FontSize="30"
                    VerticalTextAlignment="Center"
@@ -111,29 +116,6 @@
                 </VerticalStackLayout>
             </Frame>
             <VerticalStackLayout>
-
-            <!--<Label Text="Selecciona el cliente: *"
-                   FontSize="35"
-                   FontAttributes="Bold"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   FontFamily="Regular"
-                   TextColor="#2E3192"/>
-                <Picker
-                
-                 Title="-Seleccionar-"
-                 TitleColor="Black"
-                 FontAttributes="Bold"
-                 CharacterSpacing="2"
-                 FontAutoScalingEnabled="True"
-                 FontFamily="Regular"
-                 FontSize="15"
-                 VerticalTextAlignment="Center"
-                 HorizontalTextAlignment="Center"
-                 ItemsSource="{Binding Clients}"
-                 ItemDisplayBinding="{Binding nombre}"
-                 SelectedItem="{Binding IdClientSelected}"
-                 />-->
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" 
                                Color="#D4BC88" 

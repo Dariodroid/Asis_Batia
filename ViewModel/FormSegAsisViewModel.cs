@@ -128,7 +128,7 @@ namespace Asis_Batia.ViewModel
 
                 RegistroModel registroModel = new RegistroModel
                 {
-                    Adjuntos = PathFile != null ? PathFile : "",
+                    Adjuntos = PathFile == null ? "": PathFile,
                     Anio = (int)DateTime.Today.Year,
                     Confirma = "App",
                     Cubierto = 0,
@@ -141,7 +141,7 @@ namespace Asis_Batia.ViewModel
                     Movimiento = _selectionRadio,
                     RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
                     Tipo = Tipo,
-                    Foto = PathPhoto != null ? PathPhoto : "",
+                    Foto = PathPhoto == null ? "" : PathPhoto ,
                 };
 
                 Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
@@ -300,12 +300,12 @@ namespace Asis_Batia.ViewModel
 
             if (PathFile != null)
                 archivos.Add(PathFile);
-            if (archivos.Count == 0)
-            {
-                await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
-                return false;
+            //if (archivos.Count == 0)
+            //{
+            //    await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
+            //    return false;
 
-            }
+            //}
             UrlFiles = await UploadFiles(archivos, "Doctos");
             string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
 
