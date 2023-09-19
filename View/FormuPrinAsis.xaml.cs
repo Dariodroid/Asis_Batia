@@ -9,4 +9,5 @@ public partial class FormuPrinAsis : ContentPage
 		InitializeComponent();
 		BindingContext = new FormuPrinAsisViewModel();
 	}
+
 }

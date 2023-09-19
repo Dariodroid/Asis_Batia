@@ -156,6 +156,7 @@ namespace Asis_Batia.ViewModel
             //GetClients();
             NextPageCommand = new Command(async () => await NextPage());
             _= GetEstado();
+            
         }
 
         // Método asincrónico para obtener la información de los clientes.
@@ -234,7 +235,7 @@ namespace Asis_Batia.ViewModel
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 Inmueble = data;
                 IsBusy = false;
-
+                
             }
         }
 
@@ -276,7 +277,7 @@ namespace Asis_Batia.ViewModel
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 EstadoList = data;
                 IsBusy = false;
-
+                
             }
         }
 
@@ -294,7 +295,7 @@ namespace Asis_Batia.ViewModel
                 {"IdEmpleado", IdEmpleado },// ahora veamos si es que la api del main no da ese dato
                 {"NombreEmpleado", _NombreEmpleado }
             };
-            await Shell.Current.GoToAsync("FormSeg", true, data);//te fijas que no se necesita legable de inmueble
+            await Shell.Current.GoToAsync("//FormSeg", true, data);//te fijas que no se necesita legable de inmueble
         }//ya tenemos toda la informacion de ese usuario y ahora se la pasamos al siguiente form
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)

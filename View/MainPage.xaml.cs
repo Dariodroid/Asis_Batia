@@ -10,8 +10,8 @@ public partial class MainPage : ContentPage
         BindingContext = new MainPageViewModel();
 	}
 
-    private async void bntNext_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("FormPrin",true);
-    }
+    //private async void bntNext_Clicked(object sender, EventArgs e)
+    //{
+    //    await Shell.Current.GoToAsync("FormPrin",true);
+    //}
 }

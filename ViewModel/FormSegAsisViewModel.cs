@@ -178,7 +178,7 @@ namespace Asis_Batia.ViewModel
                 {"NombreEmpleado", NombreCliente }
 
             };
-            await Shell.Current.GoToAsync("FormReg", true, data);
+            await Shell.Current.GoToAsync("//FormReg", true, data);
         }
 
         private async Task GetPeriodo(int idCliente)
