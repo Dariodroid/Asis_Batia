@@ -132,7 +132,7 @@ namespace Asis_Batia.ViewModel
                     Anio = (int)DateTime.Today.Year,
                     Confirma = "App",
                     Cubierto = 0,
-                    Fecha = DateTime.Today,
+                    Fecha = DateTime.Now,
                     Idempleado = IdEmpleado,
                     Idinmueble = IdInmueble,
                     Idperiodo = IdPeriodo,

@@ -37,12 +37,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
-	  <PublishTrimmed>False</PublishTrimmed>
+	  <PublishTrimmed>True</PublishTrimmed>
 	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
-	  <PublishTrimmed>False</PublishTrimmed>
+	  <PublishTrimmed>True</PublishTrimmed>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
 	</PropertyGroup>
 
 	<ItemGroup>
