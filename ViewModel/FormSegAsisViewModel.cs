@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Maui.Devices.Sensors;
+
 
 namespace Asis_Batia.ViewModel
 {
@@ -67,6 +69,9 @@ namespace Asis_Batia.ViewModel
         }
         public string UrlFiles { get; set; }
 
+        List<string> archivos = new List<string>();
+
+
 
         public ICommand BackPageCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
@@ -101,6 +106,18 @@ namespace Asis_Batia.ViewModel
             try
             {
                 IsBusy = true;
+                Location _location = await LocationService.GetCurrentLocation();
+                Location TargetDestination = new Location(19.42884876492115, -99.16375412448134);// EJEMPLO DEL PUNTO OBJETIVO DEL INMUEBLE AQUI DEBEN IR LAS COORDENADAS QUE DA EL API
+                Location CurrentLocation = new Location(19.42857127110338, -99.16356656825693);// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 106
+                //AL FINAL DEBERIA QUEDARTE DE LA SIGUIENTE FORMA PARA OBTENER LA UBICACION ACTUAL DEL MOVIL:Location CurrentLocation = _location;
+
+                if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 100)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO
+                {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
+                 //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
+                    await DisplayAlert("Alerta", "Está muy lejos del área permitida", "Ok");
+                    return;
+                }
+
                 if (!await SendFiles())
                 {
                     await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
@@ -109,7 +126,6 @@ namespace Asis_Batia.ViewModel
                     return;
                 }
                 IsEnabled = false;
-                Location _location = await LocationService.GetCurrentLocation();
                 if (_location == null)
                 {
                     var message = LocationService.Message;
@@ -124,11 +140,12 @@ namespace Asis_Batia.ViewModel
                     return;
                 }
 
+
                 await GetPeriodo(IdCliente);
 
                 RegistroModel registroModel = new RegistroModel
                 {
-                    Adjuntos = PathFile == null ? "": PathFile,
+                    Adjuntos = PathFile == null ? "" : PathFile,
                     Anio = (int)DateTime.Today.Year,
                     Confirma = "App",
                     Cubierto = 0,
@@ -141,7 +158,7 @@ namespace Asis_Batia.ViewModel
                     Movimiento = _selectionRadio,
                     RespuestaTexto = _respuestaTxt == null ? "" : _respuestaTxt,
                     Tipo = Tipo,
-                    Foto = PathPhoto == null ? "" : PathPhoto ,
+                    Foto = PathPhoto == null ? "" : PathPhoto,
                 };
 
                 Uri RequestUri = new Uri("http://singa.com.mx:5500/api/RegistroBiometa");
@@ -170,6 +187,14 @@ namespace Asis_Batia.ViewModel
             }
 
         }
+
+        // Esta función recibe dos objetos de tipo Location, que representan las coordenadas de los puntos
+        // y devuelve la distancia en metros entre ellos, usando el método CalculateDistance de la clase Location
+        public static double CalcularDistancia(Location origin, Location destination)
+        {
+            return Location.CalculateDistance(origin, destination, DistanceUnits.Kilometers);
+        }
+
 
         private async void NexTPage()
         {// intentemos otra vez vale11111
@@ -228,17 +253,21 @@ namespace Asis_Batia.ViewModel
                 PickOptions options = new PickOptions();
                 options.FileTypes = FilePickerFileType.Pdf;
 
-                var result = await FilePicker.Default.PickAsync(options);
-                if (result != null)
+                var resultOptions = await FilePicker.Default.PickMultipleAsync(options);
+                if (resultOptions != null)
                 {
-                    if (result.FileName.EndsWith("pdf", StringComparison.OrdinalIgnoreCase) ||
-                        result.FileName.EndsWith("doc", StringComparison.OrdinalIgnoreCase))
+                    foreach (var result in resultOptions)
                     {
-                        using var stream = await result.OpenReadAsync();
-                        var file = ImageSource.FromStream(() => stream);
-                        FileBase64 = ConvertToBase64(result.FullPath);
+                        if (result.FileName.EndsWith("pdf", StringComparison.OrdinalIgnoreCase) ||
+                            result.FileName.EndsWith("doc", StringComparison.OrdinalIgnoreCase))
+                        {
+                            using var stream = await result.OpenReadAsync();
+                            var file = ImageSource.FromStream(() => stream);
+                            FileBase64 = ConvertToBase64(result.FullPath);
+                        }
+                        PathFile = result.FullPath;
+                            archivos.Add(PathFile);
                     }
-                    PathFile = result.FullPath;
                 }
 
                 //return result;
@@ -293,19 +322,9 @@ namespace Asis_Batia.ViewModel
 
         public async Task<bool> SendFiles()
         {
-
-            List<string> archivos = new List<string>();
             if (PathPhoto != null)
                 archivos.Add(PathPhoto);
 
-            if (PathFile != null)
-                archivos.Add(PathFile);
-            //if (archivos.Count == 0)
-            //{
-            //    await DisplayAlert("Error", "Debe enviar almenos un archivo", "Cerrar");
-            //    return false;
-
-            //}
             UrlFiles = await UploadFiles(archivos, "Doctos");
             string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
 
