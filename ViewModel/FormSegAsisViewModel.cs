@@ -108,7 +108,7 @@ namespace Asis_Batia.ViewModel
                 IsBusy = true;
                 Location _location = await LocationService.GetCurrentLocation();
                 Location TargetDestination = new Location(19.42884876492115, -99.16375412448134);// EJEMPLO DEL PUNTO OBJETIVO DEL INMUEBLE AQUI DEBEN IR LAS COORDENADAS QUE DA EL API
-                Location CurrentLocation = new Location(19.42857127110338, -99.16356656825693);// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 106
+                Location CurrentLocation = new Location(19.42857127110338, -99.16356656825693);// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 109
                 //AL FINAL DEBERIA QUEDARTE DE LA SIGUIENTE FORMA PARA OBTENER LA UBICACION ACTUAL DEL MOVIL:Location CurrentLocation = _location;
 
                 if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 100)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO
