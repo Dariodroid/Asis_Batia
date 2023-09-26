@@ -17,6 +17,9 @@ namespace Asis_Batia.Model
         {
             public int id_inmueble { get; set; }
             public string nombre { get; set; }
+            public string latitud { get; set; }
+            public string longitud { get; set; }
+
         }
 
     }

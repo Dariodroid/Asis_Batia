@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -155,8 +156,8 @@ namespace Asis_Batia.ViewModel
             // Llamar al método 'GetClients' para obtener la información de los clientes.
             //GetClients();
             NextPageCommand = new Command(async () => await NextPage());
-            _= GetEstado();
-            
+            _ = GetEstado();
+
         }
 
         // Método asincrónico para obtener la información de los clientes.
@@ -235,7 +236,7 @@ namespace Asis_Batia.ViewModel
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 Inmueble = data;
                 IsBusy = false;
-                
+
             }
         }
 
@@ -277,24 +278,34 @@ namespace Asis_Batia.ViewModel
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 EstadoList = data;
                 IsBusy = false;
-                
+
             }
         }
 
         private async Task NextPage()
         {
-            //if(_idInmubleSelected == null || IdEstadoSelected == null)
-            //{
-            //    await DisplayAlert("Error", "Seleccione todas las opciónes", "Cerrar");
-            //    return;
-            //}
+            string latitud = null;
+            string longitud = null;
+
+            foreach (var inmueble in Inmueble)
+            {
+                if (inmueble.id_inmueble == IdInmueble)
+                {
+                    latitud = inmueble.latitud;
+                    longitud = inmueble.longitud;
+                    break; // Sal del bucle una vez que encuentres la coincidencia
+                }
+            }
             var data = new Dictionary<string, object>
             {
                 {"IdCliente", IdCliente },// ahora ya deberia funcionar
                 {"IdInmueble", IdInmueble },// el error se produce aqui xq no hay nada en el idinmueble
                 {"IdEmpleado", IdEmpleado },// ahora veamos si es que la api del main no da ese dato
-                {"NombreEmpleado", _NombreEmpleado }
+                {"NombreEmpleado", _NombreEmpleado },
+                {"Lat", latitud},
+                {"Lng", longitud}
             };
+
             await Shell.Current.GoToAsync("//FormSeg", true, data);//te fijas que no se necesita legable de inmueble
         }//ya tenemos toda la informacion de ese usuario y ahora se la pasamos al siguiente form
 
@@ -308,7 +319,7 @@ namespace Asis_Batia.ViewModel
             IdEmpleado = (int)query["idEmpleado"];
             IdInmueble = (int)query["idInmueble"];
             IdEstado = (int)query["idEstado"];
-            _= IdCliente > 0 ? GetInmuebleByIdClient(IdCliente) : null;
+            _ = IdCliente > 0 ? GetInmuebleByIdClient(IdCliente) : null;
         }
     }
 }

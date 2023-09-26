@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Maui.Devices.Sensors;
-
+using System.Globalization;
 
 namespace Asis_Batia.ViewModel
 {
@@ -25,7 +25,8 @@ namespace Asis_Batia.ViewModel
         public int IdInmueble { get; set; }
         public int IdPeriodo { get; set; }
         public string Tipo { get; set; }
-
+        public string Lat { get; set; }
+        public string Lng { get; set; }
         public string PathPhoto { get; set; }
         public string PathFile { get; set; }
 
@@ -99,6 +100,9 @@ namespace Asis_Batia.ViewModel
             IdEmpleado = (int)query["IdEmpleado"];//lo estamos usando para hacer la peticion en el api
             IdInmueble = (int)query["IdInmueble"];// fijate que ya nos llegaron los datos
             NombreCliente = (string)query["NombreEmpleado"];
+            Lat = (string)query["Lat"];
+            Lng = (string)query["Lng"];
+
         }
 
         private async Task Register()
@@ -106,15 +110,19 @@ namespace Asis_Batia.ViewModel
             try
             {
                 IsBusy = true;
+                CultureInfo culture = new CultureInfo("es-MX");// Establece la cultura adecuada para México
                 Location _location = await LocationService.GetCurrentLocation();
-                Location TargetDestination = new Location(19.42884876492115, -99.16375412448134);// EJEMPLO DEL PUNTO OBJETIVO DEL INMUEBLE AQUI DEBEN IR LAS COORDENADAS QUE DA EL API
+                double latitud = double.Parse(Lat, culture);
+                double longitud = double.Parse(Lng, culture);
+                Location TargetDestination = new Location(latitud, longitud);// EJEMPLO DEL PUNTO OBJETIVO DEL INMUEBLE AQUI DEBEN IR LAS COORDENADAS QUE DA EL API
                 Location CurrentLocation = new Location(19.42857127110338, -99.16356656825693);// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 109
                 //AL FINAL DEBERIA QUEDARTE DE LA SIGUIENTE FORMA PARA OBTENER LA UBICACION ACTUAL DEL MOVIL:Location CurrentLocation = _location;
 
-                if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 100)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO
+                if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 2000)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
                 {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
                  //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
                     await DisplayAlert("Alerta", "Está muy lejos del área permitida", "Ok");
+                    IsBusy = false;
                     return;
                 }
 
