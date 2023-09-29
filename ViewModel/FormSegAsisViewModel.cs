@@ -118,22 +118,6 @@ namespace Asis_Batia.ViewModel
                 Location CurrentLocation = new Location(19.42857127110338, -99.16356656825693);// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 109
                 //AL FINAL DEBERIA QUEDARTE DE LA SIGUIENTE FORMA PARA OBTENER LA UBICACION ACTUAL DEL MOVIL:Location CurrentLocation = _location;
 
-                if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 2000)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
-                {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
-                 //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
-                    await DisplayAlert("Alerta", "Está muy lejos del área permitida", "Ok");
-                    IsBusy = false;
-                    return;
-                }
-
-                if (!await SendFiles())
-                {
-                    await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
-                    IsEnabled = true;
-                    IsBusy = false;
-                    return;
-                }
-                IsEnabled = false;
                 if (_location == null)
                 {
                     var message = LocationService.Message;
@@ -147,6 +131,26 @@ namespace Asis_Batia.ViewModel
                     IsBusy = false;
                     return;
                 }
+
+                if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 2000)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
+                {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
+                 //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
+                    await DisplayAlert("Alerta", "Está muy lejos del área permitida", "Ok");
+                    IsBusy = false;
+                    return;
+                }
+                if (archivos.Count > 0)
+                {
+                    if (!await SendFiles())
+                    {
+                        await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
+                        IsEnabled = true;
+                        IsBusy = false;
+                        return;
+                    }
+
+                }
+                IsEnabled = false;
 
 
                 await GetPeriodo(IdCliente);
@@ -274,7 +278,7 @@ namespace Asis_Batia.ViewModel
                             FileBase64 = ConvertToBase64(result.FullPath);
                         }
                         PathFile = result.FullPath;
-                            archivos.Add(PathFile);
+                        archivos.Add(PathFile);
                     }
                 }
 
