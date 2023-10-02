@@ -17,6 +17,17 @@
         </Tab>
 
     </FlyoutItem>
+    
+    <!--<ShellContent
+        Title="Principalpage"
+        ContentTemplate="{DataTemplate local:PrincipalPage}"
+        Route="PrinP" />
+    
+    <ShellContent
+        Title="Menupage"
+        ContentTemplate="{DataTemplate local:MenuPage}"
+        Route="MenuP" />-->
+
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"

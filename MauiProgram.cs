@@ -2,6 +2,7 @@
 using Asis_Batia.ViewModel;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Media;
+using System;
 
 namespace Asis_Batia;
 
@@ -26,7 +27,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IMediaPicker>(MediaPicker.Default);
 		builder.Services.AddTransient<FormuSegAsis>();
 
-		Routing.RegisterRoute("MainPage", typeof(MainPage));
+        //Routing.RegisterRoute("PrinP", typeof(PrincipalPage));
+        //Routing.RegisterRoute("MenuP", typeof(MenuPage));
+        Routing.RegisterRoute("MainPage", typeof(MainPage));
         Routing.RegisterRoute("FormPrin", typeof(FormuPrinAsis));
         Routing.RegisterRoute("FormSeg", typeof(FormuSegAsis));
         Routing.RegisterRoute("FormReg", typeof(RegExitoso));
