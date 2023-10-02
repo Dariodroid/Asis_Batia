@@ -114,8 +114,8 @@ namespace Asis_Batia.ViewModel
                 Location _location = await LocationService.GetCurrentLocation();
                 double latitud = double.Parse(Lat, culture);
                 double longitud = double.Parse(Lng, culture);
-                Location TargetDestination = new Location(latitud, longitud);// EJEMPLO DEL PUNTO OBJETIVO DEL INMUEBLE AQUI DEBEN IR LAS COORDENADAS QUE DA EL API
-                Location CurrentLocation = new Location(19.42857127110338, -99.16356656825693);// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 109
+                Location TargetDestination = new Location(latitud, longitud);// new Location(19.42857127110338, -99.16356656825693);EJEMPLO DEL PUNTO OBJETIVO DEL INMUEBLE AQUI DEBEN IR LAS COORDENADAS QUE DA EL API
+                Location CurrentLocation = _location;// AQUI DEBE IR LAS COORDENADAS ACTUALES DEL GPS DEL MOVIL LAS CUALES LAS TENEMOS EN LA VARIABLE _location EN LA LINEA 109
                 //AL FINAL DEBERIA QUEDARTE DE LA SIGUIENTE FORMA PARA OBTENER LA UBICACION ACTUAL DEL MOVIL:Location CurrentLocation = _location;
 
                 if (_location == null)
