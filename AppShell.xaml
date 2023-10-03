@@ -6,46 +6,31 @@
     xmlns:local="clr-namespace:Asis_Batia.View"
     Shell.FlyoutBehavior="Disabled">
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Domestic"
-             Icon="paw.png">
-            <!--<ShellContent Title="Cats"
-                          Icon="cat.png"/>
-            <ShellContent Title="Dogs"
-                          Icon="dog.png"/>-->
-
-        </Tab>
-
-    </FlyoutItem>
-    
-    <!--<ShellContent
-        Title="Principalpage"
-        ContentTemplate="{DataTemplate local:PrincipalPage}"
-        Route="PrinP" />
-    
     <ShellContent
-        Title="Menupage"
-        ContentTemplate="{DataTemplate local:MenuPage}"
-        Route="MenuP" />-->
+  Title="Home"
+  ContentTemplate="{DataTemplate local:MainPage}"
+  Route="MainPage"
+  FlyoutItemIsVisible="False"
+  Shell.FlyoutBehavior="Disabled" />
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+  Title="Formulario pricipal"
+  ContentTemplate="{DataTemplate local:FormuPrinAsis}"
+  Route="FormPrin"
+  Shell.FlyoutBehavior="Flyout" />
 
     <ShellContent
-        Title="Formulario pricipal"
-        ContentTemplate="{DataTemplate local:FormuPrinAsis}"
-        Route="FormPrin" />
+  Title="Segundo formulario"
+  ContentTemplate="{DataTemplate local:FormuSegAsis}"
+  Route="FormSeg"
+  Shell.FlyoutBehavior="Flyout" />
 
     <ShellContent
-        Title="Segundo formulario"
-        ContentTemplate="{DataTemplate local:FormuSegAsis}"
-        Route="FormSeg" />
+  Title="Registro exitoso"
+  ContentTemplate="{DataTemplate local:RegExitoso}"
+  Route="FormReg"
+  Shell.FlyoutBehavior="Flyout" />
 
-    <ShellContent
-        Title="Registro exitoso"
-        ContentTemplate="{DataTemplate local:RegExitoso}"
-        Route="FormReg" />
+    <MenuItem Text="Cerrar sesión" Command="{Binding LogoutCommand}" IconImageSource="logout.png"/>
 
 </Shell>

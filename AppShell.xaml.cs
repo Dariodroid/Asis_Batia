@@ -1,25 +1,16 @@
-﻿namespace Asis_Batia;
+﻿using System.Windows.Input;
+
+namespace Asis_Batia;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
+        BindingContext = this;
 	}
-    //protected override void OnNavigating(ShellNavigatingEventArgs args)
-    //{
-    //    base.OnNavigating(args);
-
-    //    // Cancel any back navigation.
-    //    if (args.Source == ShellNavigationSource.Pop)
-    //    {
-    //        args.Cancel();
-    //    }
-    //    if(args.Source == ShellNavigationSource.Push)
-    //    {
-    //        args.
-    //    }
-    //    // }
-
-    //}
+    public ICommand LogoutCommand => new Command(async () => {
+        Preferences.Clear();
+        await Shell.Current.GoToAsync("//MainPage",true);
+    });
 }
