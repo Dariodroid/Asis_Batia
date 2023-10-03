@@ -26,6 +26,7 @@
             TranslationY="-15"/>
 
         <Entry
+            x:Name="labelid"
             Placeholder="  ID Empleado  "
             Text="{Binding IdEmpleado}"
             TextColor="Black"

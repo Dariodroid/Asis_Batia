@@ -7,11 +7,14 @@ namespace Asis_Batia.View;
 
 public partial class MainPage : ContentPage
 {
+    public static string MapAutomationPropertiesHelpText { get; private set; }
+
     public MainPage()
     {
         InitializeComponent();
         BindingContext = new MainPageViewModel();
     }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -42,5 +45,12 @@ public partial class MainPage : ContentPage
     //private async void bntNext_Clicked(object sender, EventArgs e)
     //{
     //    await Shell.Current.GoToAsync("FormPrin",true);
+    //}
+    //public event EventHandler LoggedOut;
+
+    //public void OnLoggedOut()
+    //{
+    //    MainPage.MapAutomationPropertiesHelpText = string.Empty;
+    //    LoggedOut?.Invoke(this, EventArgs.Empty);
     //}
 }
