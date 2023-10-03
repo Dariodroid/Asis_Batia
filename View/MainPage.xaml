@@ -42,8 +42,11 @@
             ReturnCommand="{Binding GetInfoEmpleadoCommand}"
             ReturnType="Send" 
             Keyboard="Numeric" />
-
-        <Image
+            <!--<Button
+                Text="Entrar"
+                Command="{Binding GetInfoEmpleadoCommand}"
+                />-->
+            <Image
            Source="biometa_icoq"
            VerticalOptions="End"
            HorizontalOptions="Center"

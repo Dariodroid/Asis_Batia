@@ -26,7 +26,7 @@ namespace Asis_Batia.ViewModel
         public ObservableCollection<InfoEmpleadoModel> InfoEmpleado
         {
             get { return _infoEmpleado; }
-            set { _infoEmpleado = value; }
+            set { _infoEmpleado = value; OnPropertyChanged(); }
         }
 
         public ICommand GetInfoEmpleadoCommand { get; set; }
@@ -34,15 +34,12 @@ namespace Asis_Batia.ViewModel
 
         public MainPageViewModel()
         {
+            GetInfoEmpleadoCommand = new Command(async () => await GetInfoEmpleado());
             int UID = Convert.ToInt32(Preferences.Get("UserId", 0));
             if (UID > 0)
             {
                 IdEmpleado = UID.ToString();
-                _ = GetInfoEmpleado();
-            }
-            else
-            {
-                GetInfoEmpleadoCommand = new Command(async () => await GetInfoEmpleado());
+                GetInfoEmpleado();
             }
         }
 
