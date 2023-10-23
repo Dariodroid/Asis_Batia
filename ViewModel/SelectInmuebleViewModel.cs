@@ -43,12 +43,12 @@ namespace Asis_Batia.ViewModel
         }
 
         // Declaración similar para la colección observable '_empleado' y la propiedad 'Empleado'.
-        private ObservableCollection<EmpleadosModel.Empleado> _empleado;
-        public ObservableCollection<EmpleadosModel.Empleado> Empleado
-        {
-            get { return _empleado; }
-            set { _empleado = value; OnPropertyChanged(); }
-        }
+        //private ObservableCollection<EmpleadosModel.Empleado> _empleado;
+        //public ObservableCollection<EmpleadosModel.Empleado> Empleado
+        //{
+        //    get { return _empleado; }
+        //    set { _empleado = value; OnPropertyChanged(); }
+        //}
 
         // Declaración de una propiedad privada llamada '_idSelected' del tipo 'ClientModel.Client'.
         private ClientModel.Client _idClientSelected;
@@ -94,25 +94,25 @@ namespace Asis_Batia.ViewModel
                     OnPropertyChanged();
 
                     // Llamar al método 'GetEmpleadoByIdInmueble' y pasar el ID del inmueble seleccionado.
-                    GetEmpleadoByIdInmueble(_idInmubleSelected.id_inmueble);
+                    //GetEmpleadoByIdInmueble(_idInmubleSelected.id_inmueble);
                 }
             }
         }
 
         // Declaración de una propiedad privada llamada '_idInmubleSelected' del tipo 'InmuebleByIdClienteModel.InmuebleModel'.
-        private EmpleadosModel.Empleado _idEmpleadoSelected;
+        //private EmpleadosModel.Empleado _idEmpleadoSelected;
 
-        // Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
-        public EmpleadosModel.Empleado IdEmpleadoSelected
-        {
-            get { return _idEmpleadoSelected; } // Obtener el valor de '_idInmubleSelected'.
-            set
-            {
-                _idEmpleadoSelected = value;
-                // Notificar que la propiedad 'IdInmubleSelected' ha cambiado.
-                OnPropertyChanged();
-            }
-        }
+        //// Declaración de una propiedad pública llamada 'IdInmubleSelected' que encapsula la propiedad privada '_idInmubleSelected'.
+        //public EmpleadosModel.Empleado IdEmpleadoSelected
+        //{
+        //    get { return _idEmpleadoSelected; } // Obtener el valor de '_idInmubleSelected'.
+        //    set
+        //    {
+        //        _idEmpleadoSelected = value;
+        //        // Notificar que la propiedad 'IdInmubleSelected' ha cambiado.
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public ICommand NextPageCommand { get; set; }
 
@@ -198,47 +198,49 @@ namespace Asis_Batia.ViewModel
 
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 Inmueble = data;
+                
             }
         }
 
         // Método asincrónico para obtener información de empleados por ID de inmueble.
-        private async Task GetEmpleadoByIdInmueble(int idInmueble)
-        {
-            // Crear una solicitud HTTP.
-            var request = new HttpRequestMessage();
+        //private async Task GetEmpleadoByIdInmueble(int idInmueble)
+        //{
+        //    // Crear una solicitud HTTP.
+        //    var request = new HttpRequestMessage();
 
-            // Establecer la URL de la solicitud con el ID de inmueble proporcionado.
-            request.RequestUri = new Uri($"http://singa.com.mx:5500/api/Empleados?Idinmueble={idInmueble}");
+        //    // Establecer la URL de la solicitud con el ID de inmueble proporcionado.
+        //    request.RequestUri = new Uri($"http://singa.com.mx:5500/api/Empleados?Idinmueble={idInmueble}");
 
-            // Establecer el método de la solicitud como GET.
-            request.Method = HttpMethod.Get;
+        //    // Establecer el método de la solicitud como GET.
+        //    request.Method = HttpMethod.Get;
 
-            // Agregar un encabezado "Accept" para indicar que se acepta JSON como respuesta.
-            request.Headers.Add("Accept", "application/json");
+        //    // Agregar un encabezado "Accept" para indicar que se acepta JSON como respuesta.
+        //    request.Headers.Add("Accept", "application/json");
 
-            // Crear una nueva instancia de HttpClient.
-            var client = new HttpClient();
+        //    // Crear una nueva instancia de HttpClient.
+        //    var client = new HttpClient();
 
-            // Enviar la solicitud HTTP y esperar la respuesta.
-            HttpResponseMessage response = await client.SendAsync(request);
+        //    // Enviar la solicitud HTTP y esperar la respuesta.
+        //    HttpResponseMessage response = await client.SendAsync(request);
 
-            // Verificar si la respuesta tiene un estado OK (código 200).
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                // Leer el contenido de la respuesta como una cadena.
-                string content = await response.Content.ReadAsStringAsync();
+        //    // Verificar si la respuesta tiene un estado OK (código 200).
+        //    if (response.StatusCode == HttpStatusCode.OK)
+        //    {
+        //        // Leer el contenido de la respuesta como una cadena.
+        //        string content = await response.Content.ReadAsStringAsync();
 
-                // Deserializar el contenido JSON en una colección observable de empleados.
-                var data = JsonConvert.DeserializeObject<ObservableCollection<EmpleadosModel.Empleado>>(content);
+        //        // Deserializar el contenido JSON en una colección observable de empleados.
+        //        var data = JsonConvert.DeserializeObject<ObservableCollection<EmpleadosModel.Empleado>>(content);
 
-                // Asignar la colección de empleados a la propiedad 'Empleado'.
-                Empleado = data;
-            }
-        }
+        //        // Asignar la colección de empleados a la propiedad 'Empleado'.
+        //        Empleado = data;
+        //    }
+        //}
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             NombreEmpleado = (string)query["NombreEmpleado"];
+            IdEmpleado = (int)query["IdEmpleado"];
             Lat = (string)query["Lat"];
             Lng = (string)query["Lng"];
 
@@ -248,20 +250,25 @@ namespace Asis_Batia.ViewModel
         {
             try
             {
+                if(string.IsNullOrEmpty(IdInmubleSelected.latitud) || string.IsNullOrEmpty(IdInmubleSelected.longitud))
+                {
+                    await DisplayAlert("Alerta", "No se encontraron coordenadas del inmueble seleccionado", "Cerrar");
+                    return;
+                }
                 var data = new Dictionary<string, object>
                 {
                     {"IdCliente", _idClientSelected.idCliente },
                     {"IdInmueble", _idInmubleSelected.id_inmueble },
-                    {"IdEmpleado", _idEmpleadoSelected.id_empleado },
+                    {"IdEmpleado", IdEmpleado },
                     {"NombreEmpleado", NombreEmpleado },
-                    {"Lat", Lat},
-                    {"Lng", Lng}
+                    {"Lat", IdInmubleSelected.latitud},
+                    {"Lng", IdInmubleSelected.longitud}
                 };
                 await Shell.Current.GoToAsync("//FormSeg", true, data);
             }
             catch (Exception)
             {
-                await DisplayAlert("Error", "Seleccióne todos los campos", "Cerrar");
+                await DisplayAlert("Error", "Ocurrió un error al obtener los datos, verifique que todos los campos estén seleccionados o contacte al administrador", "Cerrar");
                 return;
             }
         }

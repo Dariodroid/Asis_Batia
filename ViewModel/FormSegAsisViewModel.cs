@@ -147,6 +147,7 @@ namespace Asis_Batia.ViewModel
                             var data = new Dictionary<string, object>
                         {
                             {"NombreEmpleado", NombreCliente },
+                            {"IdEmpleado", IdEmpleado },
                             {"Lat", Lat},
                             {"Lng", Lng}
                         };
