@@ -246,16 +246,24 @@ namespace Asis_Batia.ViewModel
 
         private async Task NextPage()
         {
-            var data = new Dictionary<string, object>
+            try
             {
-                {"IdCliente", _idClientSelected.idCliente },
-                {"IdInmueble", _idInmubleSelected.id_inmueble },
-                {"IdEmpleado", _idEmpleadoSelected.id_empleado },
-                {"NombreEmpleado", NombreEmpleado },
-                {"Lat", Lat},
-                {"Lng", Lng}
-            };
-            await Shell.Current.GoToAsync("//FormSeg", true, data);
+                var data = new Dictionary<string, object>
+                {
+                    {"IdCliente", _idClientSelected.idCliente },
+                    {"IdInmueble", _idInmubleSelected.id_inmueble },
+                    {"IdEmpleado", _idEmpleadoSelected.id_empleado },
+                    {"NombreEmpleado", NombreEmpleado },
+                    {"Lat", Lat},
+                    {"Lng", Lng}
+                };
+                await Shell.Current.GoToAsync("//FormSeg", true, data);
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Error", "Seleccióne todos los campos", "Cerrar");
+                return;
+            }
         }
     }
 }
