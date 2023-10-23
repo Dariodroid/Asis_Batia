@@ -1,4 +1,6 @@
-﻿namespace Asis_Batia;
+﻿using Asis_Batia.View;
+
+namespace Asis_Batia;
 
 public partial class App : Application
 {

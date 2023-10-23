@@ -33,6 +33,13 @@
   FlyoutItemIsVisible="False"
   Shell.FlyoutBehavior="Disabled" />
 
+    <ShellContent
+  Title="Selecionar área"
+  ContentTemplate="{DataTemplate local:SelectInmueble}"
+  Route="SelectInmu"
+  FlyoutItemIsVisible="False"
+  Shell.FlyoutBehavior="Disabled" />
+
     <MenuItem Text="Cerrar sesión" Command="{Binding LogoutCommand}" IconImageSource="logout.png"/>
 
 </Shell>

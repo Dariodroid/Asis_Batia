@@ -15,11 +15,13 @@ using System.Windows.Input;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Maui.Devices.Sensors;
 using System.Globalization;
+//using static CoreFoundation.DispatchSource;
 
 namespace Asis_Batia.ViewModel
 {
     public class FormSegAsisViewModel : BaseViewModel, IQueryAttributable
     {
+        int count = 0;
         public int IdCliente { get; set; }
         public string NombreCliente { get; set; }
         public int IdEmpleado { get; set; }
@@ -136,9 +138,24 @@ namespace Asis_Batia.ViewModel
                 if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 2000)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
                 {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
                  //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
-                    await DisplayAlert("Alerta", "Está muy lejos del área permitida", "Ok");
-                    IsBusy = false;
-                    return;
+                    if (count == 0)
+                    {
+                        count++;
+                        var result = await DisplayAlert("Alerta", "Está muy lejos del área permitida, Desea selecciónar un área ?", "Si", "No");
+                        if (result)
+                        {
+                            var data = new Dictionary<string, object>
+                        {
+                            {"NombreEmpleado", NombreCliente },
+                            {"Lat", Lat},
+                            {"Lng", Lng}
+                        };
+                            await Shell.Current.GoToAsync("//SelectInmu", true, data);
+                        }
+                        IsBusy = false;
+                        return;
+
+                    }
                 }
                 if (archivos.Count > 0)
                 {
