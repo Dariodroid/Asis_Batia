@@ -14,16 +14,18 @@
   Shell.FlyoutBehavior="Disabled" />
 
     <ShellContent
-  Title="Formulario pricipal"
+  Icon="iconminfo.png"
+  Title="Infomacion de empledo"
   ContentTemplate="{DataTemplate local:FormuPrinAsis}"
   Route="FormPrin"
   Shell.FlyoutBehavior="Flyout" />
 
     <ShellContent
-  Title="Segundo formulario"
+        Icon="iconasis.png"
+  Title="Registro de asistencia"
   ContentTemplate="{DataTemplate local:FormuSegAsis}"
   Route="FormSeg"
-  FlyoutItemIsVisible="False"
+  FlyoutItemIsVisible="True" 
   Shell.FlyoutBehavior="Flyout"/>
 
     <ShellContent
@@ -38,8 +40,8 @@
   ContentTemplate="{DataTemplate local:SelectInmueble}"
   Route="SelectInmu"
   FlyoutItemIsVisible="False"
-  Shell.FlyoutBehavior="Disabled" />
+  Shell.FlyoutBehavior="Flyout" />
 
-    <MenuItem Text="Cerrar sesión" Command="{Binding LogoutCommand}" IconImageSource="logout.png"/>
+    <MenuItem  Text="Cerrar sesión" Command="{Binding LogoutCommand}" IconImageSource="cerrarsecion.png"/>
 
 </Shell>
