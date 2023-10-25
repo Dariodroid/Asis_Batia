@@ -135,29 +135,29 @@ namespace Asis_Batia.ViewModel
                     return;
                 }
 
-                if (Math.Round(LocationService.CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 60)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
-                {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
-                 //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
-                    if (count == 0)
-                    {
-                        count++;
-                        var result = await DisplayAlert("Acción no permitida", "Está muy lejos de su área de trabajo, Desea selecciónar un área ?", "Si", "No");
-                        if (result)
-                        {
-                            var data = new Dictionary<string, object>
-                        {
-                            {"NombreEmpleado", NombreCliente },
-                            {"IdEmpleado", IdEmpleado },
-                            {"Lat", Lat},
-                            {"Lng", Lng}
-                        };
-                            await Shell.Current.GoToAsync("//SelectInmu", true, data);
-                        }
-                        IsBusy = false;
-                        return;
+                //if (Math.Round(LocationService.CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 60)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
+                //{//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
+                // //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
+                //    if (count == 0)
+                //    {
+                //        count++;
+                //        //var result = await DisplayAlert("Acción no permitida", "Está muy lejos de su área de trabajo, Desea selecciónar un área ?", "Si", "No");
+                //        //if (result)
+                //        {
+                //            var data = new Dictionary<string, object>
+                //        {
+                //            {"NombreEmpleado", NombreCliente },
+                //            {"IdEmpleado", IdEmpleado },
+                //            {"Lat", Lat},
+                //            {"Lng", Lng}
+                //        };
+                //            await Shell.Current.GoToAsync("//SelectInmu", true, data);
+                //        }
+                //        IsBusy = false;
+                //        return;
 
-                    }
-                }
+                //    }
+                //}
                 if (archivos.Count > 0)
                 {
                     if (!await SendFiles())
@@ -350,6 +350,12 @@ namespace Asis_Batia.ViewModel
         {
             if (PathPhoto != null)
                 archivos.Add(PathPhoto);
+            string urlarch = string.Empty;
+            foreach (var item in archivos)
+            {
+                urlarch += item;
+            }
+            await DisplayAlert("Url que se envían al Servidor", $"{urlarch}", "Ok");
 
             UrlFiles = await UploadFiles(archivos, "Doctos");
             string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
@@ -367,7 +373,7 @@ namespace Asis_Batia.ViewModel
                     PathPhoto = split;
                 }
             }
-
+            await DisplayAlert("Url que se reciben del Servidor", $"{UrlFiles}", "Ok");
             return true;
         }
 
