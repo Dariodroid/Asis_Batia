@@ -135,13 +135,13 @@ namespace Asis_Batia.ViewModel
                     return;
                 }
 
-                if (Math.Round(CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 60)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
+                if (Math.Round(LocationService.CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 60)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
                 {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
                  //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
                     if (count == 0)
                     {
                         count++;
-                        var result = await DisplayAlert("Alerta", "Está muy lejos del área permitida, Desea selecciónar un área ?", "Si", "No");
+                        var result = await DisplayAlert("Acción no permitida", "Está muy lejos de su área de trabajo, Desea selecciónar un área ?", "Si", "No");
                         if (result)
                         {
                             var data = new Dictionary<string, object>
@@ -221,11 +221,6 @@ namespace Asis_Batia.ViewModel
 
         // Esta función recibe dos objetos de tipo Location, que representan las coordenadas de los puntos
         // y devuelve la distancia en metros entre ellos, usando el método CalculateDistance de la clase Location
-        public static double CalcularDistancia(Location origin, Location destination)
-        {
-            return Location.CalculateDistance(origin, destination, DistanceUnits.Kilometers);
-        }
-
 
         private async void NexTPage()
         {// intentemos otra vez vale11111

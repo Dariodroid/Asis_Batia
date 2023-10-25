@@ -1,8 +1,10 @@
-﻿using Asis_Batia.Model;
+﻿using Asis_Batia.Helpers;
+using Asis_Batia.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -198,7 +200,7 @@ namespace Asis_Batia.ViewModel
 
                 // Asignar la colección de inmuebles a la propiedad 'Inmueble'.
                 Inmueble = data;
-                
+
             }
         }
 
@@ -250,21 +252,21 @@ namespace Asis_Batia.ViewModel
         {
             try
             {
-                if(string.IsNullOrEmpty(IdInmubleSelected.latitud) || string.IsNullOrEmpty(IdInmubleSelected.longitud))
+                IsBusy = true;
+                if (await CheckLocation())
                 {
-                    await DisplayAlert("Alerta", "No se encontraron coordenadas del inmueble seleccionado", "Cerrar");
-                    return;
+                    var data = new Dictionary<string, object>
+                    {
+                        {"IdCliente", _idClientSelected.idCliente },
+                        {"IdInmueble", _idInmubleSelected.id_inmueble },
+                        {"IdEmpleado", IdEmpleado },
+                        {"NombreEmpleado", NombreEmpleado },
+                        {"Lat", IdInmubleSelected.latitud},
+                        {"Lng", IdInmubleSelected.longitud}
+                    };
+                    IsBusy = false;
+                    await Shell.Current.GoToAsync("//FormSeg", true, data);
                 }
-                var data = new Dictionary<string, object>
-                {
-                    {"IdCliente", _idClientSelected.idCliente },
-                    {"IdInmueble", _idInmubleSelected.id_inmueble },
-                    {"IdEmpleado", IdEmpleado },
-                    {"NombreEmpleado", NombreEmpleado },
-                    {"Lat", IdInmubleSelected.latitud},
-                    {"Lng", IdInmubleSelected.longitud}
-                };
-                await Shell.Current.GoToAsync("//FormSeg", true, data);
             }
             catch (Exception)
             {
@@ -272,6 +274,34 @@ namespace Asis_Batia.ViewModel
                 return;
             }
         }
+
+      
+
+        private async Task<bool> CheckLocation()
+        {
+            CultureInfo culture = new CultureInfo("es-MX");
+            Location CurrentLocation = await LocationService.GetCurrentLocation();
+            Location TargetDestination = new Location(double.Parse(IdInmubleSelected.latitud, culture), double.Parse(IdInmubleSelected.longitud, culture));
+            if (CurrentLocation == null)
+            {
+                var message = LocationService.Message;
+                await DisplayAlert("Mensaje", message, "Cerrar");
+                return false;
+            }
+            if (string.IsNullOrEmpty(IdInmubleSelected.latitud) || string.IsNullOrEmpty(IdInmubleSelected.longitud))
+            {
+                await DisplayAlert("Alerta", "No se encontraron coordenadas del inmueble seleccionado", "Cerrar");
+                return false;
+            }
+            if (Math.Round(LocationService.CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 60)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
+            {
+                IsBusy = false;
+                await DisplayAlert("Acción no permitida", "Está muy lejos del área seleccionada", "Cerrar");
+                return false;
+            }
+            return true;
+        }
+
     }
 }
 

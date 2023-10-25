@@ -105,5 +105,10 @@ namespace Asis_Batia.Helpers
             if (_isCheckingLocation && _cancelTokenSource != null && _cancelTokenSource.IsCancellationRequested == false)
                 _cancelTokenSource.Cancel();
         }
+
+        public static double CalcularDistancia(Location origin, Location destination)
+        {
+            return Location.CalculateDistance(origin, destination, DistanceUnits.Kilometers);
+        }
     }
 }

@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.SelectInmueble"
+<<<<<<< HEAD
+             Title="Seleccionar área">
+=======
              Title="BIOMETA">
+>>>>>>> 231c8cb22743809273990291cf786e5d7b27ee03
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#FFFFFF"/>
@@ -61,7 +65,15 @@
                 ItemDisplayBinding="{Binding nombre}"
                 SelectedItem = "{Binding IdInmubleSelected}"
                 />
+<<<<<<< HEAD
+                <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               Color="#D4BC88" 
+                               VerticalOptions="Fill" 
+                               Scale="1"/>
+                <!--<Label Text="Selecciona tu nombre: *"
+=======
             <!--<Label Text="Selecciona tu nombre: *"
+>>>>>>> 231c8cb22743809273990291cf786e5d7b27ee03
                    FontSize="20"
                    FontAttributes="Bold"
                    VerticalTextAlignment="Center"
