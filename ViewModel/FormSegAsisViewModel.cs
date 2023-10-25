@@ -145,13 +145,19 @@ namespace Asis_Batia.ViewModel
                         if (result)
                         {
                             var data = new Dictionary<string, object>
-                        {
+                            {
                             {"NombreEmpleado", NombreCliente },
                             {"IdEmpleado", IdEmpleado },
                             {"Lat", Lat},
                             {"Lng", Lng}
-                        };
+                            };
                             await Shell.Current.GoToAsync("//SelectInmu", true, data);
+                        }
+                        else
+                        {
+                            count = 0;
+                            IsBusy = false;
+                            return;
                         }
                         IsBusy = false;
                         return;
