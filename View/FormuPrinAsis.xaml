@@ -39,7 +39,7 @@
                    TranslationY="-20">
                 <VerticalStackLayout Spacing="5"
                                      VerticalOptions="Center">
-                    <Label Text="EMPRESA" 
+                    <Label Text="EMPRESA/CLIENTE" 
                            FontSize="30"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
