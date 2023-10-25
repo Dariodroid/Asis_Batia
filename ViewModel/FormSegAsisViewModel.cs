@@ -137,7 +137,7 @@ namespace Asis_Batia.ViewModel
 
                 if (Math.Round(LocationService.CalcularDistancia(CurrentLocation, TargetDestination) * 1000, 2) > 60)//COMPROBAMOS QUE LA DISTANCIA NO SEA MAYOR A 100CM QUE EQUIVALE A 1 METRO, SI NECESITAS CAMBIAR LA DISTANCIA A COMPAR DEBES PONER EN CM LA DISTANCIA
                 {//EL METODO CalcularDistancia() YA ME REGRESA UN VALOR CALCULADO EN KM X LO CUAL SE DEBE CONVERTIR A METROS
-                 //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
+                    //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
                     if (count == 0)
                     {
                         count++;
@@ -164,22 +164,18 @@ namespace Asis_Batia.ViewModel
 
                     }
                 }
-                if (archivos.Count > 0)
+                if (await SendFiles())
+                { }
+                else
                 {
-                    if (!await SendFiles())
-                    {
-                        await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
-                        IsEnabled = true;
-                        IsBusy = false;
-                        return;
-                    }
-
+                    await DisplayAlert("Error", "No fué posible guardar los archivos", "Cerrar");
+                    IsEnabled = true;
+                    IsBusy = false;
+                    return;
                 }
+
                 IsEnabled = false;
-
-
                 await GetPeriodo(IdCliente);
-
                 RegistroModel registroModel = new RegistroModel
                 {
                     Adjuntos = PathFile == null ? "" : PathFile,
@@ -365,13 +361,13 @@ namespace Asis_Batia.ViewModel
 
             UrlFiles = await UploadFiles(archivos, "Doctos");
             string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
-
+            PathFile = string.Empty;
             foreach (string split in splits)
             {
                 if (split.Contains(".pdf"))
                 {
                     // Si la extensión es PDF, asigna a pathFile y rompe el bucle
-                    PathFile = split;
+                    PathFile += $"{split}|";
                 }
                 else if (split.Contains(".jpg") || split.Contains(".jpeg") || split.Contains(".png"))
                 {
@@ -379,7 +375,9 @@ namespace Asis_Batia.ViewModel
                     PathPhoto = split;
                 }
             }
-            await DisplayAlert("Url que se reciben del Servidor", $"{UrlFiles}", "Ok");
+            var EndPath = PathFile.TrimEnd('|');
+            PathFile = EndPath;
+            //await DisplayAlert("Url que se reciben del Servidor", $"{UrlFiles}", "Ok");
             return true;
         }
 
