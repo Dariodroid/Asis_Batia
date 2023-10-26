@@ -141,7 +141,7 @@ namespace Asis_Batia.ViewModel
                     if (count == 0)
                     {
                         count++;
-                        var result = await DisplayAlert("Acción no permitida", "Está muy lejos de su área de trabajo, Desea selecciónar un área ?", "Si", "No");
+                        var result = await DisplayAlert("Acción no permitida", "Parece que estas lejos de tu servicio, ¿Deseas registrarte en otro servicio?", "Si", "No");
                         if (result)
                         {
                             var data = new Dictionary<string, object>
@@ -357,7 +357,7 @@ namespace Asis_Batia.ViewModel
             {
                 urlarch += item;
             }
-            await DisplayAlert("Url que se envían al Servidor", $"{urlarch}", "Ok");
+            //await DisplayAlert("Url que se envían al Servidor", $"{urlarch}", "Ok");
 
             UrlFiles = await UploadFiles(archivos, "Doctos");
             string[] splits = UrlFiles.Split("|");// AQUI DEBEMOS INCLUIR EL SIGNO "|" SIN ESPAICIOS
