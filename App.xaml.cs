@@ -4,15 +4,10 @@ namespace Asis_Batia;
 
 public partial class App : Application
 {
-    private readonly IMediaPicker mediaPicker;
-
-    public App(IMediaPicker mediaPicker)
+    public App()
 	{
 		InitializeComponent();
         MainPage = new AppShell();
-
-        //MainPage = new NavigationPage(new MainPage(mediaPicker));
-        //      this.mediaPicker = mediaPicker;
     }
    
 }

@@ -42,6 +42,13 @@
   FlyoutItemIsVisible="False"
   Shell.FlyoutBehavior="Flyout" />
 
+    <ShellContent
+  Title="Reglas de Uso"
+  ContentTemplate="{DataTemplate local:RulesPage}"
+  Route="RulesPage"
+  FlyoutItemIsVisible="True"
+  Shell.FlyoutBehavior="Disabled" />
+
     <MenuItem  Text="Cerrar sesión" Command="{Binding LogoutCommand}" IconImageSource="cerrarsecion.png"/>
 
 </Shell>

@@ -95,20 +95,35 @@ namespace Asis_Batia.ViewModel
 
         private async Task NextPage()
         {// si te fijas desde el Main estamos haciendo ya una consulta al api con el id del usuario
-            var data = new Dictionary<string, object>
-            {//en este diccionario estamos estableciendo los valores que nos trajo la consulta y le asignamos una llave a cada valor
-                {"Empleado", InfoEmpleado[0].empleado },
-                {"Cliente", InfoEmpleado[0].cliente },
-                {"PuntoAtencion", InfoEmpleado[0].puntoAtencion },
-                {"Estado", InfoEmpleado[0].estado },
-                {"IdCliente", InfoEmpleado[0].idCliente },
-                {"idEmpleado", InfoEmpleado[0].idEmpleado },
-                {"idInmueble", InfoEmpleado[0].idInmueble },
-                {"idEstado", InfoEmpleado[0].idEstado }
+            bool firstRun = Preferences.Get("FirstRun", true);
+            // Si es la primera vez que se ejecuta la app
+            if (firstRun)
+            {
+                // Mostrar la página con las reglas de uso
+                await Shell.Current.GoToAsync("//RulesPage", true);
 
-                // si tefijas tenemos ya todos los datos del usuario y los pasamos como parametro al siguiente form
-            };
-            await Shell.Current.GoToAsync("//FormPrin", true, data);// aqui enviamos el diccionario al siguiente formulario
+
+                // Establecer el valor de la preferencia "FirstRun" a false
+                Preferences.Set("FirstRun", false);
+            }
+            else
+            {
+                var data = new Dictionary<string, object>
+                {//en este diccionario estamos estableciendo los valores que nos trajo la consulta y le asignamos una llave a cada valor
+                    {"Empleado", InfoEmpleado[0].empleado },
+                    {"Cliente", InfoEmpleado[0].cliente },
+                    {"PuntoAtencion", InfoEmpleado[0].puntoAtencion },
+                    {"Estado", InfoEmpleado[0].estado },
+                    {"IdCliente", InfoEmpleado[0].idCliente },
+                    {"idEmpleado", InfoEmpleado[0].idEmpleado },
+                    {"idInmueble", InfoEmpleado[0].idInmueble },
+                    {"idEstado", InfoEmpleado[0].idEstado }
+
+                    // si tefijas tenemos ya todos los datos del usuario y los pasamos como parametro al siguiente form
+                };
+                await Shell.Current.GoToAsync("//FormPrin", true, data);// aqui enviamos el diccionario al siguiente formulario
+
+            }
         }
     }
 }

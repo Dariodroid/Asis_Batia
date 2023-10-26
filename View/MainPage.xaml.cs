@@ -7,7 +7,7 @@ namespace Asis_Batia.View;
 
 public partial class MainPage : ContentPage
 {
-    public static string MapAutomationPropertiesHelpText { get; private set; }
+    //public static string MapAutomationPropertiesHelpText { get; private set; }
 
     public MainPage()
     {

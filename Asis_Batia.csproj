@@ -119,6 +119,9 @@
 	  <MauiXaml Update="View\RegExitoso.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\RulesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\SelectInmueble.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

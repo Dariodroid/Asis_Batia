@@ -33,6 +33,8 @@ public static class MauiProgram
         Routing.RegisterRoute("FormPrin", typeof(FormuPrinAsis));
         Routing.RegisterRoute("FormSeg", typeof(FormuSegAsis));
         Routing.RegisterRoute("FormReg", typeof(RegExitoso));
+        Routing.RegisterRoute("RulesPage", typeof(MainPage));
+
 
         return builder.Build();
 	}
