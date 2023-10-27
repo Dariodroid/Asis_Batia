@@ -1,4 +1,5 @@
 ﻿using Asis_Batia.Model;
+using Asis_Batia.View;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -100,11 +101,11 @@ namespace Asis_Batia.ViewModel
             if (firstRun)
             {
                 // Mostrar la página con las reglas de uso
-                await Shell.Current.GoToAsync("//RulesPage", true);
-
+                //await Shell.Current.GoToAsync("//RulesPage", true);
+                bool res = await MauiPopup.PopupAction.DisplayPopup<bool>(new PopupRulesPage());
 
                 // Establecer el valor de la preferencia "FirstRun" a false
-                Preferences.Set("FirstRun", false);
+                Preferences.Set("FirstRun", res);
             }
             else
             {

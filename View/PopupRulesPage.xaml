@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mauiPopup:BasePopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Asis_Batia.View.PopupRulesPage"
+             IsCloseOnBackgroundClick="False"
+             xmlns:mauiPopup="clr-namespace:MauiPopup.Views; assembly=MauiPopup"
+             Title="PopupRulesPage">
+        <Grid  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="350"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="5" Padding="10">
+
+                <Frame Grid.Row="0" CornerRadius="15" 
+         Margin="0" 
+         HeightRequest="250" 
+         BackgroundColor="Transparent" 
+         BorderColor="#D4BC88"
+         IsClippedToBounds="True"
+         Padding="5"
+         TranslationY="0">
+                    <ScrollView>
+                        <VerticalStackLayout Spacing="5"
+                           VerticalOptions="Start">
+                            <Label 
+                 Text="Gracias por utilizar nuestra aplicación móvil. La protección de su privacidad es de suma importancia para nosotros. Por lo tanto, hemos desarrollado esta Política de Privacidad para que comprenda cómo recopilamos, usamos, comunicamos, divulgamos y utilizamos su información personal."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="Le recomendamos encarecidamente que revise cuidadosamente esta Política de Privacidad antes de usar la aplicación o proporcionar cualquier tipo de información personal."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="Recopilación de información en BIOMETA."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="1.Datos personales:                                                       
+                 La aplicación recopila y utiliza datos personales como nombre, ID de empleado y periodo nominal. Estos datos se utilizan para identificarle como usuario y para lograr correctamente su registro de asistencia laboral."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="2.Datos de ubicación:                                                                                                                                     
+                 La aplicación recopila y utiliza su ubicación geográfica con la dirección de área de trabajo para verificar que su registro se haga correctamente en el inmueble asignado."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="3.Archivos e imágenes:                                                                                                                              
+                 La aplicación puede acceder y manejar archivos como PDF e imágenes almacenadas en su dispositivo móvil para enviar un registro de asistencia completo y con más información."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="En concreto, Grupo Batia podrá recabar y tratar las siguientes categorías de datos personales:"
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="•Datos de identificación                                                                             
+                       •	Datos de contacto                                                                                
+                       •	Datos de navegación, dispositivos y geolocalización
+                       •	Datos personales."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+                            <Label 
+                 Text="Para cumplir con las finalidades descritas en este Aviso, Grupo Batia no trata ni solicita datos personales sensibles."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                            <Label 
+                 Text="Datos personales de terceros"
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                            <Label 
+                 Text="Si Usted entrega a Grupo Batia datos personales de terceros para verificación de posibles conflictos de interés, deberá informarles sobre la existencia del tratamiento de sus datos personales y el contenido de este Aviso de Privacidad. Si proporciona dicha información, también manifiesta con su entrega que cuenta previamente con el consentimiento de sus titulares para proporcionar su información a Grupo Batia y que los mismos son correctos y completos."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                            <Label 
+                 Text="Para utilizar nuestra aplicación y continuar con su registro, debe aceptar y autorizar que está de acuerdo y es consciente del manejo y uso de sus datos.  "
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                            <Label 
+                 Text="Al hacer clic en Aceptar o continuar con su registro, usted otorga su consentimiento explícito para el manejo de sus datos personales."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                            <Label 
+                 Text="Le recomendamos que lea detenidamente nuestra política de privacidad que se encuentran al inicio de esta ventana."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                            <Label 
+                 Text="Agradecemos su confianza en nosotros y estamos comprometidos en proteger toda información utilizada en BIOMETA."
+                 FontSize="20"
+                 FontAttributes="None"
+                 FontFamily="Regular"
+                 TextColor="Black"
+                 HorizontalTextAlignment="Start"/>
+
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <Button 
+            x:Name="BtnShowPopAccept"
+            Text="Aceptar"
+                    Command="{Binding AcceptPopupPageCommand}"
+                Grid.Column="0" 
+                Grid.Row="1"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+            ></Button>
+
+                <Button 
+            x:Name="BtnShowPopCancel"
+            Text="Cancelar"
+                    Command="{Binding ClosePopupPageCommand}"
+                Grid.Column="1" 
+                Grid.Row="1"
+                VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="CenterAndExpand"
+            ></Button>
+            </StackLayout>
+        </Grid>
+
+</mauiPopup:BasePopupPage>
