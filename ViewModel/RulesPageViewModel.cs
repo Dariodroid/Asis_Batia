@@ -19,7 +19,7 @@ namespace Asis_Batia.ViewModel
         {
             try
             {
-                await Shell.Current.GoToAsync("//FormPrin", true);
+                await Shell.Current.GoToAsync("/FormPrin", true);
             }
             catch (Exception ex)
             {

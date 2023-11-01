@@ -30,6 +30,7 @@
             Placeholder="  ID Empleado  "
             Text="{Binding IdEmpleado}"
             TextColor="Black"
+            ClearButtonVisibility="WhileEditing"
             FontFamily="Regular"
             VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"

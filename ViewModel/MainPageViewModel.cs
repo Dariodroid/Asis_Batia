@@ -84,6 +84,7 @@ namespace Asis_Batia.ViewModel
                 IsBusy = false;
                 if (InfoEmpleado.Count > 0)//verificamos que hayan registros
                 {
+                    Preferences.Clear("UserId");
                     Preferences.Set("UserId", InfoEmpleado[0].idEmpleado);//escribimos en el storage el id del usuario
                     await NextPage();//invocamos al metodo para pasar a la siguiente vista
                 }
@@ -103,13 +104,20 @@ namespace Asis_Batia.ViewModel
                 // Mostrar la página con las reglas de uso
                 //await Shell.Current.GoToAsync("//RulesPage", true);
                 bool res = await MauiPopup.PopupAction.DisplayPopup<bool>(new PopupRulesPage());
-
+                if (res)
+                    Next();
                 // Establecer el valor de la preferencia "FirstRun" a false
                 Preferences.Set("FirstRun", res);
             }
             else
             {
-                var data = new Dictionary<string, object>
+                Next();
+            }
+        }
+
+        private async Task Next()
+        {
+            var data = new Dictionary<string, object>
                 {//en este diccionario estamos estableciendo los valores que nos trajo la consulta y le asignamos una llave a cada valor
                     {"Empleado", InfoEmpleado[0].empleado },
                     {"Cliente", InfoEmpleado[0].cliente },
@@ -122,9 +130,9 @@ namespace Asis_Batia.ViewModel
 
                     // si tefijas tenemos ya todos los datos del usuario y los pasamos como parametro al siguiente form
                 };
-                await Shell.Current.GoToAsync("//FormPrin", true, data);// aqui enviamos el diccionario al siguiente formulario
+            await Shell.Current.GoToAsync("//FormPrin", true, data);// aqui enviamos el diccionario al siguiente formulario
 
-            }
+
         }
     }
 }

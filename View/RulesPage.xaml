@@ -155,7 +155,7 @@
        
         </VerticalStackLayout>
         
-        <Button
+        <!--<Button
             x:Name="BtnNext"
             Text="ACEPTAR"
             Command="{Binding NextPageCommand}"
@@ -168,6 +168,6 @@
                 HeightRequest="55"
                 BorderWidth="2"
                 BorderColor="#D4BC88"
-            />
+            />-->
     </VerticalStackLayout>
 </ContentPage>

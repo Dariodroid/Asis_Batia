@@ -12,7 +12,7 @@ public partial class AppShell : Shell
     public ICommand LogoutCommand => new Command(async () => {
         
        await Shell.Current.GoToAsync("//MainPage",true);
-       Preferences.Clear();
+       Preferences.Clear("UserId");
 
         //var contentPageWithEntry = Shell.Current?.CurrentItem?.CurrentItem?.CurrentItem?.Content as MainPage; // Reemplaza 'YourContentPageType' con el tipo de tu ContentPage
 
