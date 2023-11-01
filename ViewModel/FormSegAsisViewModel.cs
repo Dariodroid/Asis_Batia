@@ -141,7 +141,7 @@ namespace Asis_Batia.ViewModel
                     if (count == 0)
                     {
                         count++;
-                        var result = true;// await DisplayAlert("Acción no permitida", "Parece que estas lejos de tu servicio, ¿Deseas registrarte en otro servicio?", "Si", "No");
+                        var result = await DisplayAlert("Acción no permitida", "Parece que estas lejos de tu servicio, ¿Deseas registrarte en otro servicio?", "Si", "No");
                         if (result)
                         {
                             var data = new Dictionary<string, object>
