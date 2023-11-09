@@ -108,10 +108,19 @@ namespace Asis_Batia.ViewModel
 
         }
 
+        private void existeRegistro(int idEmple, DateTime fech, string movi)
+        {
+            string sql = "";
+
+            sql = "select * from tb_empleado_asistencia_op where id_empleado=" + idEmple + " and CONVERT(DATE, fecha)='" + fech + "' and movimiento='" + movi + "'";
+        }
+
         private async Task Register()
         {
             try
             {
+
+
                 IsBusy = true;
                 CultureInfo culture = new CultureInfo("es-MX");// Establece la cultura adecuada para México
                 Location _location = await LocationService.GetCurrentLocation();
@@ -422,8 +431,3 @@ namespace Asis_Batia.ViewModel
         }
     }
 }
-
-
-
-
-
