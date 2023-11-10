@@ -199,6 +199,7 @@ namespace Asis_Batia.ViewModel
                 var json = JsonConvert.SerializeObject(registroModel);
                 var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(RequestUri, contentJson);
+                string content = await response.Content.ReadAsStringAsync();
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -206,6 +207,12 @@ namespace Asis_Batia.ViewModel
                     IsEnabled = false;
                     await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
                     NexTPage();
+                }
+                else if (content == "err1")
+                {
+                    IsBusy = false;
+                    IsEnabled = true;
+                    await DisplayAlert("Error", "Usted ya está registrado", "Ok");
                 }
                 else
                 {
