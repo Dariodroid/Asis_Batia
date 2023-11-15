@@ -97,17 +97,20 @@ namespace Asis_Batia.ViewModel
 
         private async Task NextPage()
         {// si te fijas desde el Main estamos haciendo ya una consulta al api con el id del usuario
-            bool firstRun = Preferences.Get("FirstRun", true);
+            bool firstRun =  Preferences.Get("FirstRun", true);
             // Si es la primera vez que se ejecuta la app
             if (firstRun)
             {
                 // Mostrar la página con las reglas de uso
                 //await Shell.Current.GoToAsync("//RulesPage", true);
                 bool res = await MauiPopup.PopupAction.DisplayPopup<bool>(new PopupRulesPage());
-                if (res)
+                if (!res)
+                {
                     Next();
-                // Establecer el valor de la preferencia "FirstRun" a false
-                Preferences.Set("FirstRun", res);
+                    // Establecer el valor de la preferencia "FirstRun" a false
+                    Preferences.Set("FirstRun", res);
+
+                }
             }
             else
             {
