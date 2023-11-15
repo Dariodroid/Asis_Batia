@@ -3,34 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.MainPage"
              Title="BIENVENIDOS GRUPO BATIA">
+    
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#ffffff"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    <ScrollView>
-       <VerticalStackLayout Margin="5">
-        <Image Source="logo_batia"
+
+    <VerticalStackLayout Margin="5" VerticalOptions="FillAndExpand">
+
+        <VerticalStackLayout>
+            <Image Source="logo_batia"
                Aspect="AspectFill"
                HeightRequest="300"
                WidthRequest="400"
-               TranslationY="30"/>
+               TranslationY="0"/>
         <Label 
             Text="BIOMETA"
             TextColor="#2E3192"
             FontAttributes="Bold"
             FontFamily="Regular"
-            FontSize="90"
+            FontSize="100"
             HorizontalOptions="Center"
-            TranslationY="-15"/>
-
-        <Entry
+            TranslationY="0"/>
+    </VerticalStackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+            <Frame CornerRadius="25" 
+                   Margin="0" 
+                   HeightRequest="60" 
+                   BackgroundColor="Transparent" 
+                   BorderColor="#D4BC88"
+                   IsClippedToBounds="True"
+                   Padding="1"
+                   WidthRequest="200"
+                   TranslationY="10"
+                   >
+            <Entry
             x:Name="labelid"
             Placeholder="  ID Empleado  "
             Text="{Binding IdEmpleado}"
             TextColor="Black"
-            ClearButtonVisibility="WhileEditing"
+            ClearButtonVisibility="Never"
             FontFamily="Regular"
             VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"
@@ -43,18 +57,26 @@
             ReturnCommand="{Binding GetInfoEmpleadoCommand}"
             ReturnType="Send" 
             Keyboard="Numeric" />
-            <!--<Button
-                Text="Entrar"
-                Command="{Binding GetInfoEmpleadoCommand}"
-                />-->
+            </Frame>
+
             <Image
            Source="biometa_icoq"
-           VerticalOptions="End"
+           VerticalOptions="Center"
            HorizontalOptions="Center"
-           TranslationY="-100"
-           WidthRequest="500"
+           TranslationY="-130"
+           WidthRequest="400"
            HeightRequest="500"/>
+            
+        </StackLayout>
 
-    </VerticalStackLayout>
-  </ScrollView>
+        <!--<Image
+           Source="biometa_icoq"
+           VerticalOptions="Center"
+           HorizontalOptions="Center"
+           TranslationY="0"
+           WidthRequest="300"
+           HeightRequest="300"/>-->
+
+ </VerticalStackLayout>
+
 </ContentPage>

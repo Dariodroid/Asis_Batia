@@ -221,7 +221,7 @@ namespace Asis_Batia.ViewModel
                 {
                     IsBusy = false;
                     IsEnabled = true;
-                    await DisplayAlert("Error", "Usted ya está registrado", "Ok");
+                    await DisplayAlert("Error", "Este usuario ya cuenta con un registro", "Ok");
                 }
                 else
                 {

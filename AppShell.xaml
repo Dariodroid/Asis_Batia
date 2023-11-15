@@ -15,7 +15,7 @@
 
     <ShellContent
   Icon="iconminfo.png"
-  Title="Infomacion de empledo"
+  Title="Infomacion de empleado"
   ContentTemplate="{DataTemplate local:FormuPrinAsis}"
   Route="FormPrin"
   Shell.FlyoutBehavior="Flyout" />
@@ -25,7 +25,7 @@
   Title="Registro de asistencia"
   ContentTemplate="{DataTemplate local:FormuSegAsis}"
   Route="FormSeg"
-  FlyoutItemIsVisible="True" 
+  FlyoutItemIsVisible="False" 
   Shell.FlyoutBehavior="Flyout"/>
 
     <ShellContent
@@ -43,6 +43,7 @@
   Shell.FlyoutBehavior="Flyout" />
 
     <ShellContent
+        Icon="iconcondiciones"
   Title="Reglas de Uso"
   ContentTemplate="{DataTemplate local:RulesPage}"
   Route="RulesPage"
