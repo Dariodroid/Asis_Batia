@@ -3,16 +3,191 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.FormuSegAsis"
              Title="BIOMETA">
+    
     <!--<Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding BackPageCommand}"/>
     </Shell.BackButtonBehavior>-->
+    
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#FFFFFF"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    <ScrollView>
+    
+    <VerticalStackLayout>
+        <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*"
+              VerticalOptions="CenterAndExpand"
+              ColumnSpacing="5"
+              RowSpacing="5"
+              Margin="20">
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Text="Seleccione una opción"
+                FontSize="40"
+                FontAttributes="Bold"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontFamily="Regular"
+                TextColor="#2E3192"
+                Margin="0,40,0,20"/>
+            
+            <Frame                 
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                CornerRadius="25"
+                BackgroundColor="Transparent"
+                BorderColor="#D4BC88"
+                HasShadow="True"
+                Margin="0,0,0,40">
+                
+                <Grid 
+                    RowDefinitions="*" ColumnDefinitions="*,*"
+                    VerticalOptions="CenterAndExpand"
+                    ColumnSpacing="5"
+                    RowSpacing="5"
+                    Margin="5">
+                    <RadioButton Grid.Column="0" Grid.Row="0" Content="A Asistencia" CheckedChanged="RadioButton_CheckedChanged" Value="A" FontSize="30" FontFamily="Regular"/>
+                    <RadioButton Grid.Column="1" Grid.Row="0" Content="N Descanso" CheckedChanged="RadioButton_CheckedChanged" Value="N" FontSize="30" FontFamily="Regular"/>
+                </Grid>
+            </Frame>
+            
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Text="Adjunta: incapacidad, listas de asistencia, justificante, Etc..."
+                FontSize="30"
+                FontAttributes="Bold"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontFamily="Regular"
+                TextColor="#2E3192"
+                Margin="0,0,0,40"/>
+            
+            <!--<Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BackgroundColor="LightPink"
+                HeightRequest="100"
+                BorderColor="Black"/>-->
+
+            <Button 
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                x:Name="btn_archivo"
+                Text="Archivo"
+                FontSize="25"
+                WidthRequest="150"
+                Command="{Binding LoadFileCommand}"
+                BorderWidth="2"
+                BorderColor="#D4BC88"
+                Margin="0,0,0,40">
+            </Button>
+
+            <!--<Button
+                Grid.Row="3"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                BackgroundColor="LightPink"
+                BorderColor="Black"/>-->
+            
+            <Button 
+                Grid.Row="3"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                x:Name="btn_camara"
+                Text="Foto"
+                FontSize="25"
+                WidthRequest="150"
+                Command="{Binding PhotoCommand}"
+                BorderWidth="2"
+                BorderColor="#D4BC88"
+                Margin="0,0,0,40">
+            </Button>
+            
+            <Entry
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                HeightRequest="50" 
+                HorizontalOptions="Center"
+                FontFamily="Regular"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                CharacterSpacing="1"
+                FontSize="Large"
+                PlaceholderColor="White"
+                TextColor="Black"
+                Placeholder="  Captura informacion adicional  "
+                IsSpellCheckEnabled="True"
+                IsTextPredictionEnabled="True"
+                Text="{Binding RespuestaTxt}"
+                />
+
+            <ActivityIndicator 
+                Grid.Row="5"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                IsRunning="{Binding IsBusy}"                   
+                Color="#D4BC88" 
+                VerticalOptions="Fill"
+                Scale="1"
+                Margin="0,0,0,20"/>
+            
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                x:Name="bntNext3"
+                Text="REGISTRAR"
+                IsEnabled="{Binding IsEnabled}"
+                FontSize="Large"
+                BackgroundColor="#3775B5"
+                TextColor="#D4BC88"
+                BorderWidth="2"
+                BorderColor="#D4BC88"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                TranslationY="-5"
+                WidthRequest="250"
+                HeightRequest="55"
+                Command="{Binding RegisterCommand}"/>
+
+            <!--<Button
+                Grid.Row="4"
+                Grid.Column="0"
+                BackgroundColor="LightBlue"
+                BorderColor="Black"
+                HeightRequest="100"/>
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                BackgroundColor="LightBlue"
+                BorderColor="Black"/>
+            <Button
+                Grid.Row="4"
+                Grid.Column="2"
+                BackgroundColor="LightBlue"
+                BorderColor="Black"/>
+
+            <Button
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                BackgroundColor="LightPink"
+                BorderColor="Black"
+                HeightRequest="100"/>-->
+        </Grid>
+    </VerticalStackLayout>
+    <!--<ScrollView>
         <VerticalStackLayout VerticalOptions="Center">
             <ActivityIndicator IsRunning="{Binding IsBusy}" 
                                Color="#D4BC88" 
@@ -120,6 +295,6 @@
 
             </VerticalStackLayout>
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView>-->
 
 </ContentPage>

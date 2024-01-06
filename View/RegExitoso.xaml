@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.RegExitoso"
              Title="REGISTRO EXITOSO">
+    
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#FFFFFF"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
+    
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Center" 
                              Spacing="50">
@@ -53,10 +55,11 @@
                     <Image
                         Source="paloma"
                         Aspect="AspectFill" 
-                        TranslationY="20"
-                        TranslationX="-20"
-                        HeightRequest="350" 
-                        WidthRequest="330"/>
+                        TranslationY="0"
+                        TranslationX="0"
+                        HeightRequest="90" 
+                        WidthRequest="100"
+                        />
 
                 </VerticalStackLayout>
             </Frame>

@@ -11,35 +11,78 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <VerticalStackLayout Margin="5" VerticalOptions="FillAndExpand">
+    <VerticalStackLayout>
 
-        <VerticalStackLayout>
-            <Image Source="logo_batia"
-               Aspect="AspectFill"
-               HeightRequest="300"
-               WidthRequest="400"
-               TranslationY="0"/>
-        <Label 
-            Text="BIOMETA"
-            TextColor="#2E3192"
-            FontAttributes="Bold"
-            FontFamily="Regular"
-            FontSize="100"
-            HorizontalOptions="Center"
-            TranslationY="0"/>
-    </VerticalStackLayout>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-            <Frame CornerRadius="25" 
-                   Margin="0" 
-                   HeightRequest="60" 
-                   BackgroundColor="Transparent" 
-                   BorderColor="#D4BC88"
-                   IsClippedToBounds="True"
-                   Padding="1"
-                   WidthRequest="200"
-                   TranslationY="10"
-                   >
-            <Entry
+        <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*"
+             VerticalOptions="CenterAndExpand"
+             ColumnSpacing="5"
+             RowSpacing="5"
+             Margin="20,60,20,5">
+
+            <Frame                
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                IsClippedToBounds="True"
+                Padding="0"
+                HeightRequest="250">
+
+                <Image Source="logo_batia"/>
+            </Frame>
+
+            <!--<Label 
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.RowSpan="2"
+               FontSize="55"
+               FontAttributes="Bold"
+               FontFamily="MontSemibold"
+               Text="SUITE"
+               TextColor="#2E3192"
+                BackgroundColor="AliceBlue"
+               HeightRequest="200"
+               HorizontalTextAlignment="End"
+               VerticalTextAlignment="Center"/>
+
+            <Label 
+               Grid.Row="0"
+               Grid.Column="1"
+               Grid.RowSpan="2"
+                BackgroundColor="AliceBlue|"
+               FontSize="55"
+               FontAttributes="Bold"
+               FontFamily="MontSemibold"
+               Text="BATIA"
+               TextColor="#3775B5"
+               HeightRequest="200"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Center"/>-->
+
+
+
+
+            <Label        
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2" Text="BIOMETA" FontSize="100" 
+                FontFamily="Regular" FontAttributes="Bold"  TextColor="#2E3192" HorizontalTextAlignment="Center" 
+                VerticalTextAlignment="Center"
+                BackgroundColor="Transparent"
+                 />
+
+            <!--<Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="Ingresa tus datos" FontSize="15" FontFamily="MontRegular" TextColor="#2E3192" HorizontalTextAlignment="Center" VerticalTextAlignment="End"/>-->
+
+            <StackLayout 
+               Orientation="Horizontal"
+               Grid.Row="3"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Margin="10,0,10,5">
+                <Frame Margin="0,0,0,0" Padding="0,0,0,-10" HasShadow="True" BackgroundColor="Transparent" BorderColor="#D4BC88"  HorizontalOptions="FillAndExpand" CornerRadius="5" WidthRequest="160" HeightRequest="50">
+                    <Entry
             x:Name="labelid"
             Placeholder="  ID Empleado  "
             Text="{Binding IdEmpleado}"
@@ -57,26 +100,21 @@
             ReturnCommand="{Binding GetInfoEmpleadoCommand}"
             ReturnType="Send" 
             Keyboard="Numeric" />
-            </Frame>
+
+                </Frame>
+            </StackLayout>
 
             <Image
+           Grid.Row="5"
+           Grid.Column="0"
+           Grid.ColumnSpan="2"
            Source="biometa_icoq"
            VerticalOptions="Center"
            HorizontalOptions="Center"
-           TranslationY="-130"
-           WidthRequest="400"
-           HeightRequest="500"/>
-            
-        </StackLayout>
+           TranslationY="20"
+           WidthRequest="200"
+           HeightRequest="200"/>
+        </Grid>
 
-        <!--<Image
-           Source="biometa_icoq"
-           VerticalOptions="Center"
-           HorizontalOptions="Center"
-           TranslationY="0"
-           WidthRequest="300"
-           HeightRequest="300"/>-->
-
- </VerticalStackLayout>
-
+    </VerticalStackLayout>
 </ContentPage>
