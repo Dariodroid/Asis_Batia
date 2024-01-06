@@ -14,8 +14,9 @@
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    
-    <VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout>
         <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*"
               VerticalOptions="CenterAndExpand"
               ColumnSpacing="5"
@@ -68,14 +69,6 @@
                 FontFamily="Regular"
                 TextColor="#2E3192"
                 Margin="0,0,0,40"/>
-            
-            <!--<Button
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                BackgroundColor="LightPink"
-                HeightRequest="100"
-                BorderColor="Black"/>-->
 
             <Button 
                 Grid.Row="3"
@@ -91,12 +84,7 @@
                 Margin="0,0,0,40">
             </Button>
 
-            <!--<Button
-                Grid.Row="3"
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
-                BackgroundColor="LightPink"
-                BorderColor="Black"/>-->
+
             
             <Button 
                 Grid.Row="3"
@@ -161,140 +149,7 @@
                 HeightRequest="55"
                 Command="{Binding RegisterCommand}"/>
 
-            <!--<Button
-                Grid.Row="4"
-                Grid.Column="0"
-                BackgroundColor="LightBlue"
-                BorderColor="Black"
-                HeightRequest="100"/>
-            <Button
-                Grid.Row="4"
-                Grid.Column="1"
-                BackgroundColor="LightBlue"
-                BorderColor="Black"/>
-            <Button
-                Grid.Row="4"
-                Grid.Column="2"
-                BackgroundColor="LightBlue"
-                BorderColor="Black"/>
-
-            <Button
-                Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                BackgroundColor="LightPink"
-                BorderColor="Black"
-                HeightRequest="100"/>-->
         </Grid>
     </VerticalStackLayout>
-    <!--<ScrollView>
-        <VerticalStackLayout VerticalOptions="Center">
-            <ActivityIndicator IsRunning="{Binding IsBusy}" 
-                               Color="#D4BC88" 
-                               VerticalOptions="Fill" 
-                               Scale="1"/>
-            <VerticalStackLayout  
-            Spacing="10"
-            Padding="20,10"
-            Margin="3,0,5,0"
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
-                
-                <Label Text="Seleccione una opción"
-                   FontSize="35"
-                   FontAttributes="Bold"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   FontFamily="Regular"
-                   TextColor="#2E3192"
-                   TranslationY="-20"/>
-                <Frame CornerRadius="25"
-                       BackgroundColor="Transparent"
-                       BorderColor="#D4BC88"
-                       TranslationY="-5">
-                    <VerticalStackLayout
-                        RadioButtonGroup.SelectedValue="{Binding SelectionRadio}"
-                        TranslationY="0"
-                        >
-                        <RadioButton Content="A Asistencia" CheckedChanged="RadioButton_CheckedChanged" Value="A" FontSize="20" FontFamily="Regular"/>
-                        <RadioButton Content="D Doblete" CheckedChanged="RadioButton_CheckedChanged" Value="D" FontSize="20" FontFamily="Regular"/>
-                        <RadioButton Content="F Falta" CheckedChanged="RadioButton_CheckedChanged" Value="F" FontSize="20" FontFamily="Regular"/>
-                        <RadioButton Content="V Vacaciones" CheckedChanged="RadioButton_CheckedChanged" Value="V" FontSize="20" FontFamily="Regular"/>
-                        <RadioButton Content="IEG Incapacidad General" CheckedChanged="RadioButton_CheckedChanged" Value="IEG" FontSize="20" FontFamily="Regular"/>
-                        <RadioButton Content="IRT Incapacidad Riesgo de Trabajo" CheckedChanged="RadioButton_CheckedChanged" Value="IRT" FontSize="20" FontFamily="Regular"/>
-                        <RadioButton Content="N Descanso" CheckedChanged="RadioButton_CheckedChanged" Value="N" FontSize="20" FontFamily="Regular"/>
-                    </VerticalStackLayout>
-                </Frame>
-                <Label 
-                   Text="Adjunta: incapacidad, listas de asistencia, justificante, Etc..."
-                   FontSize="25"
-                   FontAttributes="Bold"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   FontFamily="Regular"
-                   TextColor="#2E3192"
-                   TranslationY="5"/>
-                <Button 
-                    x:Name="btn_archivo"
-                    Text="Archivo"
-                    FontSize="25"
-                    WidthRequest="200"
-                    TranslationY="10"
-                    Command="{Binding LoadFileCommand}"
-                    BorderWidth="2"
-                    BorderColor="#D4BC88">
-                </Button>
-                <Button 
-                   x:Name="btn_camara"
-                   Text="Foto"
-                   FontSize="25"
-                   TranslationY="15"
-                   WidthRequest="200"
-                   Command="{Binding PhotoCommand}"
-                   BorderWidth="2"
-                   BorderColor="#D4BC88">
-                </Button>
-                
-                <Entry 
-                    TranslationY="20"
-                    HorizontalOptions="Center"
-                    FontFamily="Regular"
-                    VerticalTextAlignment="Center"
-                    HorizontalTextAlignment="Center"
-                    CharacterSpacing="1"
-                    FontSize="Large"
-                    PlaceholderColor="White"
-                    TextColor="Black"
-                    Placeholder="  Captura informacion adicional  "
-                    IsSpellCheckEnabled="True"
-                    IsTextPredictionEnabled="True"
-                    Text="{Binding RespuestaTxt}"/>
-
-                <ActivityIndicator IsRunning="{Binding IsBusy}" 
-                                   Color="#D4BC88" 
-                                   VerticalOptions="Fill"
-                                   TranslationY="5"
-                                   Scale="1"/>
-                <Button 
-                x:Name="bntNext3"
-                Text="REGISTRAR"
-                IsEnabled="{Binding IsEnabled}"
-                FontSize="Large"
-                
-                BackgroundColor="#3775B5"
-                TextColor="#D4BC88"
-                BorderWidth="2"
-                BorderColor="#D4BC88"
-                HorizontalOptions="Center"
-                FontAttributes="Bold"
-                CornerRadius="10"
-                TranslationY="-5"
-                WidthRequest="250"
-                HeightRequest="55"
-                Command="{Binding RegisterCommand}"/>
-
-            </VerticalStackLayout>
-        </VerticalStackLayout>
-    </ScrollView>-->
-
+    </ScrollView>
 </ContentPage>

@@ -10,8 +10,8 @@
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-
-    <VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
 
         <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*"
              VerticalOptions="CenterAndExpand"
@@ -32,37 +32,6 @@
 
                 <Image Source="logo_batia"/>
             </Frame>
-
-            <!--<Label 
-               Grid.Row="0"
-               Grid.Column="0"
-               Grid.RowSpan="2"
-               FontSize="55"
-               FontAttributes="Bold"
-               FontFamily="MontSemibold"
-               Text="SUITE"
-               TextColor="#2E3192"
-                BackgroundColor="AliceBlue"
-               HeightRequest="200"
-               HorizontalTextAlignment="End"
-               VerticalTextAlignment="Center"/>
-
-            <Label 
-               Grid.Row="0"
-               Grid.Column="1"
-               Grid.RowSpan="2"
-                BackgroundColor="AliceBlue|"
-               FontSize="55"
-               FontAttributes="Bold"
-               FontFamily="MontSemibold"
-               Text="BATIA"
-               TextColor="#3775B5"
-               HeightRequest="200"
-               HorizontalTextAlignment="Start"
-               VerticalTextAlignment="Center"/>-->
-
-
-
 
             <Label        
                 Grid.Row="2"
@@ -117,4 +86,5 @@
         </Grid>
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

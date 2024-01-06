@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Asis_Batia.View.RulesPage"
              Title="AVISOS DE PRIVACIDAD">
+    
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Offset="0.1" Color="#FFFFFF"/>
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    
-    <VerticalStackLayout Margin="20,30" Spacing="30">
+    <ScrollView>
+        
+        <VerticalStackLayout Margin="20,30" Spacing="30">
         <Label 
             Text="POLÍTICA DE PRIVACIDAD DE USUARIO PARA APLICACIÓN MÓVIL BIOMETA DESARROLLADA POR EL ÁREA DE SISTEMAS GRUPO BATIA."
             VerticalOptions="Center" 
@@ -172,4 +174,5 @@
                 BorderColor="#D4BC88"
             />-->
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

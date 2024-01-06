@@ -9,6 +9,7 @@
             <GradientStop Offset="1.0" Color="#3775B5"/>
         </LinearGradientBrush>
     </ContentPage.Background>
+    
     <ScrollView>
         <VerticalStackLayout
             Spacing="040"
