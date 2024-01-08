@@ -189,7 +189,7 @@ namespace Asis_Batia.ViewModel
                 {
                     Adjuntos = PathFile == null ? "" : PathFile,
                     Anio = (int)DateTime.Today.Year,
-                    Confirma = "App",
+                    Confirma = "BIOMETA",
                     Cubierto = 0,
                     Fecha = DateTime.Now,
                     Idempleado = IdEmpleado,
