@@ -29,7 +29,7 @@
 	<key>CFBundleIdentifier</key>
 	<string></string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>1</string>
 	<key>CFBundleDisplayName</key>
 	<string>BIOMETA</string>
 	<key>UIRequiresFullScreen</key>
