@@ -177,17 +177,7 @@ namespace Asis_Batia.ViewModel
                     }
 
                 }
-                else if (_selectionRadio == "N")
-                {
-                    var data = new Dictionary<string, object>
-                    {
-                        {"NombreEmpleado", NombreCliente },
-                        {"IdEmpleado", IdEmpleado },
-                        {"Lat", Lat},
-                        {"Lng", Lng}
-                    };
-                    await Shell.Current.GoToAsync("//SelectInmu", true, data);
-                }
+           
                 if (await SendFiles())
                 { }
                 else
@@ -197,8 +187,8 @@ namespace Asis_Batia.ViewModel
                     IsBusy = false;
                     return;
                 }
-
-                IsEnabled = false;
+                if (_selectionRadio == "N") { 
+                    IsEnabled = false;
                 await GetPeriodo(IdCliente);
                 RegistroModel registroModel = new RegistroModel
                 {
@@ -245,6 +235,7 @@ namespace Asis_Batia.ViewModel
                     await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
                 }
             }
+         }
             catch (Exception ex)
             {
                 IsBusy = false;
