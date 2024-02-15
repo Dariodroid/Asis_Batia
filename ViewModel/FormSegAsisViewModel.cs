@@ -105,7 +105,6 @@ namespace Asis_Batia.ViewModel
             NombreCliente = (string)query["NombreEmpleado"];
             Lat = (string)query["Lat"];
             Lng = (string)query["Lng"];
-
         }
 
         private void existeRegistro(int idEmple, DateTime fech, string movi)
@@ -119,8 +118,8 @@ namespace Asis_Batia.ViewModel
         {
             try
             {
-
-
+                IsEnabled = false;
+                count = 0;
                 IsBusy = true;
                 CultureInfo culture = new CultureInfo("es-MX");// Establece la cultura adecuada para México
                 Location _location = await LocationService.GetCurrentLocation();
@@ -151,6 +150,7 @@ namespace Asis_Batia.ViewModel
                      //Y ES POR ELLO QUE SE MULTIPLICA POR 1000 QUE SERIA 1KM Y LA CLASE MATH.ROUND ES PARA REDONDEAR LOS DECIMALES DE LOS METROS EN ESTE CASO A 2 DECIMALES
                         if (count == 0)
                         {
+                          
                             count++;
                             var result = await DisplayAlert("Acción no permitida", "Parece que estas lejos de tu servicio, ¿Deseas registrarte en otro servicio?", "Si", "No");
                             if (result)
@@ -160,24 +160,30 @@ namespace Asis_Batia.ViewModel
                                     {"NombreEmpleado", NombreCliente },
                                     {"IdEmpleado", IdEmpleado },
                                     {"Lat", Lat},
-                                    {"Lng", Lng}
+                                    {"Lng", Lng},
+                                    {"IdInSele",IdInmueble},
+                                    {"IdClSele",IdCliente}
                                 };
                                 await Shell.Current.GoToAsync("//SelectInmu", true, data);
+
                             }
                             else
                             {
                                 count = 0;
                                 IsBusy = false;
+                                IsEnabled = true;
                                 return;
                             }
                             IsBusy = false;
+                            IsEnabled = true ;
                             return;
-
                         }
                     }
-
                 }
-           
+
+                else if (_selectionRadio == "N")
+                { }
+
                 if (await SendFiles())
                 { }
                 else
@@ -187,9 +193,9 @@ namespace Asis_Batia.ViewModel
                     IsBusy = false;
                     return;
                 }
-                if (_selectionRadio == "N") { 
-                    IsEnabled = false;
-                await GetPeriodo(IdCliente);
+            
+                    IsEnabled = false; 
+                await GetPeriodo(IdEmpleado);
                 RegistroModel registroModel = new RegistroModel
                 {
                     Adjuntos = PathFile == null ? "" : PathFile,
@@ -222,27 +228,27 @@ namespace Asis_Batia.ViewModel
                     await DisplayAlert("Mensaje", "Registrado correctamente", "Ok");
                     NexTPage();
                 }
-                else if (content == "err1")
-                {
-                    IsBusy = false;
-                    IsEnabled = true;
-                    await DisplayAlert("Mensaje", "Su registro fue exitoso 😊", "Ok");
-                }
-                else
+                    //else if (content == "err1")
+                    //{
+                    //    IsBusy = false;
+                    //    IsEnabled = true;
+                    //    await DisplayAlert("Mensaje", "Su registro fue exitoso 😊", "Ok");
+                    //}
+                    //else
+                else 
                 {
                     IsBusy = false;
                     IsEnabled = true;
                     await DisplayAlert("Error", "Ocurrió un error al registrar", "Ok");
                 }
-            }
          }
             catch (Exception ex)
             {
                 IsBusy = false;
                 await DisplayAlert("Error", ex.Message, "Cerrar");
             }
-
         }
+
 
         // Esta función recibe dos objetos de tipo Location, que representan las coordenadas de los puntos
         // y devuelve la distancia en metros entre ellos, usando el método CalculateDistance de la clase Location
@@ -257,7 +263,7 @@ namespace Asis_Batia.ViewModel
             await Shell.Current.GoToAsync("//FormReg", true, data);
         }
 
-        private async Task GetPeriodo(int idCliente)
+        private async Task GetPeriodo(int IdEmpleado)
         {
             IsBusy = true;// aqui vamos a ver toda la info que estamos perdon obteniendo seria ya qu es get
 
@@ -265,7 +271,7 @@ namespace Asis_Batia.ViewModel
             var request = new HttpRequestMessage();
 
             // Establecer la URL de la solicitud.
-            request.RequestUri = new Uri($"http://singa.com.mx:5500/api/PeriodoNomina?Idempleado={idCliente}");
+            request.RequestUri = new Uri($"http://singa.com.mx:5500/api/PeriodoNomina?Idempleado={IdEmpleado}");
 
             // Establecer el método de la solicitud como GET.
             request.Method = HttpMethod.Get;
@@ -293,7 +299,6 @@ namespace Asis_Batia.ViewModel
                 IdPeriodo = Periodo[0].id_periodo;
                 Tipo = Periodo[0].descripcion;
                 IsBusy = false;
-
             }
         }
 

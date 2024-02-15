@@ -160,42 +160,6 @@ namespace Asis_Batia.ViewModel
 
         }
 
-        // Método asincrónico para obtener la información de los clientes.
-        //private async Task GetClients()
-        //{
-        //    IsBusy = true;
-        //    // Crear una solicitud HTTP.
-        //    var request = new HttpRequestMessage();
-
-        //    // Establecer la URL de la solicitud.
-        //    request.RequestUri = new Uri("http://singa.com.mx:5500/api/cliente");
-
-        //    // Establecer el método de la solicitud como GET.
-        //    request.Method = HttpMethod.Get;
-
-        //    // Agregar un encabezado "Accept" para indicar que se acepta JSON como respuesta.
-        //    request.Headers.Add("Accept", "application/json");
-
-        //    // Crear una nueva instancia de HttpClient.
-        //    var client = new HttpClient();
-
-        //    // Enviar la solicitud HTTP y esperar la respuesta.
-        //    HttpResponseMessage response = await client.SendAsync(request);
-
-        //    // Verificar si la respuesta tiene un estado OK (código 200).
-        //    if (response.StatusCode == HttpStatusCode.OK)
-        //    {
-        //        // Leer el contenido de la respuesta como una cadena.
-        //        string content = await response.Content.ReadAsStringAsync();
-
-        //        // Deserializar el contenido JSON en una colección observable de clientes.
-        //        var data = JsonConvert.DeserializeObject<ObservableCollection<ClientModel.Client>>(content);
-
-        //        // Asignar la colección de clientes a la propiedad 'Clients'.
-        //        Clients = data;
-        //        IsBusy = false;
-        //    }
-        //}
 
         // Método asincrónico para obtener información de inmuebles por ID de cliente.
         private async Task GetInmuebleByIdClient(int idCliente)
@@ -284,19 +248,28 @@ namespace Asis_Batia.ViewModel
 
         private async Task NextPage()
         {
-            string latitud = null;
-            string longitud = null;
-
-            foreach (var inmueble in Inmueble)
+            if (IdCliente == 130)
             {
-                if (inmueble.id_inmueble == IdInmueble)
-                {
-                    latitud = inmueble.latitud;
-                    longitud = inmueble.longitud;
-                    break; // Sal del bucle una vez que encuentres la coincidencia
-                }
+                await DisplayAlert("Advertencia","Estimado colaborador, recuerda que tu asistencia debe de pasar por la aplicación\r\nGS Proveedores.\r\nPara mayor información, comuníquese a los siguientes números:\r\n55 5297 9939 \r\n55 4333 0123 ext.133", "Cerrar");
+                Exit();
             }
-            var data = new Dictionary<string, object>
+
+            else
+            {
+
+                string latitud = null;
+                string longitud = null;
+
+                foreach (var inmueble in Inmueble)
+                {
+                    if (inmueble.id_inmueble == IdInmueble)
+                    {
+                        latitud = inmueble.latitud;
+                        longitud = inmueble.longitud;
+                        break; // Sal del bucle una vez que encuentres la coincidencia
+                    }
+                }
+                var data = new Dictionary<string, object>
             {
                 {"IdCliente", IdCliente },// ahora ya deberia funcionar
                 {"IdInmueble", IdInmueble },// el error se produce aqui xq no hay nada en el idinmueble
@@ -306,8 +279,9 @@ namespace Asis_Batia.ViewModel
                 {"Lng", longitud}
             };
 
-            await Shell.Current.GoToAsync("//FormSeg", true, data);//te fijas que no se necesita legable de inmueble
-        }//ya tenemos toda la informacion de ese usuario y ahora se la pasamos al siguiente form
+                await Shell.Current.GoToAsync("//FormSeg", true, data);//te fijas que no se necesita legable de inmueble
+            }//ya tenemos toda la informacion de ese usuario y ahora se la pasamos al siguiente form
+        }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -320,6 +294,10 @@ namespace Asis_Batia.ViewModel
             IdInmueble = (int)query["idInmueble"];
             IdEstado = (int)query["idEstado"];
             _ = IdCliente > 0 ? GetInmuebleByIdClient(IdCliente) : null;
+        }
+        private void Exit()
+        {
+            Application.Current.Quit();
         }
     }
 }

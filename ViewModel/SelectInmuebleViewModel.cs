@@ -25,6 +25,7 @@ namespace Asis_Batia.ViewModel
         public string Lat { get; set; }
         public string Lng { get; set; }
 
+
         HttpClient client;
         // Declaración de una colección observable privada llamada '_clients' del tipo 'ClientModel.Client'.
         private ObservableCollection<ClientModel.Client> _clients;
@@ -245,7 +246,8 @@ namespace Asis_Batia.ViewModel
             IdEmpleado = (int)query["IdEmpleado"];
             Lat = (string)query["Lat"];
             Lng = (string)query["Lng"];
-
+            IdInmueble = (int)query["IdInSele"];
+            IdCliente = (int)query["IdClSele"];
         }
 
         private async Task NextPage()
@@ -257,16 +259,16 @@ namespace Asis_Batia.ViewModel
                 {
                     var data = new Dictionary<string, object>
                     {
-                        {"IdCliente", _idClientSelected.idCliente },
-                        {"IdInmueble", _idInmubleSelected.id_inmueble },
+                        {"IdCliente",IdCliente},
+                        {"IdInmueble",IdInmueble},
                         {"IdEmpleado", IdEmpleado },
                         {"NombreEmpleado", NombreEmpleado },
                         {"Lat", IdInmubleSelected.latitud},
-                        {"Lng", IdInmubleSelected.longitud}
+                        {"Lng", IdInmubleSelected.longitud},
                     };
                     IsBusy = false;
                     await Shell.Current.GoToAsync("//FormSeg", true, data);
-                }
+                    }
             }
             catch (Exception)
             {
@@ -276,7 +278,6 @@ namespace Asis_Batia.ViewModel
         }
 
       
-
         private async Task<bool> CheckLocation()
         {
             CultureInfo culture = new CultureInfo("es-MX");
