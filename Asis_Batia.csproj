@@ -111,6 +111,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\Colors.xaml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Styles.xaml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiXaml>
 	  <MauiXaml Update="View\FormuPrinAsis.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

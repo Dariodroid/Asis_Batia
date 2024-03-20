@@ -28,13 +28,7 @@
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string></string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>CFBundleDisplayName</key>
 	<string>BIOMETA</string>
-	<key>UIRequiresFullScreen</key>
-	<true/>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>
